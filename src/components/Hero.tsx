@@ -23,78 +23,67 @@ const Hero = () => {
 
   return (
     <section className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
-      {/* Breathtaking romantic background */}
+      {/* Sophisticated aurora-like background */}
       <div className="absolute inset-0">
-        {/* Multi-layered romantic gradients */}
+        {/* Multi-layered dreamy gradients */}
         <div className="absolute inset-0 bg-gradient-to-br from-pink-50 via-rose-50 to-red-50" />
-        <div className="absolute inset-0 bg-gradient-to-tr from-purple-50/60 via-pink-50/40 to-orange-50/50" />
-        <div className="absolute inset-0 bg-gradient-to-bl from-yellow-50/30 via-transparent to-pink-100/40" />
+        <div className="absolute inset-0 bg-gradient-to-tr from-purple-50/40 via-pink-50/60 to-orange-50/30" />
+        <div className="absolute inset-0 bg-gradient-to-bl from-yellow-50/20 via-transparent to-pink-100/30" />
         
-        {/* Dreamy atmospheric layers */}
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-radial from-pink-200/20 via-transparent to-transparent" />
-        <div className="absolute bottom-0 right-0 w-full h-full bg-gradient-radial from-rose-200/15 via-transparent to-transparent" />
+        {/* Aurora-like effects */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-conic from-pink-200/40 via-transparent to-rose-200/30 animate-spin-slow" />
+          <div className="absolute bottom-0 right-0 w-full h-full bg-gradient-conic from-rose-200/30 via-transparent to-pink-200/40 animate-spin-slow" style={{animationDirection: 'reverse', animationDuration: '25s'}} />
+        </div>
         
-        {/* Floating hearts of various sizes */}
-        {[...Array(20)].map((_, i) => (
+        {/* Sophisticated floating geometric shapes */}
+        {[...Array(8)].map((_, i) => (
           <div
             key={i}
-            className="absolute text-pink-300/40 animate-float"
+            className="absolute rounded-full bg-gradient-to-br from-pink-200/30 to-rose-300/20 animate-float blur-sm"
             style={{
-              fontSize: `${12 + Math.random() * 20}px`,
+              width: `${20 + Math.random() * 40}px`,
+              height: `${20 + Math.random() * 40}px`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
               animationDelay: `${Math.random() * 8}s`,
-              animationDuration: `${6 + Math.random() * 6}s`,
-            }}
-          >
-            {['💕', '💖', '💗', '💝', '💞'][Math.floor(Math.random() * 5)]}
-          </div>
-        ))}
-        
-        {/* Twinkling stars */}
-        {[...Array(30)].map((_, i) => (
-          <div
-            key={`star-${i}`}
-            className="absolute rounded-full bg-yellow-300/50 animate-sparkle"
-            style={{
-              width: `${2 + Math.random() * 4}px`,
-              height: `${2 + Math.random() * 4}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${3 + Math.random() * 4}s`
+              animationDuration: `${8 + Math.random() * 6}s`,
             }}
           />
         ))}
         
-        {/* Soft romantic light orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-radial from-pink-300/25 to-transparent rounded-full blur-3xl animate-pulse-gentle" />
-        <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-gradient-radial from-rose-300/20 to-transparent rounded-full blur-2xl animate-pulse-gentle" style={{animationDelay: '2s'}} />
-        <div className="absolute top-1/2 left-1/6 w-64 h-64 bg-gradient-radial from-purple-300/15 to-transparent rounded-full blur-3xl animate-pulse-gentle" style={{animationDelay: '4s'}} />
-        
-        {/* Magical particle system */}
-        {[...Array(25)].map((_, i) => (
+        {/* Twinkling particle constellation */}
+        {[...Array(40)].map((_, i) => (
           <div
-            key={`particle-${i}`}
-            className="absolute rounded-full animate-sparkle opacity-60"
+            key={`star-${i}`}
+            className="absolute rounded-full bg-gradient-to-br from-yellow-300/60 to-orange-300/40 animate-twinkle"
             style={{
               width: `${1 + Math.random() * 3}px`,
               height: `${1 + Math.random() * 3}px`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              backgroundColor: ['#fbb6ce', '#f9a8d4', '#fde047', '#fb7185'][Math.floor(Math.random() * 4)],
               animationDelay: `${Math.random() * 6}s`,
-              animationDuration: `${4 + Math.random() * 4}s`
+              animationDuration: `${2 + Math.random() * 4}s`
             }}
           />
         ))}
         
-        {/* Subtle texture overlay */}
+        {/* Dynamic floating light orbs */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-radial from-pink-300/25 to-transparent rounded-full blur-3xl animate-breathe" />
+        <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-gradient-radial from-rose-300/20 to-transparent rounded-full blur-2xl animate-breathe" style={{animationDelay: '3s'}} />
+        <div className="absolute top-1/2 left-1/6 w-64 h-64 bg-gradient-radial from-purple-300/15 to-transparent rounded-full blur-3xl animate-breathe" style={{animationDelay: '6s'}} />
+        
+        {/* Minimal romantic elements */}
+        <div className="absolute top-1/6 left-1/8 text-2xl text-pink-300/30 animate-float" style={{animationDelay: '2s'}}>💕</div>
+        <div className="absolute bottom-1/4 right-1/8 text-2xl text-rose-300/30 animate-float" style={{animationDelay: '5s'}}>✨</div>
+        <div className="absolute top-2/3 left-4/5 text-xl text-purple-300/30 animate-float" style={{animationDelay: '8s'}}>🌙</div>
+        
+        {/* Dreamy texture overlay */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 25% 25%, rgba(244, 174, 174, 0.2) 0%, transparent 50%), 
-                              radial-gradient(circle at 75% 75%, rgba(192, 132, 252, 0.2) 0%, transparent 50%),
-                              radial-gradient(circle at 50% 90%, rgba(251, 191, 36, 0.15) 0%, transparent 50%)`
+            backgroundImage: `radial-gradient(circle at 20% 30%, rgba(244, 174, 174, 0.3) 0%, transparent 60%), 
+                              radial-gradient(circle at 80% 70%, rgba(192, 132, 252, 0.25) 0%, transparent 60%),
+                              radial-gradient(circle at 40% 80%, rgba(251, 191, 36, 0.2) 0%, transparent 60%)`
           }} />
         </div>
       </div>
@@ -124,25 +113,17 @@ const Hero = () => {
         {showArrow && (
           <button
             onClick={scrollToStory}
-            className="animate-float-in transition-all duration-500 focus:outline-none group hover:scale-110"
+            className="animate-float-in transition-all duration-500 focus:outline-none group opacity-0 hover:opacity-100"
             aria-label="Scroll to our story"
           >
-            <div className="bg-white/95 backdrop-blur-md rounded-full p-4 shadow-2xl transition-all duration-500 border border-white/70 group-hover:bg-white group-hover:shadow-3xl">
+            <div className="bg-white/95 backdrop-blur-md rounded-full p-3 shadow-2xl transition-all duration-500 border border-white/70 group-hover:bg-white group-hover:shadow-3xl group-hover:scale-110">
               <ArrowDown 
-                size={20} 
+                size={16} 
                 className="text-rose-500 mx-auto cursor-pointer group-hover:text-rose-700 transition-colors animate-pulse-gentle" 
               />
             </div>
           </button>
         )}
-      </div>
-
-      {/* Additional floating romantic elements */}
-      <div className="absolute inset-0 pointer-events-none opacity-30">
-        <div className="absolute top-1/6 left-1/8 text-3xl text-pink-400/60 animate-float" style={{animationDelay: '1s'}}>🌹</div>
-        <div className="absolute top-3/4 right-1/8 text-2xl text-rose-400/60 animate-float" style={{animationDelay: '3s'}}>💐</div>
-        <div className="absolute top-1/2 left-4/5 text-xl text-purple-400/60 animate-sparkle" style={{animationDelay: '5s'}}>✨</div>
-        <div className="absolute top-1/3 left-1/12 text-lg text-yellow-400/60 animate-sparkle" style={{animationDelay: '2s'}}>⭐</div>
       </div>
     </section>
   );

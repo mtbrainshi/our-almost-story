@@ -36,7 +36,7 @@ const FinalAsk = () => {
                              document.querySelector('[data-section="personal-message"]') ||
                              document.body.lastElementChild;
       personalMessage?.scrollIntoView({ behavior: 'smooth' });
-    }, 3000);
+    }, 5000);
   };
 
   const handleNoClick = () => {
@@ -68,86 +68,126 @@ const FinalAsk = () => {
       ref={sectionRef}
       className="min-h-screen flex items-center justify-center relative overflow-hidden py-20"
     >
-      {/* Enhanced romantic background */}
+      {/* Cozy coffee shop atmosphere */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-pink-50 via-rose-50 to-red-50" />
-        <div className="absolute inset-0 bg-gradient-to-tr from-pink-100/40 via-transparent to-rose-100/30" />
+        <div className="absolute inset-0 bg-gradient-to-br from-amber-50/60 via-orange-50/50 to-yellow-50/60" />
+        <div className="absolute inset-0 bg-gradient-to-tr from-amber-100/40 via-transparent to-orange-100/30" />
         
-        {/* Floating hearts for romance */}
-        {[...Array(15)].map((_, i) => (
+        {/* Floating steam particles */}
+        {[...Array(20)].map((_, i) => (
           <div
             key={i}
-            className="absolute text-pink-300/40 animate-float"
+            className="absolute bg-gray-200/30 rounded-full animate-steam-rise blur-sm"
             style={{
-              fontSize: `${10 + Math.random() * 15}px`,
+              width: `${2 + Math.random() * 4}px`,
+              height: `${8 + Math.random() * 12}px`,
               left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              top: `${80 + Math.random() * 20}%`,
               animationDelay: `${Math.random() * 6}s`,
-              animationDuration: `${5 + Math.random() * 4}s`,
+              animationDuration: `${4 + Math.random() * 4}s`,
             }}
-          >
-            💕
-          </div>
+          />
         ))}
         
-        {/* Ambient lighting */}
-        <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-pink-200/20 rounded-full blur-3xl animate-pulse-gentle" />
-        <div className="absolute bottom-1/2 right-1/3 w-80 h-80 bg-rose-200/15 rounded-full blur-2xl animate-pulse-gentle" style={{animationDelay: '2s'}} />
+        {/* Coffee bean silhouettes */}
+        {[...Array(12)].map((_, i) => (
+          <div
+            key={`bean-${i}`}
+            className="absolute w-3 h-2 bg-amber-600/20 rounded-full animate-float"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${6 + Math.random() * 3}s`,
+              transform: `rotate(${Math.random() * 45}deg)`
+            }}
+          />
+        ))}
+        
+        {/* Warm ambient lighting */}
+        <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-amber-200/25 rounded-full blur-3xl animate-breathe" />
+        <div className="absolute bottom-1/2 right-1/3 w-80 h-80 bg-orange-200/20 rounded-full blur-2xl animate-breathe" style={{animationDelay: '3s'}} />
       </div>
 
-      {/* Celebration overlay */}
+      {/* Spectacular celebration overlay */}
       {showCelebration && (
         <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
-          {/* Heart explosion */}
-          {[...Array(50)].map((_, i) => (
+          {/* Heart-shaped confetti explosion */}
+          {[...Array(80)].map((_, i) => (
             <div
               key={i}
-              className="absolute text-pink-500 animate-heart-explosion"
+              className="absolute animate-confetti-explosion"
               style={{
                 left: '50%',
                 top: '50%',
-                fontSize: `${15 + Math.random() * 25}px`,
+                fontSize: `${12 + Math.random() * 20}px`,
                 animationDelay: `${Math.random() * 2}s`,
-                '--random-x': `${(Math.random() - 0.5) * 200}vw`,
-                '--random-y': `${(Math.random() - 0.5) * 200}vh`,
+                '--random-x': `${(Math.random() - 0.5) * 300}vw`,
+                '--random-y': `${(Math.random() - 0.5) * 300}vh`,
+                '--rotation': `${Math.random() * 720}deg`,
               } as any}
             >
-              {['💕', '💖', '💗', '💝', '💞', '❤️', '💓'][Math.floor(Math.random() * 7)]}
+              {['💕', '💖', '💗', '💝', '💞', '❤️', '💓', '🌹'][Math.floor(Math.random() * 8)]}
             </div>
           ))}
           
-          {/* Sparkle confetti */}
-          {[...Array(30)].map((_, i) => (
+          {/* Golden sparkles cascading */}
+          {[...Array(50)].map((_, i) => (
             <div
               key={`sparkle-${i}`}
-              className="absolute text-yellow-400 animate-sparkle-confetti"
+              className="absolute animate-cascade-sparkles"
               style={{
-                left: '50%',
-                top: '50%',
-                fontSize: `${10 + Math.random() * 15}px`,
-                animationDelay: `${Math.random() * 3}s`,
-                '--random-x': `${(Math.random() - 0.5) * 150}vw`,
-                '--random-y': `${(Math.random() - 0.5) * 150}vh`,
+                left: `${Math.random() * 100}%`,
+                top: '-10%',
+                fontSize: `${8 + Math.random() * 12}px`,
+                animationDelay: `${Math.random() * 4}s`,
+                animationDuration: `${3 + Math.random() * 3}s`,
               } as any}
             >
               ✨
             </div>
           ))}
           
-          {/* Success message */}
+          {/* Floating coffee beans and hearts */}
+          {[...Array(30)].map((_, i) => (
+            <div
+              key={`coffee-${i}`}
+              className="absolute animate-float-celebration"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                fontSize: `${10 + Math.random() * 15}px`,
+                animationDelay: `${Math.random() * 5}s`,
+              }}
+            >
+              {Math.random() > 0.5 ? '☕' : '💕'}
+            </div>
+          ))}
+          
+          {/* Romantic success message with typewriter effect */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="bg-white/95 backdrop-blur-md rounded-3xl p-8 shadow-3xl border border-white/60 animate-scale-in">
+            <div className="bg-white/95 backdrop-blur-md rounded-3xl p-12 shadow-3xl border border-white/60 animate-scale-celebration max-w-md">
               <div className="text-center">
-                <div className="text-6xl mb-4 animate-pulse-gentle">💖</div>
-                <p className="font-playfair text-2xl md:text-3xl italic text-rose-800 mb-2 font-bold">
-                  YES! 
+                <div className="text-8xl mb-6 animate-pulse-heart">💖</div>
+                <div className="overflow-hidden">
+                  <p className="font-playfair text-3xl md:text-4xl italic text-rose-800 mb-4 font-bold animate-typewriter">
+                    She said YES!
+                  </p>
+                </div>
+                <p className="font-poppins text-lg text-rose-600 animate-fade-in-delayed">
+                  Taking you to the message section...
                 </p>
-                <p className="font-poppins text-lg text-rose-600">
-                  Scrolling to the message section...
-                </p>
+                <div className="mt-6 flex justify-center space-x-2">
+                  <div className="w-3 h-3 bg-rose-400 rounded-full animate-bounce"></div>
+                  <div className="w-3 h-3 bg-rose-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                  <div className="w-3 h-3 bg-rose-400 rounded-full animate-bounce" style={{animationDelay: '0.4s'}}></div>
+                </div>
               </div>
             </div>
           </div>
+          
+          {/* Color temperature shift overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-rose-100/40 via-pink-100/30 to-orange-100/40 animate-color-shift" />
         </div>
       )}
 
@@ -157,11 +197,12 @@ const FinalAsk = () => {
         <Card className="bg-white/95 backdrop-blur-sm border border-white/50 shadow-2xl rounded-3xl overflow-hidden">
           <CardContent className="p-12 relative">
             <div className="text-center">
-              {/* Coffee icon with glow */}
+              {/* Coffee icon with enhanced glow */}
               <div className="mb-8 flex justify-center">
-                <div className="bg-gradient-to-br from-amber-100 to-orange-100 p-6 rounded-full shadow-lg relative">
-                  <Coffee size={48} className="text-amber-700" />
-                  <div className="absolute inset-0 bg-amber-300/20 rounded-full blur-xl animate-pulse-gentle"></div>
+                <div className="bg-gradient-to-br from-amber-100 to-orange-100 p-8 rounded-full shadow-lg relative">
+                  <Coffee size={56} className="text-amber-700" />
+                  <div className="absolute inset-0 bg-amber-300/30 rounded-full blur-xl animate-pulse-gentle"></div>
+                  <div className="absolute inset-0 bg-orange-300/20 rounded-full blur-2xl animate-pulse-gentle" style={{animationDelay: '1s'}}></div>
                 </div>
               </div>
 
@@ -194,9 +235,9 @@ const FinalAsk = () => {
                     className="bg-gradient-to-r from-pink-400 to-rose-400 hover:from-pink-500 hover:to-rose-500 text-white px-12 py-6 rounded-2xl font-poppins font-medium text-xl shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center gap-3 hover:scale-105 relative overflow-hidden group"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-pink-300/20 to-rose-300/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <Coffee size={24} />
+                    <Coffee size={28} />
                     <span className="relative z-10">Yes, I'd love to!</span>
-                    <div className="absolute inset-0 animate-sparkle opacity-30">✨</div>
+                    <div className="absolute top-0 right-0 text-yellow-300 animate-sparkle text-sm">✨</div>
                   </Button>
                   
                   <Button
@@ -221,13 +262,6 @@ const FinalAsk = () => {
             </div>
           </CardContent>
         </Card>
-      </div>
-
-      {/* Floating romantic elements */}
-      <div className="absolute inset-0 pointer-events-none opacity-40">
-        <div className="absolute top-1/6 left-8 text-pink-400/60 animate-float text-lg">🌹</div>
-        <div className="absolute bottom-1/6 right-8 text-rose-400/60 animate-float text-xl" style={{animationDelay: '2s'}}>💐</div>
-        <div className="absolute top-2/3 left-1/4 text-yellow-400/60 animate-sparkle text-sm" style={{animationDelay: '1s'}}>⭐</div>
       </div>
     </section>
   );

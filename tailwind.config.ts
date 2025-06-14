@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -111,6 +110,7 @@ export default {
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'gradient-conic': 'conic-gradient(var(--tw-gradient-stops))',
 			},
 			keyframes: {
 				'accordion-down': {
@@ -194,6 +194,203 @@ export default {
 					'50%': { 
 						transform: 'translateY(-10px)' 
 					}
+				},
+				'breathe': {
+					'0%, 100%': { 
+						transform: 'scale(1)',
+						opacity: '0.8'
+					},
+					'50%': { 
+						transform: 'scale(1.1)',
+						opacity: '1'
+					}
+				},
+				'twinkle': {
+					'0%, 100%': { 
+						opacity: '0.3',
+						transform: 'scale(0.8)'
+					},
+					'50%': { 
+						opacity: '1',
+						transform: 'scale(1.2)'
+					}
+				},
+				'spin-slow': {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' }
+				},
+				'sparkle-drift': {
+					'0%': { 
+						transform: 'translateY(0) translateX(0) scale(0)',
+						opacity: '0'
+					},
+					'20%': {
+						opacity: '1'
+					},
+					'80%': {
+						opacity: '1'
+					},
+					'100%': { 
+						transform: 'translateY(-30px) translateX(20px) scale(1)',
+						opacity: '0'
+					}
+				},
+				'petal-fall': {
+					'0%': { 
+						transform: 'translateY(-20px) rotate(0deg)',
+						opacity: '0.8'
+					},
+					'100%': { 
+						transform: 'translateY(20px) rotate(180deg)',
+						opacity: '0'
+					}
+				},
+				'matrix-fall': {
+					'0%': { 
+						transform: 'translateY(-20px)',
+						opacity: '0'
+					},
+					'20%': {
+						opacity: '1'
+					},
+					'80%': {
+						opacity: '1'
+					},
+					'100%': { 
+						transform: 'translateY(100vh)',
+						opacity: '0'
+					}
+				},
+				'steam': {
+					'0%': { 
+						transform: 'translateY(0) scale(1)',
+						opacity: '0.6'
+					},
+					'100%': { 
+						transform: 'translateY(-30px) scale(1.5)',
+						opacity: '0'
+					}
+				},
+				'cloud-drift': {
+					'0%': { transform: 'translateX(-20px)' },
+					'100%': { transform: 'translateX(20px)' }
+				},
+				'enhanced-rain': {
+					'0%': { 
+						transform: 'translateY(-20px)',
+						opacity: '0.9'
+					},
+					'100%': { 
+						transform: 'translateY(calc(100vh + 20px))',
+						opacity: '0.3'
+					}
+				},
+				'lightning': {
+					'0%, 90%, 100%': { opacity: '0' },
+					'5%, 85%': { opacity: '0.8' }
+				},
+				'ripple': {
+					'0%': { 
+						transform: 'scale(1)',
+						opacity: '0.3'
+					},
+					'50%': { 
+						transform: 'scale(1.05)',
+						opacity: '0.5'
+					},
+					'100%': { 
+						transform: 'scale(1)',
+						opacity: '0.3'
+					}
+				},
+				'steam-rise': {
+					'0%': { 
+						transform: 'translateY(0) scale(0.8)',
+						opacity: '0.7'
+					},
+					'100%': { 
+						transform: 'translateY(-100px) scale(1.2)',
+						opacity: '0'
+					}
+				},
+				'confetti-explosion': {
+					'0%': { 
+						transform: 'translate(-50%, -50%) scale(0) rotate(0deg)',
+						opacity: '1'
+					},
+					'20%': {
+						transform: 'translate(-50%, -50%) scale(1) rotate(90deg)',
+						opacity: '1'
+					},
+					'100%': { 
+						transform: 'translate(calc(-50% + var(--random-x)), calc(-50% + var(--random-y))) scale(0.8) rotate(var(--rotation))',
+						opacity: '0'
+					}
+				},
+				'cascade-sparkles': {
+					'0%': { 
+						transform: 'translateY(0) rotate(0deg)',
+						opacity: '1'
+					},
+					'100%': { 
+						transform: 'translateY(100vh) rotate(360deg)',
+						opacity: '0'
+					}
+				},
+				'float-celebration': {
+					'0%': { 
+						transform: 'translateY(0px) rotate(0deg)',
+						opacity: '0.8'
+					},
+					'50%': { 
+						transform: 'translateY(-20px) rotate(180deg)',
+						opacity: '1'
+					},
+					'100%': { 
+						transform: 'translateY(0px) rotate(360deg)',
+						opacity: '0.8'
+					}
+				},
+				'scale-celebration': {
+					'0%': { 
+						transform: 'scale(0) rotate(-10deg)',
+						opacity: '0'
+					},
+					'50%': { 
+						transform: 'scale(1.1) rotate(5deg)',
+						opacity: '1'
+					},
+					'100%': { 
+						transform: 'scale(1) rotate(0deg)',
+						opacity: '1'
+					}
+				},
+				'pulse-heart': {
+					'0%, 100%': { 
+						transform: 'scale(1)'
+					},
+					'50%': { 
+						transform: 'scale(1.2)'
+					}
+				},
+				'typewriter': {
+					'0%': { width: '0ch' },
+					'100%': { width: '12ch' }
+				},
+				'fade-in-delayed': {
+					'0%, 60%': { 
+						opacity: '0',
+						transform: 'translateY(10px)'
+					},
+					'100%': { 
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'color-shift': {
+					'0%': { opacity: '0' },
+					'50%': { opacity: '0.6' },
+					'100%': { opacity: '0.3' }
 				}
 			},
 			animation: {
@@ -206,7 +403,27 @@ export default {
 				'pulse-gentle': 'pulse-gentle 4s ease-in-out infinite',
 				'sparkle': 'sparkle 3s ease-in-out infinite',
 				'rain-drop': 'rain-drop 1.2s linear infinite',
-				'float': 'float 3s ease-in-out infinite'
+				'float': 'float 3s ease-in-out infinite',
+				'breathe': 'breathe 6s ease-in-out infinite',
+				'twinkle': 'twinkle 2s ease-in-out infinite',
+				'spin-slow': 'spin-slow 20s linear infinite',
+				'sparkle-drift': 'sparkle-drift 4s ease-out infinite',
+				'petal-fall': 'petal-fall 8s ease-in-out infinite',
+				'matrix-fall': 'matrix-fall 4s linear infinite',
+				'steam': 'steam 3s ease-out infinite',
+				'cloud-drift': 'cloud-drift 10s ease-in-out infinite alternate',
+				'enhanced-rain': 'enhanced-rain 1s linear infinite',
+				'lightning': 'lightning 4s ease-in-out infinite',
+				'ripple': 'ripple 3s ease-in-out infinite',
+				'steam-rise': 'steam-rise 4s ease-out infinite',
+				'confetti-explosion': 'confetti-explosion 3s ease-out forwards',
+				'cascade-sparkles': 'cascade-sparkles 4s linear infinite',
+				'float-celebration': 'float-celebration 4s ease-in-out infinite',
+				'scale-celebration': 'scale-celebration 0.8s ease-out forwards',
+				'pulse-heart': 'pulse-heart 1s ease-in-out infinite',
+				'typewriter': 'typewriter 2s steps(12, end) forwards',
+				'fade-in-delayed': 'fade-in-delayed 3s ease-out forwards',
+				'color-shift': 'color-shift 4s ease-in-out forwards'
 			},
 			boxShadow: {
 				'3xl': '0 35px 60px -12px rgba(0, 0, 0, 0.25)',
@@ -234,6 +451,18 @@ export default {
 				},
 				'.animation-delay-3000': {
 					'animation-delay': '3000ms',
+				},
+				'.perspective-1000': {
+					'perspective': '1000px',
+				},
+				'.preserve-3d': {
+					'transform-style': 'preserve-3d',
+				},
+				'.backface-hidden': {
+					'backface-visibility': 'hidden',
+				},
+				'.rotate-y-180': {
+					'transform': 'rotateY(180deg)',
 				},
 			};
 			addUtilities(newUtilities);

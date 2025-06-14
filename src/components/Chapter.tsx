@@ -15,6 +15,7 @@ interface ChapterProps {
 const Chapter = ({ id, title, background, image, frontContent, backContent, animation, isActive }: ChapterProps) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const chapterRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -42,159 +43,160 @@ const Chapter = ({ id, title, background, image, frontContent, backContent, anim
   const getChapterAtmosphere = () => {
     switch (id) {
       case 1:
-        // Warm classroom atmosphere with floating elements
+        // Enhanced classroom atmosphere
         return (
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-amber-50/40 via-orange-50/30 to-yellow-50/40" />
-            <div className="absolute inset-0 bg-gradient-to-tr from-amber-100/20 via-transparent to-orange-100/25" />
+            <div className="absolute inset-0 bg-gradient-to-br from-amber-50/50 via-orange-50/40 to-yellow-50/50" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-amber-100/30 via-transparent to-orange-100/35" />
             
-            {/* Floating book pages */}
-            {[...Array(8)].map((_, i) => (
+            {/* Floating golden dust particles */}
+            {[...Array(25)].map((_, i) => (
               <div
                 key={i}
-                className="absolute text-amber-300/30 animate-float text-sm"
+                className="absolute bg-amber-400/40 rounded-full animate-sparkle-drift"
+                style={{
+                  width: `${2 + Math.random() * 4}px`,
+                  height: `${2 + Math.random() * 4}px`,
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 6}s`,
+                  animationDuration: `${4 + Math.random() * 4}s`
+                }}
+              />
+            ))}
+            
+            {/* Book page silhouettes */}
+            {[...Array(6)].map((_, i) => (
+              <div
+                key={`page-${i}`}
+                className="absolute w-8 h-10 bg-amber-200/20 rounded-sm animate-float blur-sm"
                 style={{
                   left: `${10 + Math.random() * 80}%`,
                   top: `${10 + Math.random() * 80}%`,
                   animationDelay: `${Math.random() * 5}s`,
-                  animationDuration: `${4 + Math.random() * 3}s`,
+                  animationDuration: `${6 + Math.random() * 3}s`,
                   transform: `rotate(${Math.random() * 30 - 15}deg)`
-                }}
-              >
-                📖
-              </div>
-            ))}
-            
-            {/* Golden dust particles */}
-            {[...Array(15)].map((_, i) => (
-              <div
-                key={`dust-${i}`}
-                className="absolute w-1 h-1 bg-amber-400/40 rounded-full animate-sparkle"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 4}s`,
-                  animationDuration: `${3 + Math.random() * 2}s`
                 }}
               />
             ))}
             
-            <div className="absolute top-1/4 left-1/3 w-48 h-48 bg-amber-200/15 rounded-full blur-3xl animate-pulse-gentle" />
-            <div className="absolute bottom-1/3 right-1/4 w-40 h-40 bg-orange-200/12 blur-2xl animate-pulse-gentle" style={{animationDelay: '2s'}} />
+            <div className="absolute top-1/4 left-1/3 w-60 h-60 bg-amber-200/20 rounded-full blur-3xl animate-breathe" />
+            <div className="absolute bottom-1/3 right-1/4 w-48 h-48 bg-orange-200/15 blur-2xl animate-breathe" style={{animationDelay: '3s'}} />
           </div>
         );
       
       case 2:
-        // Romantic golden hour with rose petals
+        // Enhanced romantic atmosphere
         return (
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-rose-100/50 via-pink-50/40 to-red-50/35" />
-            <div className="absolute inset-0 bg-gradient-to-tr from-rose-200/25 via-transparent to-pink-200/30" />
+            <div className="absolute inset-0 bg-gradient-to-br from-rose-100/60 via-pink-50/50 to-red-50/45" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-rose-200/30 via-transparent to-pink-200/35" />
             
-            {/* Floating rose petals */}
+            {/* Golden hour light rays */}
+            <div className="absolute top-0 right-1/4 w-96 h-96 bg-gradient-conic from-yellow-200/30 via-transparent to-transparent rounded-full blur-2xl animate-spin-slow" />
+            
+            {/* Floating rose petal silhouettes */}
             {[...Array(12)].map((_, i) => (
               <div
                 key={i}
-                className="absolute text-rose-400/50 animate-float text-lg"
+                className="absolute w-3 h-4 bg-rose-400/30 rounded-full animate-petal-fall blur-sm"
                 style={{
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 6}s`,
-                  animationDuration: `${5 + Math.random() * 4}s`,
+                  animationDelay: `${Math.random() * 8}s`,
+                  animationDuration: `${6 + Math.random() * 6}s`,
                   transform: `rotate(${Math.random() * 360}deg)`
-                }}
-              >
-                🌹
-              </div>
-            ))}
-            
-            {/* Warm light rays */}
-            <div className="absolute top-0 right-1/4 w-96 h-96 bg-gradient-conic from-yellow-200/20 via-transparent to-transparent rounded-full blur-2xl animate-pulse-gentle" />
-            <div className="absolute bottom-1/4 left-1/6 w-64 h-64 bg-rose-300/20 rounded-full blur-3xl animate-pulse-gentle" style={{animationDelay: '3s'}} />
-            
-            {/* Heart sparkles */}
-            {[...Array(10)].map((_, i) => (
-              <div
-                key={`heart-${i}`}
-                className="absolute text-pink-400/40 animate-sparkle text-xs"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 5}s`,
-                }}
-              >
-                💖
-              </div>
-            ))}
-          </div>
-        );
-      
-      case 3:
-        // Cozy coding night atmosphere
-        return (
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-100/40 via-indigo-50/35 to-purple-100/30" />
-            <div className="absolute inset-0 bg-gradient-to-bl from-blue-200/20 via-transparent to-indigo-200/25" />
-            
-            {/* Floating code elements */}
-            {[...Array(6)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute text-blue-400/30 animate-float font-mono text-xs"
-                style={{
-                  left: `${10 + Math.random() * 80}%`,
-                  top: `${20 + Math.random() * 60}%`,
-                  animationDelay: `${Math.random() * 4}s`,
-                  animationDuration: `${6 + Math.random() * 3}s`
-                }}
-              >
-                {['{ }', '< />', '💻', '⌨️', '🖥️'][Math.floor(Math.random() * 5)]}
-              </div>
-            ))}
-            
-            {/* Screen glows */}
-            <div className="absolute top-1/3 left-1/4 w-56 h-56 bg-blue-300/15 rounded-full blur-3xl animate-pulse-gentle" />
-            <div className="absolute bottom-1/2 right-1/5 w-40 h-40 bg-indigo-300/20 blur-2xl animate-pulse-gentle" style={{animationDelay: '2.5s'}} />
-            
-            {/* Coffee steam */}
-            <div className="absolute top-1/6 right-1/3 text-gray-400/40 animate-float text-sm">☕</div>
-          </div>
-        );
-      
-      case 4:
-        // Dramatic storm with rain and lightning
-        return (
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-b from-gray-700/50 via-slate-800/40 to-slate-900/35" />
-            <div className="absolute inset-0 bg-gradient-to-tr from-slate-600/30 via-slate-700/25 to-slate-800/35" />
-            
-            {/* Storm clouds */}
-            <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-slate-600/50 to-transparent" />
-            
-            {/* Enhanced rain drops */}
-            {[...Array(80)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute bg-slate-300/70 animate-rain-drop"
-                style={{
-                  width: '2px',
-                  height: `${10 + Math.random() * 15}px`,
-                  left: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 2}s`,
-                  animationDuration: `${0.6 + Math.random() * 0.8}s`,
-                  transform: `rotate(20deg)`,
                 }}
               />
             ))}
             
-            {/* Lightning flashes */}
-            <div className="absolute inset-0 bg-white/10 animate-lightning opacity-0" />
+            {/* Dreamy bokeh effects */}
+            {[...Array(15)].map((_, i) => (
+              <div
+                key={`bokeh-${i}`}
+                className="absolute rounded-full bg-pink-300/20 animate-pulse-gentle blur-lg"
+                style={{
+                  width: `${20 + Math.random() * 60}px`,
+                  height: `${20 + Math.random() * 60}px`,
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 5}s`,
+                }}
+              />
+            ))}
             
-            {/* Puddle reflections */}
-            <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-slate-500/25 to-transparent" />
+            <div className="absolute bottom-1/4 left-1/6 w-72 h-72 bg-rose-300/25 rounded-full blur-3xl animate-breathe" style={{animationDelay: '4s'}} />
+          </div>
+        );
+      
+      case 3:
+        // Enhanced coding night atmosphere
+        return (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-100/50 via-indigo-50/45 to-purple-100/40" />
+            <div className="absolute inset-0 bg-gradient-to-bl from-blue-200/25 via-transparent to-indigo-200/30" />
             
-            {/* Storm atmosphere */}
-            <div className="absolute top-1/4 right-1/4 w-72 h-72 bg-slate-400/15 rounded-full blur-3xl animate-pulse-gentle" />
+            {/* Matrix-like code effects */}
+            {[...Array(20)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute text-blue-400/20 font-mono text-xs animate-matrix-fall"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${-10 + Math.random() * 20}%`,
+                  animationDelay: `${Math.random() * 5}s`,
+                  animationDuration: `${3 + Math.random() * 4}s`
+                }}
+              >
+                {Math.random() > 0.5 ? '1' : '0'}
+              </div>
+            ))}
+            
+            {/* Screen glows */}
+            <div className="absolute top-1/3 left-1/4 w-64 h-64 bg-blue-300/20 rounded-full blur-3xl animate-breathe" />
+            <div className="absolute bottom-1/2 right-1/5 w-48 h-48 bg-indigo-300/25 blur-2xl animate-breathe" style={{animationDelay: '3s'}} />
+            
+            {/* Coffee steam wisps */}
+            <div className="absolute top-1/6 right-1/3 animate-steam">
+              <div className="w-2 h-8 bg-gray-300/30 rounded-full blur-sm animate-float" />
+              <div className="w-1 h-6 bg-gray-300/20 rounded-full blur-sm animate-float ml-2" style={{animationDelay: '1s'}} />
+            </div>
+          </div>
+        );
+      
+      case 4:
+        // Enhanced dramatic storm
+        return (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-b from-slate-600/60 via-slate-700/50 to-slate-800/45" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-slate-500/40 via-slate-600/30 to-slate-700/35" />
+            
+            {/* Dramatic cloud formations */}
+            <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-slate-500/60 to-transparent animate-cloud-drift" />
+            
+            {/* Enhanced rain animation */}
+            {[...Array(100)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute bg-slate-300/70 animate-enhanced-rain"
+                style={{
+                  width: '2px',
+                  height: `${12 + Math.random() * 20}px`,
+                  left: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 3}s`,
+                  animationDuration: `${0.5 + Math.random() * 1}s`,
+                  transform: `rotate(15deg)`,
+                }}
+              />
+            ))}
+            
+            {/* Lightning flash effects */}
+            <div className="absolute inset-0 bg-white/20 animate-lightning opacity-0" />
+            
+            {/* Reflective puddles */}
+            <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-slate-400/30 to-transparent animate-ripple" />
+            
+            <div className="absolute top-1/4 right-1/4 w-80 h-80 bg-slate-300/20 rounded-full blur-3xl animate-breathe" />
           </div>
         );
       
@@ -203,7 +205,6 @@ const Chapter = ({ id, title, background, image, frontContent, backContent, anim
     }
   };
 
-  // Pure click-based flip - no hover interference
   const handleCardClick = () => {
     setIsFlipped(!isFlipped);
   };
@@ -222,9 +223,11 @@ const Chapter = ({ id, title, background, image, frontContent, backContent, anim
             className={`relative w-80 h-96 md:w-96 md:h-[450px] cursor-pointer transition-transform duration-700 preserve-3d ${
               isFlipped ? "rotate-y-180" : ""
             }`}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
             onClick={handleCardClick}
           >
-            {/* Front of card - removed hover effects that interfere with click */}
+            {/* Front of card */}
             <div className="absolute inset-0 backface-hidden">
               <div className="bg-white/95 backdrop-blur-md p-6 rounded-3xl shadow-2xl transform transition-all duration-500 border border-white/60 relative overflow-hidden hover:shadow-3xl">
                 <div className="absolute inset-0 bg-gradient-to-br from-blush-100/20 via-transparent to-mauve-100/20 rounded-3xl" />
@@ -238,9 +241,11 @@ const Chapter = ({ id, title, background, image, frontContent, backContent, anim
                   
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
                   
-                  {/* Click hint with sparkle effect */}
-                  <div className="absolute inset-0 bg-black/10 backdrop-blur-[1px] flex items-center justify-center opacity-100 transition-all duration-300">
-                    <div className="bg-white/95 backdrop-blur-md rounded-full px-6 py-3 shadow-xl border border-white/50 animate-pulse-gentle">
+                  {/* Hover-activated click hint */}
+                  <div className={`absolute inset-0 bg-black/10 backdrop-blur-[1px] flex items-center justify-center transition-all duration-500 ${
+                    isHovered ? 'opacity-100' : 'opacity-0'
+                  }`}>
+                    <div className="bg-white/95 backdrop-blur-md rounded-full px-6 py-3 shadow-xl border border-white/50 animate-pulse-gentle transform transition-all duration-300">
                       <p className="text-sm text-mauve-700 font-poppins font-medium flex items-center gap-2">
                         💝 Click to read my heart
                         <span className="text-pink-400 animate-sparkle">✨</span>
@@ -256,35 +261,18 @@ const Chapter = ({ id, title, background, image, frontContent, backContent, anim
               </div>
             </div>
 
-            {/* Back of card */}
+            {/* Back of card - clean, no emojis */}
             <div className="absolute inset-0 backface-hidden rotate-y-180">
               <div className="bg-gradient-to-br from-cream-50 to-blush-50 p-8 rounded-3xl shadow-2xl transform transition-all duration-500 border border-white/60 h-full flex items-center justify-center backdrop-blur-md relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-cream-100/30 via-transparent to-blush-100/30 rounded-3xl" />
-                
-                {/* Floating hearts around the quote */}
-                {[...Array(6)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="absolute text-pink-300/40 animate-float text-sm"
-                    style={{
-                      left: `${10 + Math.random() * 80}%`,
-                      top: `${10 + Math.random() * 80}%`,
-                      animationDelay: `${Math.random() * 3}s`,
-                      animationDuration: `${4 + Math.random() * 2}s`
-                    }}
-                  >
-                    💕
-                  </div>
-                ))}
                 
                 <blockquote className="text-center relative z-10">
                   <div className="mb-8 text-blush-400 text-4xl animate-pulse-gentle">♡</div>
                   <p className="font-playfair text-lg md:text-xl italic text-mauve-800 leading-relaxed font-medium mb-6">
                     "{backContent}"
                   </p>
-                  <div className="text-xs text-mauve-500 font-poppins opacity-70 flex items-center justify-center gap-2">
+                  <div className="text-xs text-mauve-500 font-poppins opacity-70">
                     Click to go back
-                    <span className="text-pink-400 animate-sparkle">✨</span>
                   </div>
                 </blockquote>
               </div>
@@ -293,12 +281,11 @@ const Chapter = ({ id, title, background, image, frontContent, backContent, anim
         </div>
       </div>
 
-      {/* Enhanced floating romantic elements */}
-      <div className="absolute inset-0 pointer-events-none opacity-40">
-        <div className="absolute top-1/6 left-8 w-3 h-3 bg-blush-400/60 rounded-full animate-sparkle"></div>
-        <div className="absolute bottom-1/6 right-8 w-4 h-4 bg-mauve-400/60 rounded-full animate-sparkle" style={{animationDelay: '1s'}}></div>
-        <div className="absolute top-2/3 left-1/4 w-2 h-2 bg-cream-500/50 rounded-full animate-sparkle" style={{animationDelay: '2s'}}></div>
-        <div className="absolute top-1/3 right-1/3 text-pink-300/50 animate-float text-xs" style={{animationDelay: '3s'}}>💫</div>
+      {/* Minimal floating elements */}
+      <div className="absolute inset-0 pointer-events-none opacity-20">
+        <div className="absolute top-1/6 left-8 w-2 h-2 bg-blush-400/60 rounded-full animate-sparkle"></div>
+        <div className="absolute bottom-1/6 right-8 w-3 h-3 bg-mauve-400/60 rounded-full animate-sparkle" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-2/3 left-1/4 w-1 h-1 bg-cream-500/50 rounded-full animate-sparkle" style={{animationDelay: '4s'}}></div>
       </div>
     </section>
   );
