@@ -56,7 +56,6 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Story-themed colors
         blush: {
           50: '#fef7f0',
           100: '#fce7d6',
@@ -190,19 +189,6 @@ export default {
             opacity: "0",
           },
         },
-        "typewriter": {
-          "0%": {
-            width: "0",
-            opacity: "0",
-          },
-          "1%": {
-            opacity: "1",
-          },
-          "100%": {
-            width: "100%",
-            opacity: "1",
-          },
-        },
         "fade-in-delayed": {
           "0%": {
             opacity: "0",
@@ -213,11 +199,10 @@ export default {
             transform: "translateY(0)",
           },
         },
-        // Enhanced Celebration Animations
         "celebration-flash": {
           "0%": { opacity: "0" },
-          "10%": { opacity: "0.6" },
-          "30%": { opacity: "0.3" },
+          "10%": { opacity: "0.7" },
+          "30%": { opacity: "0.4" },
           "100%": { opacity: "0" },
         },
         "expand-ring": {
@@ -236,7 +221,7 @@ export default {
             opacity: "1",
           },
           "100%": {
-            transform: `translate(calc(-50% + var(--random-x)), calc(-50% + var(--random-y))) scale(1.5) rotate(var(--rotation))`,
+            transform: `translate(calc(-50% + var(--random-x)), calc(-50% + var(--random-y))) scale(1.2) rotate(var(--rotation))`,
             opacity: "0",
           },
         },
@@ -246,7 +231,7 @@ export default {
             opacity: "1",
           },
           "100%": {
-            transform: `translate(calc(-50% + var(--random-x)), calc(-50% + var(--random-y))) scale(1.2) rotate(var(--rotation))`,
+            transform: `translate(calc(-50% + var(--random-x)), calc(-50% + var(--random-y))) scale(1.1) rotate(var(--rotation))`,
             opacity: "0",
           },
         },
@@ -263,10 +248,10 @@ export default {
         "heart-balloon": {
           "0%": {
             transform: "translateY(0) scale(0.8)",
-            opacity: "0.8",
+            opacity: "0.9",
           },
           "100%": {
-            transform: "translateY(-120vh) scale(1.2)",
+            transform: "translateY(-120vh) scale(1.1)",
             opacity: "0",
           },
         },
@@ -286,11 +271,11 @@ export default {
             opacity: "1",
           },
           "50%": {
-            transform: "scale(1.5)",
-            opacity: "0.8",
+            transform: "scale(1.8)",
+            opacity: "0.9",
           },
           "100%": {
-            transform: "scale(3)",
+            transform: "scale(3.5)",
             opacity: "0",
           },
         },
@@ -310,17 +295,17 @@ export default {
         },
         "gentle-shake": {
           "0%, 100%": { transform: "translateX(0)" },
-          "25%": { transform: "translateX(-2px)" },
-          "75%": { transform: "translateX(2px)" },
+          "25%": { transform: "translateX(-1px)" },
+          "75%": { transform: "translateX(1px)" },
         },
         "pulse-heart": {
           "0%, 100%": {
             transform: "scale(1)",
-            opacity: "0.3",
+            opacity: "0.4",
           },
           "50%": {
-            transform: "scale(1.1)",
-            opacity: "0.6",
+            transform: "scale(1.08)",
+            opacity: "0.7",
           },
         },
         "heart-pulse-gentle": {
@@ -328,7 +313,7 @@ export default {
             transform: "scale(1)",
           },
           "50%": {
-            transform: "scale(1.1)",
+            transform: "scale(1.15)",
           },
         },
         "typewriter-fast": {
@@ -381,24 +366,22 @@ export default {
         "pulse-gentle": "pulse-gentle 3s ease-in-out infinite",
         "sparkle": "sparkle 2s ease-in-out infinite",
         "steam-rise": "steam-rise 6s ease-out infinite",
-        "typewriter": "typewriter 3s steps(20) forwards",
         "fade-in-delayed": "fade-in-delayed 0.8s ease-out forwards",
-        // Enhanced Celebration Animations
-        "celebration-flash": "celebration-flash 1s ease-out",
-        "expand-ring": "expand-ring 1.5s ease-out",
-        "heart-burst-wave1": "heart-burst-wave1 2s ease-out",
-        "heart-burst-wave2": "heart-burst-wave2 2.2s ease-out",
-        "heart-burst-wave3": "heart-burst-wave3 2.4s ease-out",
-        "heart-balloon": "heart-balloon 4s ease-out",
-        "sparkle-cascade": "sparkle-cascade 3s linear",
-        "firework-burst": "firework-burst 1.5s ease-out",
-        "celebration-modal": "celebration-modal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)",
-        "gentle-shake": "gentle-shake 0.5s ease-in-out infinite",
-        "pulse-heart": "pulse-heart 2s ease-in-out infinite",
-        "heart-pulse-gentle": "heart-pulse-gentle 1.5s ease-in-out infinite",
-        "typewriter-fast": "typewriter-fast 1.2s steps(15) forwards",
-        "typewriter-medium": "typewriter-medium 1.8s steps(20) forwards",
-        "typewriter-slow": "typewriter-slow 2.5s steps(25) forwards",
+        "celebration-flash": "celebration-flash 0.8s ease-out",
+        "expand-ring": "expand-ring 1.2s ease-out",
+        "heart-burst-wave1": "heart-burst-wave1 1.8s ease-out",
+        "heart-burst-wave2": "heart-burst-wave2 2s ease-out",
+        "heart-burst-wave3": "heart-burst-wave3 2.2s ease-out",
+        "heart-balloon": "heart-balloon 3.5s ease-out",
+        "sparkle-cascade": "sparkle-cascade 2.5s linear",
+        "firework-burst": "firework-burst 1.2s ease-out",
+        "celebration-modal": "celebration-modal 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "gentle-shake": "gentle-shake 0.4s ease-in-out 3",
+        "pulse-heart": "pulse-heart 2.5s ease-in-out infinite",
+        "heart-pulse-gentle": "heart-pulse-gentle 1.8s ease-in-out infinite",
+        "typewriter-fast": "typewriter-fast 0.8s steps(12) forwards",
+        "typewriter-medium": "typewriter-medium 1.2s steps(15) forwards",
+        "typewriter-slow": "typewriter-slow 1.6s steps(18) forwards",
       },
       animationDelay: {
         '1000': '1000ms',

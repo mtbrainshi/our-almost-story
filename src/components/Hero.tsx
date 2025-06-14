@@ -23,7 +23,7 @@ const Hero = () => {
 
   return (
     <section className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
-      {/* Sophisticated aurora-like background */}
+      {/* Sophisticated aurora-like background - NO EMOJIS */}
       <div className="absolute inset-0">
         {/* Multi-layered dreamy gradients */}
         <div className="absolute inset-0 bg-gradient-to-br from-pink-50 via-rose-50 to-red-50" />
@@ -36,8 +36,8 @@ const Hero = () => {
           <div className="absolute bottom-0 right-0 w-full h-full bg-gradient-conic from-rose-200/30 via-transparent to-pink-200/40 animate-spin-slow" style={{animationDirection: 'reverse', animationDuration: '25s'}} />
         </div>
         
-        {/* Sophisticated floating geometric shapes - no emojis */}
-        {[...Array(8)].map((_, i) => (
+        {/* Sophisticated floating geometric shapes ONLY - NO EMOJIS */}
+        {[...Array(12)].map((_, i) => (
           <div
             key={i}
             className="absolute rounded-full bg-gradient-to-br from-pink-200/30 to-rose-300/20 animate-float blur-sm"
@@ -52,8 +52,8 @@ const Hero = () => {
           />
         ))}
         
-        {/* Twinkling light particles - geometric only */}
-        {[...Array(40)].map((_, i) => (
+        {/* Twinkling light particles - geometric ONLY */}
+        {[...Array(30)].map((_, i) => (
           <div
             key={`star-${i}`}
             className="absolute rounded-full bg-gradient-to-br from-yellow-300/60 to-orange-300/40 animate-twinkle"
