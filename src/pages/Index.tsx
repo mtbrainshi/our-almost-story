@@ -75,7 +75,7 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blush-50 to-cream-50 font-poppins">
+    <div className="bg-gradient-to-b from-blush-50 to-cream-50 font-poppins">
       <Hero />
       
       {chapters.map((chapter, index) => (
