@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -355,6 +356,107 @@ export default {
             opacity: "1",
           },
         },
+        // Enhanced rain animations
+        "realistic-rain-heavy": {
+          "0%": {
+            transform: "translateY(-10vh) translateX(0) rotate(20deg)",
+            opacity: "0.9",
+          },
+          "100%": {
+            transform: "translateY(110vh) translateX(-15px) rotate(20deg)",
+            opacity: "0.7",
+          },
+        },
+        "realistic-rain-medium": {
+          "0%": {
+            transform: "translateY(-5vh) translateX(0) rotate(18deg)",
+            opacity: "0.7",
+          },
+          "100%": {
+            transform: "translateY(105vh) translateX(-12px) rotate(18deg)",
+            opacity: "0.5",
+          },
+        },
+        "realistic-rain-light": {
+          "0%": {
+            transform: "translateY(0vh) translateX(0) rotate(15deg)",
+            opacity: "0.5",
+          },
+          "100%": {
+            transform: "translateY(100vh) translateX(-8px) rotate(15deg)",
+            opacity: "0.3",
+          },
+        },
+        "lightning-flash": {
+          "0%": { opacity: "0" },
+          "5%": { opacity: "1" },
+          "10%": { opacity: "0" },
+          "15%": { opacity: "0.8" },
+          "20%": { opacity: "0" },
+          "100%": { opacity: "0" },
+        },
+        "cloud-drift": {
+          "0%": {
+            transform: "translateX(-10px)",
+          },
+          "50%": {
+            transform: "translateX(10px)",
+          },
+          "100%": {
+            transform: "translateX(-10px)",
+          },
+        },
+        "cloud-drift-reverse": {
+          "0%": {
+            transform: "translateX(10px)",
+          },
+          "50%": {
+            transform: "translateX(-10px)",
+          },
+          "100%": {
+            transform: "translateX(10px)",
+          },
+        },
+        "water-ripple": {
+          "0%": {
+            transform: "scaleX(1) scaleY(1)",
+            opacity: "0.6",
+          },
+          "50%": {
+            transform: "scaleX(1.02) scaleY(1.05)",
+            opacity: "0.8",
+          },
+          "100%": {
+            transform: "scaleX(1) scaleY(1)",
+            opacity: "0.6",
+          },
+        },
+        "storm-breathe": {
+          "0%, 100%": {
+            transform: "scale(1)",
+            opacity: "0.4",
+          },
+          "50%": {
+            transform: "scale(1.1)",
+            opacity: "0.6",
+          },
+        },
+        "wind-sweep": {
+          "0%": {
+            transform: "translateX(-100px)",
+            opacity: "0",
+          },
+          "20%": {
+            opacity: "0.3",
+          },
+          "80%": {
+            opacity: "0.3",
+          },
+          "100%": {
+            transform: "translateX(100px)",
+            opacity: "0",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -382,6 +484,17 @@ export default {
         "typewriter-fast": "typewriter-fast 0.8s steps(12) forwards",
         "typewriter-medium": "typewriter-medium 1.2s steps(15) forwards",
         "typewriter-slow": "typewriter-slow 1.6s steps(18) forwards",
+        // Enhanced rain and storm animations
+        "realistic-rain-heavy": "realistic-rain-heavy 0.3s linear infinite",
+        "realistic-rain-medium": "realistic-rain-medium 0.4s linear infinite",
+        "realistic-rain-light": "realistic-rain-light 0.6s linear infinite",
+        "lightning-flash": "lightning-flash 2s ease-in-out infinite",
+        "cloud-drift": "cloud-drift 8s ease-in-out infinite",
+        "cloud-drift-reverse": "cloud-drift-reverse 10s ease-in-out infinite",
+        "water-ripple": "water-ripple 3s ease-in-out infinite",
+        "storm-breathe": "storm-breathe 5s ease-in-out infinite",
+        "wind-sweep": "wind-sweep 6s ease-in-out infinite",
+        "spin-slow": "spin 20s linear infinite",
       },
       animationDelay: {
         '1000': '1000ms',

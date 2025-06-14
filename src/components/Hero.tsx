@@ -23,63 +23,33 @@ const Hero = () => {
 
   return (
     <section className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
-      {/* Sophisticated aurora-like background - NO EMOJIS */}
+      {/* Clean aurora-like background - GRADIENTS ONLY */}
       <div className="absolute inset-0">
-        {/* Multi-layered dreamy gradients */}
+        {/* Primary gradient layers */}
         <div className="absolute inset-0 bg-gradient-to-br from-pink-50 via-rose-50 to-red-50" />
         <div className="absolute inset-0 bg-gradient-to-tr from-purple-50/40 via-pink-50/60 to-orange-50/30" />
         <div className="absolute inset-0 bg-gradient-to-bl from-yellow-50/20 via-transparent to-pink-100/30" />
         
-        {/* Aurora-like effects */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-conic from-pink-200/40 via-transparent to-rose-200/30 animate-spin-slow" />
-          <div className="absolute bottom-0 right-0 w-full h-full bg-gradient-conic from-rose-200/30 via-transparent to-pink-200/40 animate-spin-slow" style={{animationDirection: 'reverse', animationDuration: '25s'}} />
+        {/* Aurora-like rotating gradients */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-conic from-pink-200/30 via-transparent to-rose-200/25 animate-spin-slow" />
+          <div className="absolute bottom-0 right-0 w-full h-full bg-gradient-conic from-rose-200/25 via-transparent to-pink-200/30 animate-spin-slow" style={{animationDirection: 'reverse', animationDuration: '25s'}} />
         </div>
         
-        {/* Sophisticated floating geometric shapes ONLY - NO EMOJIS */}
-        {[...Array(12)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full bg-gradient-to-br from-pink-200/30 to-rose-300/20 animate-float blur-sm"
-            style={{
-              width: `${20 + Math.random() * 40}px`,
-              height: `${20 + Math.random() * 40}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 8}s`,
-              animationDuration: `${8 + Math.random() * 6}s`,
-            }}
-          />
-        ))}
-        
-        {/* Twinkling light particles - geometric ONLY */}
-        {[...Array(30)].map((_, i) => (
-          <div
-            key={`star-${i}`}
-            className="absolute rounded-full bg-gradient-to-br from-yellow-300/60 to-orange-300/40 animate-twinkle"
-            style={{
-              width: `${1 + Math.random() * 3}px`,
-              height: `${1 + Math.random() * 3}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 6}s`,
-              animationDuration: `${2 + Math.random() * 4}s`
-            }}
-          />
-        ))}
-        
-        {/* Dynamic floating light orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-radial from-pink-300/25 to-transparent rounded-full blur-3xl animate-breathe" />
-        <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-gradient-radial from-rose-300/20 to-transparent rounded-full blur-2xl animate-breathe" style={{animationDelay: '3s'}} />
-        <div className="absolute top-1/2 left-1/6 w-64 h-64 bg-gradient-radial from-purple-300/15 to-transparent rounded-full blur-3xl animate-breathe" style={{animationDelay: '6s'}} />
-        
-        {/* Dreamy texture overlay */}
-        <div className="absolute inset-0 opacity-10">
+        {/* Sophisticated layered gradients for depth */}
+        <div className="absolute inset-0 opacity-15">
           <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 20% 30%, rgba(244, 174, 174, 0.3) 0%, transparent 60%), 
-                              radial-gradient(circle at 80% 70%, rgba(192, 132, 252, 0.25) 0%, transparent 60%),
-                              radial-gradient(circle at 40% 80%, rgba(251, 191, 36, 0.2) 0%, transparent 60%)`
+            backgroundImage: `radial-gradient(circle at 20% 30%, rgba(244, 174, 174, 0.4) 0%, transparent 70%), 
+                              radial-gradient(circle at 80% 70%, rgba(192, 132, 252, 0.3) 0%, transparent 70%),
+                              radial-gradient(circle at 40% 80%, rgba(251, 191, 36, 0.25) 0%, transparent 70%),
+                              radial-gradient(circle at 60% 20%, rgba(236, 72, 153, 0.2) 0%, transparent 60%)`
           }} />
+        </div>
+        
+        {/* Animated gradient waves */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-1/4 left-0 w-full h-96 bg-gradient-to-r from-transparent via-pink-300/30 to-transparent animate-breathe" />
+          <div className="absolute bottom-1/3 right-0 w-full h-80 bg-gradient-to-l from-transparent via-rose-300/25 to-transparent animate-breathe" style={{animationDelay: '3s'}} />
         </div>
       </div>
 
