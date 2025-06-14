@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -138,11 +137,11 @@ export default {
 				'float-in': {
 					'0%': { 
 						opacity: '0', 
-						transform: 'translateY(30px)' 
+						transform: 'translateY(30px) scale(0.95)' 
 					},
 					'100%': { 
 						opacity: '1', 
-						transform: 'translateY(0)' 
+						transform: 'translateY(0) scale(1)' 
 					}
 				},
 				'flip': {
@@ -171,11 +170,17 @@ export default {
 				},
 				'rain-drop': {
 					'0%': { 
-						transform: 'translateY(-100vh)',
+						transform: 'translateY(-100vh) translateX(0)',
+						opacity: '0.8'
+					},
+					'10%': {
 						opacity: '1'
 					},
+					'90%': {
+						opacity: '0.8'
+					},
 					'100%': { 
-						transform: 'translateY(100vh)',
+						transform: 'translateY(100vh) translateX(-20px)',
 						opacity: '0'
 					}
 				},
@@ -183,6 +188,28 @@ export default {
 					'0%, 100%': { transform: 'translateX(0)' },
 					'25%': { transform: 'translateX(-10px)' },
 					'75%': { transform: 'translateX(10px)' }
+				},
+				'glow': {
+					'0%, 100%': { 
+						boxShadow: '0 0 20px rgba(247, 174, 174, 0.3)' 
+					},
+					'50%': { 
+						boxShadow: '0 0 30px rgba(176, 152, 176, 0.5)' 
+					}
+				},
+				'drift': {
+					'0%, 100%': { 
+						transform: 'translateX(0) translateY(0)' 
+					},
+					'25%': { 
+						transform: 'translateX(10px) translateY(-5px)' 
+					},
+					'50%': { 
+						transform: 'translateX(-5px) translateY(-10px)' 
+					},
+					'75%': { 
+						transform: 'translateX(-10px) translateY(5px)' 
+					}
 				}
 			},
 			animation: {
@@ -195,7 +222,12 @@ export default {
 				'pulse-gentle': 'pulse-gentle 2s ease-in-out infinite',
 				'sparkle': 'sparkle 1.5s ease-in-out infinite',
 				'rain-drop': 'rain-drop 2s linear infinite',
-				'dodge': 'dodge 0.4s ease-in-out'
+				'dodge': 'dodge 0.4s ease-in-out',
+				'glow': 'glow 3s ease-in-out infinite',
+				'drift': 'drift 8s ease-in-out infinite'
+			},
+			boxShadow: {
+				'3xl': '0 35px 60px -12px rgba(0, 0, 0, 0.25)',
 			}
 		}
 	},
