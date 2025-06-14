@@ -29,46 +29,53 @@ const Interlude = () => {
     >
       {/* Enhanced dreamy background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-tr from-mauve-200/20 via-transparent to-blush-200/20" />
+        <div className="absolute inset-0 bg-gradient-to-tr from-mauve-200/30 via-transparent to-blush-200/30" />
+        <div className="absolute inset-0 bg-gradient-to-bl from-cream-200/20 via-transparent to-mauve-200/25" />
         
-        {[...Array(15)].map((_, i) => (
+        {/* Floating dream bubbles */}
+        {[...Array(20)].map((_, i) => (
           <div
             key={i}
-            className="absolute border border-blush-200 rounded-full opacity-15 animate-pulse-gentle"
+            className="absolute border border-blush-200 rounded-full opacity-20 animate-pulse-gentle"
             style={{
-              width: `${40 + Math.random() * 60}px`,
-              height: `${40 + Math.random() * 60}px`,
+              width: `${30 + Math.random() * 80}px`,
+              height: `${30 + Math.random() * 80}px`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 4}s`,
-              animationDuration: `${3 + Math.random() * 2}s`,
-              background: `radial-gradient(circle, ${['rgba(247, 174, 174, 0.05)', 'rgba(176, 152, 176, 0.05)', 'rgba(255, 237, 158, 0.05)'][Math.floor(Math.random() * 3)]} 0%, transparent 70%)`
+              animationDelay: `${Math.random() * 6}s`,
+              animationDuration: `${4 + Math.random() * 4}s`,
+              background: `radial-gradient(circle, ${['rgba(247, 174, 174, 0.08)', 'rgba(176, 152, 176, 0.08)', 'rgba(255, 237, 158, 0.08)'][Math.floor(Math.random() * 3)]} 0%, transparent 70%)`
             }}
           />
         ))}
         
-        {[...Array(15)].map((_, i) => (
+        {/* Dreamy particles */}
+        {[...Array(25)].map((_, i) => (
           <div
             key={`particle-${i}`}
-            className="absolute rounded-full animate-sparkle opacity-20"
+            className="absolute rounded-full animate-sparkle opacity-25"
             style={{
-              width: `${1 + Math.random() * 2}px`,
-              height: `${1 + Math.random() * 2}px`,
+              width: `${2 + Math.random() * 3}px`,
+              height: `${2 + Math.random() * 3}px`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
               backgroundColor: ['#f7aeae', '#b098b0', '#ffed9e'][Math.floor(Math.random() * 3)],
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 2}s`
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${3 + Math.random() * 4}s`
             }}
           />
         ))}
+
+        {/* Soft ambient lighting */}
+        <div className="absolute top-1/4 left-1/3 w-48 h-48 bg-cream-200 rounded-full opacity-10 animate-pulse-gentle blur-3xl" />
+        <div className="absolute bottom-1/3 right-1/4 w-56 h-56 bg-blush-200 rounded-full opacity-8 animate-pulse-gentle blur-3xl" style={{animationDelay: '2s'}} />
       </div>
 
       <div className={`max-w-5xl mx-auto text-center px-8 transition-all duration-1500 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}>
-        <div className="bg-white/85 backdrop-blur-lg rounded-3xl p-16 shadow-2xl border border-white/40 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-cream-100/30 via-transparent to-blush-100/30 rounded-3xl" />
+        <div className="bg-white/90 backdrop-blur-lg rounded-3xl p-16 shadow-2xl border border-white/50 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-cream-100/40 via-transparent to-blush-100/40 rounded-3xl" />
           
           <div className="relative z-10">
             <blockquote className="font-playfair text-3xl md:text-5xl italic text-mauve-800 leading-relaxed mb-8 font-medium">
@@ -88,11 +95,11 @@ const Interlude = () => {
         </div>
       </div>
 
-      {/* Subtle floating elements */}
-      <div className="absolute inset-0 pointer-events-none opacity-40">
-        <div className="absolute top-1/6 left-1/6 text-3xl text-blush-300 animate-sparkle">☁️</div>
-        <div className="absolute top-2/3 right-1/6 text-2xl text-mauve-300 animate-sparkle" style={{animationDelay: '2s'}}>☁️</div>
-        <div className="absolute top-1/2 left-4/5 text-xl text-cream-400 animate-sparkle" style={{animationDelay: '3s'}}>✨</div>
+      {/* Enhanced floating elements */}
+      <div className="absolute inset-0 pointer-events-none opacity-30">
+        <div className="absolute top-1/6 left-1/6 text-2xl text-blush-300 animate-sparkle">☁️</div>
+        <div className="absolute top-2/3 right-1/6 text-xl text-mauve-300 animate-sparkle" style={{animationDelay: '3s'}}>☁️</div>
+        <div className="absolute top-1/2 left-4/5 text-lg text-cream-400 animate-sparkle" style={{animationDelay: '4s'}}>✨</div>
       </div>
     </section>
   );

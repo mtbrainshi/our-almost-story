@@ -1,203 +1,155 @@
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Card, CardContent } from "@/components/ui/card";
+import { Coffee, Heart } from "lucide-react";
 
 const FinalAsk = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [response, setResponse] = useState<string | null>(null);
-  const [confetti, setConfetti] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [message, setMessage] = useState("");
+  const sectionRef = useRef<HTMLElement>(null);
 
-  const handleResponse = (answer: string) => {
-    setResponse(answer);
-    
-    localStorage.setItem('sakshi_response', JSON.stringify({
-      answer,
-      timestamp: new Date().toISOString()
-    }));
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
 
-    if (answer === 'yes') {
-      setConfetti(true);
-      setShowModal(true);
-      setTimeout(() => setConfetti(false), 3000);
-    } else if (answer === 'maybe') {
-      setTimeout(() => {
-        setShowModal(true);
-      }, 500);
-    } else {
-      setShowModal(true);
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  const handleSendMessage = () => {
+    if (message.trim()) {
+      const mailtoLink = `mailto:your.email@example.com?subject=Coffee Reply from Sakshi&body=${encodeURIComponent(message)}`;
+      window.location.href = mailtoLink;
+      setMessage("");
     }
   };
-
-  const getModalContent = () => {
-    switch (response) {
-      case 'yes':
-        return {
-          title: "My heart is dancing!",
-          content: "I can't wait to share that coffee with you, Sakshi. Thank you for giving us this chance."
-        };
-      case 'maybe':
-        return {
-          title: "I understand...",
-          content: "Take all the time you need, Sakshi. I'll be here when you're ready. No pressure, just hope."
-        };
-      case 'no':
-        return {
-          title: "Thank you for your honesty",
-          content: "I'm grateful you took the time to read this, Sakshi. That means more to me than you know."
-        };
-      default:
-        return { title: "", content: "" };
-    }
-  };
-
-  const modalContent = getModalContent();
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Enhanced layered background */}
+    <section
+      ref={sectionRef}
+      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-cream-50 via-blush-50 to-mauve-100 relative overflow-hidden py-20"
+    >
+      {/* Enhanced background atmosphere */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-cream-100 via-blush-50 to-mauve-100" />
-        <div className="absolute inset-0 bg-gradient-to-tr from-cream-200/30 via-transparent to-blush-200/30" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cream-100/20 to-transparent" />
-      </div>
+        {/* Layered gradients for depth */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-cream-100/50 via-transparent to-blush-100/50" />
+        <div className="absolute inset-0 bg-gradient-to-bl from-mauve-100/40 via-transparent to-cream-100/40" />
+        
+        {/* Warm ambient lighting */}
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-cream-300 rounded-full opacity-15 animate-pulse-gentle blur-3xl" />
+        <div className="absolute bottom-1/3 right-1/4 w-48 h-48 bg-blush-300 rounded-full opacity-12 animate-pulse-gentle blur-2xl" style={{animationDelay: '2s'}} />
+        <div className="absolute top-2/3 left-1/6 w-40 h-40 bg-mauve-300 rounded-full opacity-10 animate-pulse-gentle blur-xl" style={{animationDelay: '4s'}} />
 
-      {/* Confetti effect */}
-      {confetti && (
-        <div className="absolute inset-0 pointer-events-none z-50">
-          {[...Array(80)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-3 h-3 animate-bounce rounded-full"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `-10px`,
-                backgroundColor: ['#f7aeae', '#b098b0', '#ffed9e', '#fbd1d1'][Math.floor(Math.random() * 4)],
-                animationDelay: `${Math.random() * 2}s`,
-                animationDuration: `${2 + Math.random() * 3}s`
-              }}
-            />
-          ))}
-        </div>
-      )}
-
-      {/* Subtle café background */}
-      <div 
-        className="absolute inset-0 opacity-8"
-        style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1200&h=800&fit=crop')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          filter: "blur(4px) sepia(15%)"
-        }}
-      />
-
-      {/* Floating coffee elements */}
-      <div className="absolute inset-0 pointer-events-none opacity-15">
-        {[...Array(10)].map((_, i) => (
+        {/* Floating coffee-themed elements */}
+        {[...Array(15)].map((_, i) => (
           <div
             key={i}
-            className="absolute rounded-full bg-gradient-to-br from-cream-300 to-blush-300 animate-pulse-gentle"
+            className="absolute rounded-full bg-gradient-to-br from-cream-200 to-blush-200 opacity-20 animate-pulse-gentle"
             style={{
               width: `${8 + Math.random() * 16}px`,
               height: `${8 + Math.random() * 16}px`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              filter: 'blur(3px)'
+              animationDelay: `${Math.random() * 4}s`,
+              animationDuration: `${3 + Math.random() * 3}s`
             }}
           />
         ))}
       </div>
 
-      <div className="relative z-10 text-center px-8 max-w-4xl mx-auto">
-        <div className="bg-white/95 backdrop-blur-lg rounded-3xl p-12 md:p-20 shadow-2xl border border-white/30 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-cream-50/50 via-transparent to-blush-50/50 rounded-3xl" />
-          
-          <div className="relative z-10">
-            <div className="mb-12">
-              <h2 className="font-playfair text-5xl md:text-7xl italic text-mauve-800 mb-10 leading-tight drop-shadow-sm">
-                Sakshi...
-              </h2>
-              <div className="space-y-6 mb-10">
-                <p className="font-poppins text-2xl md:text-3xl text-mauve-700 leading-relaxed font-light">
-                  All this was just me being honest with you.
-                </p>
-                <p className="font-poppins text-2xl md:text-3xl text-mauve-700 leading-relaxed font-light">
-                  Would you like to grab coffee with me?
-                </p>
-              </div>
-              <p className="font-poppins text-xl text-mauve-600 italic">
-                Just us, just a conversation... just being real.
-              </p>
-            </div>
-
-            {!response && (
-              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                <Button
-                  onClick={() => handleResponse('yes')}
-                  className="bg-gradient-to-r from-blush-400 to-mauve-400 hover:from-blush-500 hover:to-mauve-500 text-white px-10 py-4 text-lg font-poppins font-medium rounded-full shadow-xl transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-                >
-                  Yes, let's do this
-                </Button>
-
-                <Button
-                  onClick={() => handleResponse('maybe')}
-                  variant="outline"
-                  className="border-2 border-mauve-300 text-mauve-600 hover:bg-mauve-50 px-10 py-4 text-lg font-poppins font-medium rounded-full shadow-xl transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-                >
-                  Maybe... I need time
-                </Button>
-
-                <Button
-                  onClick={() => handleResponse('no')}
-                  variant="outline"
-                  className="border-2 border-blush-300 text-blush-600 hover:bg-blush-50 px-10 py-4 text-lg font-poppins font-medium rounded-full shadow-xl transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-                >
-                  Not right now
-                </Button>
-              </div>
-            )}
-
-            {response && (
-              <div className="animate-float-in">
-                <div className="text-4xl mb-6 animate-pulse-gentle">
-                  {response === 'yes' ? '🎉' : response === 'maybe' ? '🌸' : '💕'}
+      <div className={`max-w-4xl mx-auto px-8 transition-all duration-1500 ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      }`}>
+        <Card className="bg-white/95 backdrop-blur-lg border border-white/60 shadow-2xl rounded-3xl overflow-hidden">
+          <CardContent className="p-12 relative">
+            {/* Card background enhancement */}
+            <div className="absolute inset-0 bg-gradient-to-br from-cream-50/50 via-transparent to-blush-50/50" />
+            
+            <div className="relative z-10 text-center">
+              {/* Coffee icon with animation */}
+              <div className="mb-8 flex justify-center">
+                <div className="bg-gradient-to-br from-cream-200 to-blush-200 p-6 rounded-full shadow-lg">
+                  <Coffee size={48} className="text-mauve-700 animate-pulse-gentle" />
                 </div>
-                <p className="font-poppins text-xl text-mauve-600">
-                  Thank you for your honesty, Sakshi.
-                </p>
               </div>
-            )}
-          </div>
-        </div>
+
+              <h2 className="font-playfair text-4xl md:text-5xl italic text-mauve-800 mb-6 font-bold leading-tight">
+                So... Coffee?
+              </h2>
+              
+              <div className="space-y-6 mb-10">
+                <p className="font-poppins text-xl md:text-2xl text-mauve-700 leading-relaxed font-medium">
+                  Would you like to go for coffee with me, sometime?
+                </p>
+                
+                <p className="font-poppins text-lg text-mauve-600 leading-relaxed max-w-2xl mx-auto">
+                  Just coffee. Just a conversation. No expectations, no pressure.
+                  <br />
+                  <span className="italic font-medium text-mauve-700">Just... me being honest.</span>
+                </p>
+                
+                <div className="bg-blush-50 p-6 rounded-2xl border border-blush-200/50 max-w-xl mx-auto">
+                  <p className="font-playfair text-lg italic text-mauve-700 leading-relaxed">
+                    "Because the truth is — I liked you. I think a part of me still does."
+                  </p>
+                </div>
+              </div>
+
+              {/* Enhanced message input area */}
+              <div className="space-y-6">
+                <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-white/60 shadow-inner">
+                  <label className="block font-poppins text-mauve-700 mb-3 text-left font-medium">
+                    Your thoughts...
+                  </label>
+                  <textarea
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    placeholder="Tell me what's on your mind..."
+                    className="w-full p-4 border border-mauve-200 rounded-xl resize-none font-poppins text-mauve-700 placeholder-mauve-400 bg-white/90 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-blush-300 focus:border-blush-300 transition-all"
+                    rows={4}
+                  />
+                </div>
+
+                <div className="flex gap-4 justify-center flex-wrap">
+                  <Button
+                    onClick={handleSendMessage}
+                    disabled={!message.trim()}
+                    className="bg-gradient-to-r from-blush-400 to-mauve-400 hover:from-blush-500 hover:to-mauve-500 text-white px-8 py-3 rounded-xl font-poppins font-medium text-lg shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                  >
+                    <Heart size={20} />
+                    Send Message
+                  </Button>
+                  
+                  <Button
+                    onClick={() => setMessage("Yes! I'd love to have coffee with you. 😊")}
+                    className="bg-gradient-to-r from-cream-400 to-blush-300 hover:from-cream-500 hover:to-blush-400 text-mauve-800 px-8 py-3 rounded-xl font-poppins font-medium text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2"
+                  >
+                    <Coffee size={20} />
+                    Yes to Coffee!
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
 
-      {/* Response Modal */}
-      <Dialog open={showModal} onOpenChange={setShowModal}>
-        <DialogContent className="bg-gradient-to-br from-cream-50 to-blush-50 border-blush-200 rounded-2xl max-w-md">
-          <DialogHeader>
-            <DialogTitle className="font-playfair text-2xl italic text-mauve-800 text-center mb-4">
-              {modalContent.title}
-            </DialogTitle>
-          </DialogHeader>
-          <div className="text-center py-4">
-            <p className="font-poppins text-base text-mauve-700 mb-6 leading-relaxed">
-              {modalContent.content}
-            </p>
-            <div className="text-3xl animate-pulse-gentle">
-              {response === 'yes' ? '☕💕' : response === 'maybe' ? '🌸💝' : '🌹💕'}
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
-
-      {/* Subtle floating elements */}
+      {/* Floating hearts and coffee elements */}
       <div className="absolute inset-0 pointer-events-none opacity-40">
-        <div className="absolute top-1/5 left-1/6 text-2xl text-blush-300 animate-sparkle">☕</div>
-        <div className="absolute bottom-1/5 right-1/6 text-2xl text-mauve-300 animate-sparkle" style={{animationDelay: '2s'}}>☕</div>
-        <div className="absolute top-3/5 left-4/5 text-xl text-cream-500 animate-sparkle" style={{animationDelay: '3s'}}>💕</div>
-        <div className="absolute bottom-2/5 left-1/5 text-xl text-blush-400 animate-sparkle" style={{animationDelay: '1s'}}>✨</div>
+        <div className="absolute top-1/5 left-1/5 text-2xl text-blush-400 animate-sparkle">☕</div>
+        <div className="absolute top-2/3 right-1/5 text-xl text-mauve-400 animate-sparkle" style={{animationDelay: '2s'}}>💝</div>
+        <div className="absolute top-1/2 left-4/5 text-lg text-cream-500 animate-sparkle" style={{animationDelay: '4s'}}>☕</div>
+        <div className="absolute bottom-1/4 left-1/3 text-xl text-blush-400 animate-sparkle" style={{animationDelay: '3s'}}>💫</div>
       </div>
     </section>
   );

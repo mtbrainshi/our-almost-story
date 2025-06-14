@@ -108,6 +108,9 @@ export default {
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
 			},
+			backgroundImage: {
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+			},
 			keyframes: {
 				'accordion-down': {
 					from: {
@@ -136,7 +139,7 @@ export default {
 				'float-in': {
 					'0%': { 
 						opacity: '0', 
-						transform: 'translateY(20px) scale(0.98)' 
+						transform: 'translateY(30px) scale(0.95)' 
 					},
 					'100%': { 
 						opacity: '1', 
@@ -153,8 +156,8 @@ export default {
 						transform: 'scale(1)'
 					},
 					'50%': { 
-						opacity: '0.8',
-						transform: 'scale(1.02)'
+						opacity: '0.7',
+						transform: 'scale(1.05)'
 					}
 				},
 				'sparkle': {
@@ -170,16 +173,16 @@ export default {
 				'rain-drop': {
 					'0%': { 
 						transform: 'translateY(-100vh) translateX(0)',
-						opacity: '0.9'
+						opacity: '0.8'
 					},
 					'10%': {
 						opacity: '1'
 					},
 					'90%': {
-						opacity: '0.9'
+						opacity: '0.8'
 					},
 					'100%': { 
-						transform: 'translateY(100vh) translateX(-15px)',
+						transform: 'translateY(100vh) translateX(-20px)',
 						opacity: '0'
 					}
 				}
@@ -189,11 +192,11 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'typing': 'typing 1.5s steps(30, end)',
 				'blink': 'blink 1s infinite',
-				'float-in': 'float-in 1s ease-out',
+				'float-in': 'float-in 1.2s ease-out',
 				'flip': 'flip 0.6s ease-in-out',
-				'pulse-gentle': 'pulse-gentle 3s ease-in-out infinite',
-				'sparkle': 'sparkle 2s ease-in-out infinite',
-				'rain-drop': 'rain-drop 1.5s linear infinite'
+				'pulse-gentle': 'pulse-gentle 4s ease-in-out infinite',
+				'sparkle': 'sparkle 3s ease-in-out infinite',
+				'rain-drop': 'rain-drop 1.2s linear infinite'
 			},
 			boxShadow: {
 				'3xl': '0 35px 60px -12px rgba(0, 0, 0, 0.25)',
@@ -202,6 +205,7 @@ export default {
 				'500': '500ms',
 				'1000': '1000ms',
 				'2000': '2000ms',
+				'3000': '3000ms',
 			}
 		}
 	},
@@ -217,6 +221,9 @@ export default {
 				},
 				'.animation-delay-2000': {
 					'animation-delay': '2000ms',
+				},
+				'.animation-delay-3000': {
+					'animation-delay': '3000ms',
 				},
 			};
 			addUtilities(newUtilities);
