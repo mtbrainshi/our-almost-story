@@ -37,7 +37,7 @@ const FinalAsk = () => {
                              document.querySelector('[data-section="personal-message"]') ||
                              document.body.lastElementChild;
       personalMessage?.scrollIntoView({ behavior: 'smooth' });
-    }, 4000);
+    }, 3500);
   };
 
   const handleNoClick = () => {
@@ -90,81 +90,49 @@ const FinalAsk = () => {
           />
         ))}
         
-        {/* Coffee bean silhouettes */}
-        {[...Array(12)].map((_, i) => (
-          <div
-            key={`bean-${i}`}
-            className="absolute w-3 h-2 bg-amber-600/20 rounded-full animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${6 + Math.random() * 3}s`,
-              transform: `rotate(${Math.random() * 45}deg)`
-            }}
-          />
-        ))}
-        
         {/* Warm ambient lighting */}
         <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-amber-200/25 rounded-full blur-3xl animate-breathe" />
         <div className="absolute bottom-1/2 right-1/3 w-80 h-80 bg-orange-200/20 rounded-full blur-2xl animate-breathe" style={{animationDelay: '3s'}} />
       </div>
 
-      {/* Refined celebration overlay */}
+      {/* Elegant love celebration overlay */}
       {showCelebration && (
         <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
-          {/* Love-themed confetti explosion - one-time burst */}
-          {[...Array(50)].map((_, i) => (
+          {/* Love-themed confetti burst - one-time only */}
+          {[...Array(25)].map((_, i) => (
             <div
               key={i}
-              className="absolute animate-love-confetti"
+              className="absolute animate-love-burst"
               style={{
                 left: '50%',
                 top: '50%',
-                fontSize: `${12 + Math.random() * 18}px`,
-                animationDelay: `${Math.random() * 0.5}s`,
-                '--random-x': `${(Math.random() - 0.5) * 200}vw`,
-                '--random-y': `${(Math.random() - 0.5) * 200}vh`,
-                '--rotation': `${Math.random() * 360}deg`,
+                fontSize: `${12 + Math.random() * 16}px`,
+                animationDelay: `${Math.random() * 0.3}s`,
+                '--random-x': `${(Math.random() - 0.5) * 150}vw`,
+                '--random-y': `${(Math.random() - 0.5) * 150}vh`,
               } as any}
             >
-              {['💕', '💖', '💗', '💝', '💞', '❤️', '💓', '🌹'][Math.floor(Math.random() * 8)]}
+              {['💕', '💖', '💗', '💝', '💞', '❤️'][Math.floor(Math.random() * 6)]}
             </div>
           ))}
           
-          {/* Brief golden sparkles */}
-          {[...Array(30)].map((_, i) => (
+          {/* Brief golden sparkles - no cascade */}
+          {[...Array(15)].map((_, i) => (
             <div
               key={`sparkle-${i}`}
-              className="absolute animate-brief-sparkle"
+              className="absolute animate-gentle-sparkle"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${20 + Math.random() * 60}%`,
-                fontSize: `${8 + Math.random() * 12}px`,
-                animationDelay: `${Math.random() * 1}s`,
+                left: `${30 + Math.random() * 40}%`,
+                top: `${30 + Math.random() * 40}%`,
+                fontSize: `${8 + Math.random() * 10}px`,
+                animationDelay: `${Math.random() * 0.5}s`,
               } as any}
             >
               ✨
             </div>
           ))}
           
-          {/* Gentle floating love elements */}
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={`love-${i}`}
-              className="absolute animate-gentle-float"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                fontSize: `${10 + Math.random() * 15}px`,
-                animationDelay: `${Math.random() * 2}s`,
-              }}
-            >
-              💕
-            </div>
-          ))}
-          
-          {/* Romantic success message */}
+          {/* Elegant success message */}
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="bg-white/95 backdrop-blur-md rounded-3xl p-12 shadow-3xl border border-white/60 animate-scale-celebration max-w-md">
               <div className="text-center">
@@ -186,8 +154,8 @@ const FinalAsk = () => {
             </div>
           </div>
           
-          {/* Subtle color temperature shift */}
-          <div className="absolute inset-0 bg-gradient-to-br from-rose-100/30 via-pink-100/20 to-orange-100/30 animate-color-shift" />
+          {/* Subtle warm color shift */}
+          <div className="absolute inset-0 bg-gradient-to-br from-rose-100/20 via-pink-100/15 to-orange-100/20 animate-color-shift" />
         </div>
       )}
 

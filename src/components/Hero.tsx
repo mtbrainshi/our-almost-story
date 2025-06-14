@@ -36,7 +36,7 @@ const Hero = () => {
           <div className="absolute bottom-0 right-0 w-full h-full bg-gradient-conic from-rose-200/30 via-transparent to-pink-200/40 animate-spin-slow" style={{animationDirection: 'reverse', animationDuration: '25s'}} />
         </div>
         
-        {/* Sophisticated floating geometric shapes */}
+        {/* Sophisticated floating geometric shapes - no emojis */}
         {[...Array(8)].map((_, i) => (
           <div
             key={i}
@@ -52,7 +52,7 @@ const Hero = () => {
           />
         ))}
         
-        {/* Twinkling particle constellation */}
+        {/* Twinkling light particles - geometric only */}
         {[...Array(40)].map((_, i) => (
           <div
             key={`star-${i}`}

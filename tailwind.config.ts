@@ -313,27 +313,31 @@ export default {
 						opacity: '0'
 					}
 				},
-				'love-confetti': {
+				'love-burst': {
 					'0%': { 
 						transform: 'translate(-50%, -50%) scale(0) rotate(0deg)',
 						opacity: '1'
 					},
-					'20%': {
-						transform: 'translate(-50%, -50%) scale(1) rotate(90deg)',
+					'15%': {
+						transform: 'translate(-50%, -50%) scale(1) rotate(45deg)',
 						opacity: '1'
 					},
 					'100%': { 
-						transform: 'translate(calc(-50% + var(--random-x)), calc(-50% + var(--random-y))) scale(0.8) rotate(var(--rotation))',
+						transform: 'translate(calc(-50% + var(--random-x)), calc(-50% + var(--random-y))) scale(0.7) rotate(180deg)',
 						opacity: '0'
 					}
 				},
-				'brief-sparkle': {
+				'gentle-sparkle': {
 					'0%': { 
-						transform: 'translateY(0) rotate(0deg)',
+						transform: 'scale(0)',
+						opacity: '0'
+					},
+					'30%': { 
+						transform: 'scale(1)',
 						opacity: '1'
 					},
 					'100%': { 
-						transform: 'translateY(50vh) rotate(360deg)',
+						transform: 'scale(0.8)',
 						opacity: '0'
 					}
 				},
@@ -389,8 +393,8 @@ export default {
 				},
 				'color-shift': {
 					'0%': { opacity: '0' },
-					'50%': { opacity: '0.4' },
-					'100%': { opacity: '0.2' }
+					'50%': { opacity: '0.3' },
+					'100%': { opacity: '0.1' }
 				}
 			},
 			animation: {
@@ -416,14 +420,14 @@ export default {
 				'lightning': 'lightning 4s ease-in-out infinite',
 				'ripple': 'ripple 3s ease-in-out infinite',
 				'steam-rise': 'steam-rise 4s ease-out infinite',
-				'love-confetti': 'love-confetti 2.5s ease-out forwards',
-				'brief-sparkle': 'brief-sparkle 1.5s linear forwards',
+				'love-burst': 'love-burst 2s ease-out forwards',
+				'gentle-sparkle': 'gentle-sparkle 1.5s ease-out forwards',
 				'gentle-float': 'gentle-float 4s ease-in-out infinite',
 				'gentle-pulse': 'gentle-pulse 1.5s ease-in-out infinite',
 				'scale-celebration': 'scale-celebration 0.8s ease-out forwards',
 				'typewriter': 'typewriter 2s steps(12, end) forwards',
 				'fade-in-delayed': 'fade-in-delayed 3s ease-out forwards',
-				'color-shift': 'color-shift 3s ease-in-out forwards'
+				'color-shift': 'color-shift 3.5s ease-in-out forwards'
 			},
 			boxShadow: {
 				'3xl': '0 35px 60px -12px rgba(0, 0, 0, 0.25)',
