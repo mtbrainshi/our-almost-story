@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 
 interface ChapterProps {
@@ -169,8 +168,8 @@ const Chapter = ({ id, title, background, image, frontContent, backContent, anim
         return (
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             {/* Lighter stormy background */}
-            <div className="absolute inset-0 bg-gradient-to-b from-gray-700/80 via-gray-600/70 to-slate-700/75" />
-            <div className="absolute inset-0 bg-gradient-to-tr from-gray-800/40 via-transparent to-gray-700/35" />
+            <div className="absolute inset-0 bg-gradient-to-b from-gray-600/70 via-gray-500/60 to-slate-600/65" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-gray-700/30 via-transparent to-gray-600/25" />
             
             {/* Rain drops */}
             {[...Array(60)].map((_, i) => (
@@ -205,8 +204,8 @@ const Chapter = ({ id, title, background, image, frontContent, backContent, anim
             ))}
             
             {/* Lighter storm clouds effect */}
-            <div className="absolute top-1/6 left-1/4 w-80 h-80 bg-gray-600/30 rounded-full blur-3xl animate-breathe" />
-            <div className="absolute bottom-1/4 right-1/5 w-64 h-64 bg-gray-700/20 rounded-full blur-2xl animate-breathe" style={{animationDelay: '3s'}} />
+            <div className="absolute top-1/6 left-1/4 w-80 h-80 bg-gray-500/25 rounded-full blur-3xl animate-breathe" />
+            <div className="absolute bottom-1/4 right-1/5 w-64 h-64 bg-gray-600/15 rounded-full blur-2xl animate-breathe" style={{animationDelay: '3s'}} />
           </div>
         );
       
@@ -222,7 +221,7 @@ const Chapter = ({ id, title, background, image, frontContent, backContent, anim
   // Get background class - override for chapter 4
   const getBackgroundClass = () => {
     if (id === 4) {
-      return "bg-gradient-to-br from-gray-800 via-gray-700 to-slate-800";
+      return "bg-gradient-to-br from-gray-700 via-gray-600 to-slate-700";
     }
     return background;
   };
