@@ -164,12 +164,12 @@ const Chapter = ({ id, title, background, image, frontContent, backContent, anim
         );
       
       case 4:
-        // Dark rainy atmosphere
+        // Much darker rainy atmosphere
         return (
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {/* Dark stormy background */}
-            <div className="absolute inset-0 bg-gradient-to-b from-gray-800/80 via-gray-700/70 to-gray-600/60" />
-            <div className="absolute inset-0 bg-gradient-to-tr from-slate-800/50 via-transparent to-gray-700/40" />
+            {/* Much darker stormy background */}
+            <div className="absolute inset-0 bg-gradient-to-b from-gray-950/95 via-gray-900/90 to-slate-900/85" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-black/60 via-transparent to-gray-900/50" />
             
             {/* Rain drops */}
             {[...Array(60)].map((_, i) => (
@@ -203,9 +203,9 @@ const Chapter = ({ id, title, background, image, frontContent, backContent, anim
               />
             ))}
             
-            {/* Storm clouds effect */}
-            <div className="absolute top-1/6 left-1/4 w-80 h-80 bg-gray-700/30 rounded-full blur-3xl animate-breathe" />
-            <div className="absolute bottom-1/4 right-1/5 w-64 h-64 bg-slate-600/25 rounded-full blur-2xl animate-breathe" style={{animationDelay: '3s'}} />
+            {/* Dark storm clouds effect */}
+            <div className="absolute top-1/6 left-1/4 w-80 h-80 bg-gray-900/40 rounded-full blur-3xl animate-breathe" />
+            <div className="absolute bottom-1/4 right-1/5 w-64 h-64 bg-black/30 rounded-full blur-2xl animate-breathe" style={{animationDelay: '3s'}} />
           </div>
         );
       
@@ -221,7 +221,7 @@ const Chapter = ({ id, title, background, image, frontContent, backContent, anim
   // Get background class - override for chapter 4
   const getBackgroundClass = () => {
     if (id === 4) {
-      return "bg-gradient-to-br from-gray-900 via-slate-800 to-gray-800";
+      return "bg-gradient-to-br from-black via-gray-950 to-slate-950";
     }
     return background;
   };
