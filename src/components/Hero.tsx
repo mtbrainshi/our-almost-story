@@ -73,11 +73,6 @@ const Hero = () => {
         <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-gradient-radial from-rose-300/20 to-transparent rounded-full blur-2xl animate-breathe" style={{animationDelay: '3s'}} />
         <div className="absolute top-1/2 left-1/6 w-64 h-64 bg-gradient-radial from-purple-300/15 to-transparent rounded-full blur-3xl animate-breathe" style={{animationDelay: '6s'}} />
         
-        {/* Minimal romantic elements */}
-        <div className="absolute top-1/6 left-1/8 text-2xl text-pink-300/30 animate-float" style={{animationDelay: '2s'}}>💕</div>
-        <div className="absolute bottom-1/4 right-1/8 text-2xl text-rose-300/30 animate-float" style={{animationDelay: '5s'}}>✨</div>
-        <div className="absolute top-2/3 left-4/5 text-xl text-purple-300/30 animate-float" style={{animationDelay: '8s'}}>🌙</div>
-        
         {/* Dreamy texture overlay */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{

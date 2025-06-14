@@ -30,13 +30,14 @@ const FinalAsk = () => {
   const handleYesClick = () => {
     setShowCelebration(true);
     
-    // Scroll to PersonalMessage section after celebration
+    // Auto-hide celebration and scroll to PersonalMessage
     setTimeout(() => {
+      setShowCelebration(false);
       const personalMessage = document.querySelector('#personal-message') || 
                              document.querySelector('[data-section="personal-message"]') ||
                              document.body.lastElementChild;
       personalMessage?.scrollIntoView({ behavior: 'smooth' });
-    }, 5000);
+    }, 4000);
   };
 
   const handleNoClick = () => {
@@ -109,66 +110,65 @@ const FinalAsk = () => {
         <div className="absolute bottom-1/2 right-1/3 w-80 h-80 bg-orange-200/20 rounded-full blur-2xl animate-breathe" style={{animationDelay: '3s'}} />
       </div>
 
-      {/* Spectacular celebration overlay */}
+      {/* Refined celebration overlay */}
       {showCelebration && (
         <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
-          {/* Heart-shaped confetti explosion */}
-          {[...Array(80)].map((_, i) => (
+          {/* Love-themed confetti explosion - one-time burst */}
+          {[...Array(50)].map((_, i) => (
             <div
               key={i}
-              className="absolute animate-confetti-explosion"
+              className="absolute animate-love-confetti"
               style={{
                 left: '50%',
                 top: '50%',
-                fontSize: `${12 + Math.random() * 20}px`,
-                animationDelay: `${Math.random() * 2}s`,
-                '--random-x': `${(Math.random() - 0.5) * 300}vw`,
-                '--random-y': `${(Math.random() - 0.5) * 300}vh`,
-                '--rotation': `${Math.random() * 720}deg`,
+                fontSize: `${12 + Math.random() * 18}px`,
+                animationDelay: `${Math.random() * 0.5}s`,
+                '--random-x': `${(Math.random() - 0.5) * 200}vw`,
+                '--random-y': `${(Math.random() - 0.5) * 200}vh`,
+                '--rotation': `${Math.random() * 360}deg`,
               } as any}
             >
               {['💕', '💖', '💗', '💝', '💞', '❤️', '💓', '🌹'][Math.floor(Math.random() * 8)]}
             </div>
           ))}
           
-          {/* Golden sparkles cascading */}
-          {[...Array(50)].map((_, i) => (
+          {/* Brief golden sparkles */}
+          {[...Array(30)].map((_, i) => (
             <div
               key={`sparkle-${i}`}
-              className="absolute animate-cascade-sparkles"
+              className="absolute animate-brief-sparkle"
               style={{
                 left: `${Math.random() * 100}%`,
-                top: '-10%',
+                top: `${20 + Math.random() * 60}%`,
                 fontSize: `${8 + Math.random() * 12}px`,
-                animationDelay: `${Math.random() * 4}s`,
-                animationDuration: `${3 + Math.random() * 3}s`,
+                animationDelay: `${Math.random() * 1}s`,
               } as any}
             >
               ✨
             </div>
           ))}
           
-          {/* Floating coffee beans and hearts */}
-          {[...Array(30)].map((_, i) => (
+          {/* Gentle floating love elements */}
+          {[...Array(20)].map((_, i) => (
             <div
-              key={`coffee-${i}`}
-              className="absolute animate-float-celebration"
+              key={`love-${i}`}
+              className="absolute animate-gentle-float"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
                 fontSize: `${10 + Math.random() * 15}px`,
-                animationDelay: `${Math.random() * 5}s`,
+                animationDelay: `${Math.random() * 2}s`,
               }}
             >
-              {Math.random() > 0.5 ? '☕' : '💕'}
+              💕
             </div>
           ))}
           
-          {/* Romantic success message with typewriter effect */}
+          {/* Romantic success message */}
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="bg-white/95 backdrop-blur-md rounded-3xl p-12 shadow-3xl border border-white/60 animate-scale-celebration max-w-md">
               <div className="text-center">
-                <div className="text-8xl mb-6 animate-pulse-heart">💖</div>
+                <div className="text-8xl mb-6 animate-gentle-pulse">💖</div>
                 <div className="overflow-hidden">
                   <p className="font-playfair text-3xl md:text-4xl italic text-rose-800 mb-4 font-bold animate-typewriter">
                     She said YES!
@@ -186,8 +186,8 @@ const FinalAsk = () => {
             </div>
           </div>
           
-          {/* Color temperature shift overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-rose-100/40 via-pink-100/30 to-orange-100/40 animate-color-shift" />
+          {/* Subtle color temperature shift */}
+          <div className="absolute inset-0 bg-gradient-to-br from-rose-100/30 via-pink-100/20 to-orange-100/30 animate-color-shift" />
         </div>
       )}
 
