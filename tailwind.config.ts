@@ -129,14 +129,14 @@ export default {
             transform: "translateY(0) scale(1)",
           },
         },
-        "gentle-rain": {
+        "simple-rain": {
           "0%": {
-            transform: "translateY(-10vh)",
+            transform: "translateY(-20px)",
             opacity: "0.8",
           },
           "100%": {
-            transform: "translateY(110vh)",
-            opacity: "0.3",
+            transform: "translateY(100vh)",
+            opacity: "0.2",
           },
         },
         "float-in": {
@@ -312,7 +312,7 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "elegant-fade-up": "elegant-fade-up 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards",
-        "gentle-rain": "gentle-rain 2s linear infinite",
+        "simple-rain": "simple-rain 3s linear infinite",
         "float-in": "float-in 1s ease-out forwards",
         "float": "float 6s ease-in-out infinite",
         "twinkle": "twinkle 3s ease-in-out infinite",
