@@ -165,81 +165,48 @@ const Chapter = ({ id, title, background, image, frontContent, backContent, anim
         );
       
       case 4:
-        // Realistic dramatic storm with enhanced rain
+        // Gentle normal rain - no storm effects
         return (
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {/* Enhanced storm atmosphere */}
-            <div className="absolute inset-0 bg-gradient-to-b from-slate-700/70 via-slate-800/60 to-slate-900/50" />
-            <div className="absolute inset-0 bg-gradient-to-tr from-slate-600/50 via-slate-700/40 to-slate-800/45" />
+            {/* Soft rainy day atmosphere */}
+            <div className="absolute inset-0 bg-gradient-to-b from-gray-100/40 via-gray-50/30 to-slate-50/20" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-blue-50/30 via-transparent to-gray-100/25" />
             
-            {/* Storm clouds with depth */}
-            <div className="absolute top-0 left-0 w-full h-3/5 bg-gradient-to-b from-slate-600/80 via-slate-700/60 to-transparent animate-cloud-drift" />
-            <div className="absolute top-0 right-0 w-4/5 h-2/5 bg-gradient-to-bl from-slate-500/60 via-slate-600/40 to-transparent animate-cloud-drift-reverse" />
-            
-            {/* Realistic diagonal rain - foreground layer (heavy rain) */}
-            {[...Array(60)].map((_, i) => (
-              <div
-                key={`rain-fg-${i}`}
-                className="absolute bg-gradient-to-b from-slate-200/80 to-slate-300/60 animate-realistic-rain-heavy blur-[0.5px]"
-                style={{
-                  width: '1.5px',
-                  height: `${20 + Math.random() * 35}px`,
-                  left: `${Math.random() * 110}%`,
-                  top: '-10%',
-                  animationDelay: `${Math.random() * 2}s`,
-                  animationDuration: `${0.3 + Math.random() * 0.4}s`,
-                  transform: `rotate(20deg) scaleY(${0.8 + Math.random() * 0.4})`,
-                }}
-              />
-            ))}
-            
-            {/* Medium rain layer */}
+            {/* Gentle vertical rain drops */}
             {[...Array(40)].map((_, i) => (
               <div
-                key={`rain-mg-${i}`}
-                className="absolute bg-gradient-to-b from-slate-300/60 to-slate-400/40 animate-realistic-rain-medium blur-[0.3px]"
+                key={`rain-${i}`}
+                className="absolute bg-gradient-to-b from-gray-300/60 to-gray-400/30 animate-gentle-rain rounded-full"
                 style={{
                   width: '1px',
-                  height: `${15 + Math.random() * 25}px`,
-                  left: `${Math.random() * 105}%`,
-                  top: '-5%',
-                  animationDelay: `${Math.random() * 1.5}s`,
-                  animationDuration: `${0.4 + Math.random() * 0.5}s`,
-                  transform: `rotate(18deg) scaleY(${0.7 + Math.random() * 0.3})`,
+                  height: `${8 + Math.random() * 15}px`,
+                  left: `${Math.random() * 100}%`,
+                  top: '-10%',
+                  animationDelay: `${Math.random() * 3}s`,
+                  animationDuration: `${2 + Math.random() * 2}s`,
                 }}
               />
             ))}
             
-            {/* Background rain layer (lighter, atmospheric) */}
-            {[...Array(30)].map((_, i) => (
+            {/* Light rain layer */}
+            {[...Array(25)].map((_, i) => (
               <div
-                key={`rain-bg-${i}`}
-                className="absolute bg-gradient-to-b from-slate-400/40 to-slate-500/20 animate-realistic-rain-light blur-[0.2px]"
+                key={`light-rain-${i}`}
+                className="absolute bg-gradient-to-b from-gray-400/40 to-gray-500/20 animate-gentle-rain rounded-full blur-[0.5px]"
                 style={{
                   width: '0.8px',
-                  height: `${10 + Math.random() * 20}px`,
+                  height: `${5 + Math.random() * 10}px`,
                   left: `${Math.random() * 100}%`,
-                  top: '0%',
-                  animationDelay: `${Math.random() * 1}s`,
-                  animationDuration: `${0.6 + Math.random() * 0.6}s`,
-                  transform: `rotate(15deg) scaleY(${0.6 + Math.random() * 0.3})`,
+                  top: '-5%',
+                  animationDelay: `${Math.random() * 2}s`,
+                  animationDuration: `${3 + Math.random() * 1.5}s`,
                 }}
               />
             ))}
             
-            {/* Lightning flash effects */}
-            <div className="absolute inset-0 bg-white/15 animate-lightning-flash opacity-0" />
-            <div className="absolute inset-0 bg-blue-100/10 animate-lightning-flash opacity-0" style={{animationDelay: '3s'}} />
-            
-            {/* Ground reflections and puddles */}
-            <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-slate-600/40 via-slate-700/20 to-transparent animate-water-ripple" />
-            
-            {/* Atmospheric depth lighting */}
-            <div className="absolute top-1/5 right-1/3 w-96 h-96 bg-slate-400/15 rounded-full blur-3xl animate-storm-breathe" />
-            <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-slate-500/20 rounded-full blur-2xl animate-storm-breathe" style={{animationDelay: '2s'}} />
-            
-            {/* Wind-blown atmospheric effects */}
-            <div className="absolute top-1/2 left-0 w-full h-32 bg-gradient-to-r from-transparent via-slate-400/10 to-transparent animate-wind-sweep" />
+            {/* Soft atmospheric depth */}
+            <div className="absolute top-1/4 right-1/3 w-72 h-72 bg-gray-200/15 rounded-full blur-3xl animate-breathe" />
+            <div className="absolute bottom-1/3 left-1/4 w-64 h-64 bg-blue-100/20 rounded-full blur-2xl animate-breathe" style={{animationDelay: '2s'}} />
           </div>
         );
       

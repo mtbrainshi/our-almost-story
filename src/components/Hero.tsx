@@ -7,8 +7,8 @@ const Hero = () => {
   const [showArrow, setShowArrow] = useState(false);
 
   useEffect(() => {
-    const timer1 = setTimeout(() => setShowSubhead(true), 4000);
-    const timer2 = setTimeout(() => setShowArrow(true), 6000);
+    const timer1 = setTimeout(() => setShowSubhead(true), 3000);
+    const timer2 = setTimeout(() => setShowArrow(true), 5000);
 
     return () => {
       clearTimeout(timer1);
@@ -23,50 +23,37 @@ const Hero = () => {
 
   return (
     <section className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
-      {/* Clean aurora-like background - GRADIENTS ONLY */}
+      {/* Simple Aurora-style Background - Clean Gradients Only */}
       <div className="absolute inset-0">
-        {/* Primary gradient layers */}
-        <div className="absolute inset-0 bg-gradient-to-br from-pink-50 via-rose-50 to-red-50" />
-        <div className="absolute inset-0 bg-gradient-to-tr from-purple-50/40 via-pink-50/60 to-orange-50/30" />
-        <div className="absolute inset-0 bg-gradient-to-bl from-yellow-50/20 via-transparent to-pink-100/30" />
+        {/* Base aurora gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-pink-50 via-rose-50 to-orange-50" />
         
-        {/* Aurora-like rotating gradients */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-conic from-pink-200/30 via-transparent to-rose-200/25 animate-spin-slow" />
-          <div className="absolute bottom-0 right-0 w-full h-full bg-gradient-conic from-rose-200/25 via-transparent to-pink-200/30 animate-spin-slow" style={{animationDirection: 'reverse', animationDuration: '25s'}} />
-        </div>
+        {/* Aurora layers for depth */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-purple-50/60 via-pink-50/80 to-yellow-50/50" />
+        <div className="absolute inset-0 bg-gradient-to-bl from-rose-50/70 via-transparent to-pink-50/60" />
         
-        {/* Sophisticated layered gradients for depth */}
-        <div className="absolute inset-0 opacity-15">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 20% 30%, rgba(244, 174, 174, 0.4) 0%, transparent 70%), 
-                              radial-gradient(circle at 80% 70%, rgba(192, 132, 252, 0.3) 0%, transparent 70%),
-                              radial-gradient(circle at 40% 80%, rgba(251, 191, 36, 0.25) 0%, transparent 70%),
-                              radial-gradient(circle at 60% 20%, rgba(236, 72, 153, 0.2) 0%, transparent 60%)`
-          }} />
-        </div>
-        
-        {/* Animated gradient waves */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/4 left-0 w-full h-96 bg-gradient-to-r from-transparent via-pink-300/30 to-transparent animate-breathe" />
-          <div className="absolute bottom-1/3 right-0 w-full h-80 bg-gradient-to-l from-transparent via-rose-300/25 to-transparent animate-breathe" style={{animationDelay: '3s'}} />
+        {/* Soft aurora glow effects */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-gradient-radial from-pink-200/40 to-transparent rounded-full blur-3xl" />
+          <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gradient-radial from-rose-200/30 to-transparent rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-radial from-orange-200/25 to-transparent rounded-full blur-2xl" />
         </div>
       </div>
 
       <div className="text-center z-10 px-4 max-w-5xl relative">
         <h1 className="font-playfair text-5xl md:text-7xl lg:text-8xl italic text-rose-800 mb-8 leading-tight">
-          <span className="block mb-6 animate-float-in animation-delay-1000 opacity-0" style={{animationFillMode: 'forwards'}}>Sakshi,</span>
-          <span className="block text-4xl md:text-6xl lg:text-7xl text-rose-700 animate-float-in animation-delay-2000 opacity-0" style={{animationFillMode: 'forwards'}}>
+          <span className="block mb-6 opacity-0 animate-elegant-fade-up" style={{animationDelay: '500ms', animationFillMode: 'forwards'}}>Sakshi,</span>
+          <span className="block text-4xl md:text-6xl lg:text-7xl text-rose-700 opacity-0 animate-elegant-fade-up" style={{animationDelay: '1500ms', animationFillMode: 'forwards'}}>
             this is our story...
           </span>
         </h1>
         
-        <div className="font-playfair text-2xl md:text-4xl lg:text-5xl italic text-rose-600 mb-12 font-light animate-float-in animation-delay-3000 opacity-0" style={{animationFillMode: 'forwards'}}>
+        <div className="font-playfair text-2xl md:text-4xl lg:text-5xl italic text-rose-600 mb-12 font-light opacity-0 animate-elegant-fade-up" style={{animationDelay: '2500ms', animationFillMode: 'forwards'}}>
           The one I've been wanting to tell you.
         </div>
 
         {showSubhead && (
-          <div className="animate-float-in">
+          <div className="opacity-0 animate-elegant-fade-up" style={{animationFillMode: 'forwards'}}>
             <p className="font-poppins text-xl md:text-2xl text-rose-600 mb-12 font-light leading-relaxed max-w-3xl mx-auto">
               From those quiet classroom days to the rainy afternoons...
               <br />
@@ -78,7 +65,8 @@ const Hero = () => {
         {showArrow && (
           <button
             onClick={scrollToStory}
-            className="animate-float-in transition-all duration-500 focus:outline-none group opacity-0 hover:opacity-100"
+            className="opacity-0 animate-elegant-fade-up transition-all duration-500 focus:outline-none group hover:opacity-100"
+            style={{animationFillMode: 'forwards'}}
             aria-label="Scroll to our story"
           >
             <div className="bg-white/95 backdrop-blur-md rounded-full p-3 shadow-2xl transition-all duration-500 border border-white/70 group-hover:bg-white group-hover:shadow-3xl group-hover:scale-110">

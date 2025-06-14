@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -120,6 +119,26 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "elegant-fade-up": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(40px) scale(0.95)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0) scale(1)",
+          },
+        },
+        "gentle-rain": {
+          "0%": {
+            transform: "translateY(-10vh)",
+            opacity: "0.8",
+          },
+          "100%": {
+            transform: "translateY(110vh)",
+            opacity: "0.3",
+          },
+        },
         "float-in": {
           "0%": {
             opacity: "0",
@@ -236,16 +255,6 @@ export default {
             opacity: "0",
           },
         },
-        "heart-burst-wave3": {
-          "0%": {
-            transform: "translate(-50%, -50%) scale(0) rotate(0deg)",
-            opacity: "1",
-          },
-          "100%": {
-            transform: `translate(calc(-50% + var(--random-x)), calc(-50% + var(--random-y))) scale(1.3) rotate(var(--rotation))`,
-            opacity: "0",
-          },
-        },
         "heart-balloon": {
           "0%": {
             transform: "translateY(0) scale(0.8)",
@@ -266,20 +275,6 @@ export default {
             opacity: "0",
           },
         },
-        "firework-burst": {
-          "0%": {
-            transform: "scale(0)",
-            opacity: "1",
-          },
-          "50%": {
-            transform: "scale(1.8)",
-            opacity: "0.9",
-          },
-          "100%": {
-            transform: "scale(3.5)",
-            opacity: "0",
-          },
-        },
         "celebration-modal": {
           "0%": {
             transform: "scale(0.3) translateY(100px)",
@@ -293,11 +288,6 @@ export default {
             transform: "scale(1) translateY(0)",
             opacity: "1",
           },
-        },
-        "gentle-shake": {
-          "0%, 100%": { transform: "translateX(0)" },
-          "25%": { transform: "translateX(-1px)" },
-          "75%": { transform: "translateX(1px)" },
         },
         "pulse-heart": {
           "0%, 100%": {
@@ -317,150 +307,12 @@ export default {
             transform: "scale(1.15)",
           },
         },
-        "typewriter-fast": {
-          "0%": {
-            width: "0",
-            opacity: "0",
-          },
-          "1%": {
-            opacity: "1",
-          },
-          "100%": {
-            width: "100%",
-            opacity: "1",
-          },
-        },
-        "typewriter-medium": {
-          "0%": {
-            width: "0",
-            opacity: "0",
-          },
-          "1%": {
-            opacity: "1",
-          },
-          "100%": {
-            width: "100%",
-            opacity: "1",
-          },
-        },
-        "typewriter-slow": {
-          "0%": {
-            width: "0",
-            opacity: "0",
-          },
-          "1%": {
-            opacity: "1",
-          },
-          "100%": {
-            width: "100%",
-            opacity: "1",
-          },
-        },
-        // Enhanced rain animations
-        "realistic-rain-heavy": {
-          "0%": {
-            transform: "translateY(-10vh) translateX(0) rotate(20deg)",
-            opacity: "0.9",
-          },
-          "100%": {
-            transform: "translateY(110vh) translateX(-15px) rotate(20deg)",
-            opacity: "0.7",
-          },
-        },
-        "realistic-rain-medium": {
-          "0%": {
-            transform: "translateY(-5vh) translateX(0) rotate(18deg)",
-            opacity: "0.7",
-          },
-          "100%": {
-            transform: "translateY(105vh) translateX(-12px) rotate(18deg)",
-            opacity: "0.5",
-          },
-        },
-        "realistic-rain-light": {
-          "0%": {
-            transform: "translateY(0vh) translateX(0) rotate(15deg)",
-            opacity: "0.5",
-          },
-          "100%": {
-            transform: "translateY(100vh) translateX(-8px) rotate(15deg)",
-            opacity: "0.3",
-          },
-        },
-        "lightning-flash": {
-          "0%": { opacity: "0" },
-          "5%": { opacity: "1" },
-          "10%": { opacity: "0" },
-          "15%": { opacity: "0.8" },
-          "20%": { opacity: "0" },
-          "100%": { opacity: "0" },
-        },
-        "cloud-drift": {
-          "0%": {
-            transform: "translateX(-10px)",
-          },
-          "50%": {
-            transform: "translateX(10px)",
-          },
-          "100%": {
-            transform: "translateX(-10px)",
-          },
-        },
-        "cloud-drift-reverse": {
-          "0%": {
-            transform: "translateX(10px)",
-          },
-          "50%": {
-            transform: "translateX(-10px)",
-          },
-          "100%": {
-            transform: "translateX(10px)",
-          },
-        },
-        "water-ripple": {
-          "0%": {
-            transform: "scaleX(1) scaleY(1)",
-            opacity: "0.6",
-          },
-          "50%": {
-            transform: "scaleX(1.02) scaleY(1.05)",
-            opacity: "0.8",
-          },
-          "100%": {
-            transform: "scaleX(1) scaleY(1)",
-            opacity: "0.6",
-          },
-        },
-        "storm-breathe": {
-          "0%, 100%": {
-            transform: "scale(1)",
-            opacity: "0.4",
-          },
-          "50%": {
-            transform: "scale(1.1)",
-            opacity: "0.6",
-          },
-        },
-        "wind-sweep": {
-          "0%": {
-            transform: "translateX(-100px)",
-            opacity: "0",
-          },
-          "20%": {
-            opacity: "0.3",
-          },
-          "80%": {
-            opacity: "0.3",
-          },
-          "100%": {
-            transform: "translateX(100px)",
-            opacity: "0",
-          },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "elegant-fade-up": "elegant-fade-up 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards",
+        "gentle-rain": "gentle-rain 2s linear infinite",
         "float-in": "float-in 1s ease-out forwards",
         "float": "float 6s ease-in-out infinite",
         "twinkle": "twinkle 3s ease-in-out infinite",
@@ -473,27 +325,11 @@ export default {
         "expand-ring": "expand-ring 1.2s ease-out",
         "heart-burst-wave1": "heart-burst-wave1 1.8s ease-out",
         "heart-burst-wave2": "heart-burst-wave2 2s ease-out",
-        "heart-burst-wave3": "heart-burst-wave3 2.2s ease-out",
         "heart-balloon": "heart-balloon 3.5s ease-out",
         "sparkle-cascade": "sparkle-cascade 2.5s linear",
-        "firework-burst": "firework-burst 1.2s ease-out",
         "celebration-modal": "celebration-modal 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)",
-        "gentle-shake": "gentle-shake 0.4s ease-in-out 3",
         "pulse-heart": "pulse-heart 2.5s ease-in-out infinite",
         "heart-pulse-gentle": "heart-pulse-gentle 1.8s ease-in-out infinite",
-        "typewriter-fast": "typewriter-fast 0.8s steps(12) forwards",
-        "typewriter-medium": "typewriter-medium 1.2s steps(15) forwards",
-        "typewriter-slow": "typewriter-slow 1.6s steps(18) forwards",
-        // Enhanced rain and storm animations
-        "realistic-rain-heavy": "realistic-rain-heavy 0.3s linear infinite",
-        "realistic-rain-medium": "realistic-rain-medium 0.4s linear infinite",
-        "realistic-rain-light": "realistic-rain-light 0.6s linear infinite",
-        "lightning-flash": "lightning-flash 2s ease-in-out infinite",
-        "cloud-drift": "cloud-drift 8s ease-in-out infinite",
-        "cloud-drift-reverse": "cloud-drift-reverse 10s ease-in-out infinite",
-        "water-ripple": "water-ripple 3s ease-in-out infinite",
-        "storm-breathe": "storm-breathe 5s ease-in-out infinite",
-        "wind-sweep": "wind-sweep 6s ease-in-out infinite",
         "spin-slow": "spin 20s linear infinite",
       },
       animationDelay: {
