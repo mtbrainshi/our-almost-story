@@ -57,17 +57,17 @@ const Chapter = ({ id, title, background, image, frontContent, backContent, anim
       data-chapter={id}
       className={`min-h-screen flex items-center justify-center ${background} relative overflow-hidden`}
     >
-      {/* Background effects based on chapter */}
+      {/* Enhanced background effects */}
       {id === 2 && (
         <div className="absolute inset-0 pointer-events-none">
-          {[...Array(15)].map((_, i) => (
+          {[...Array(20)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-1 h-20 bg-blush-200 opacity-30 animate-rain-drop"
+              className="absolute w-1 h-16 bg-blush-200 opacity-20 animate-rain-drop"
               style={{
                 left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 2}s`,
-                animationDuration: `${2 + Math.random() * 2}s`
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${1.5 + Math.random() * 2}s`
               }}
             />
           ))}
@@ -76,14 +76,15 @@ const Chapter = ({ id, title, background, image, frontContent, backContent, anim
 
       {id === 3 && (
         <div className="absolute inset-0 pointer-events-none">
-          {[...Array(8)].map((_, i) => (
+          {[...Array(12)].map((_, i) => (
             <div
               key={i}
               className="absolute text-cream-300 animate-sparkle opacity-40"
               style={{
                 left: `${20 + Math.random() * 60}%`,
                 top: `${20 + Math.random() * 60}%`,
-                animationDelay: `${Math.random() * 3}s`
+                animationDelay: `${Math.random() * 4}s`,
+                fontSize: `${16 + Math.random() * 8}px`
               }}
             >
               ✨
@@ -92,55 +93,66 @@ const Chapter = ({ id, title, background, image, frontContent, backContent, anim
         </div>
       )}
 
-      <div className={`transition-all duration-800 ${getAnimationClass()}`}>
+      <div className={`transition-all duration-1000 ${getAnimationClass()}`}>
         <div className="perspective-1000">
           <div
-            className={`relative w-80 h-96 cursor-pointer transition-transform duration-600 preserve-3d ${
+            className={`relative w-80 h-96 md:w-96 md:h-[450px] cursor-pointer transition-transform duration-700 preserve-3d group ${
               isFlipped ? "rotate-y-180" : ""
             }`}
             onClick={() => setIsFlipped(!isFlipped)}
           >
-            {/* Front of card */}
+            {/* Enhanced front of card */}
             <div className="absolute inset-0 backface-hidden">
-              <div className="bg-white p-4 rounded-lg shadow-2xl transform rotate-1 hover:rotate-0 transition-transform duration-300 border-8 border-white">
-                <img
-                  src={image}
-                  alt={frontContent}
-                  className="w-full h-64 object-cover rounded"
-                />
-                <div className="mt-4 text-center">
-                  <h3 className="font-playfair text-xl italic text-mauve-700 mb-2">{title}</h3>
-                  <p className="text-sm text-mauve-500 font-poppins">{frontContent}</p>
+              <div className="bg-white p-6 rounded-2xl shadow-2xl transform rotate-1 group-hover:rotate-0 transition-all duration-500 border-4 border-white/80 backdrop-blur-sm">
+                <div className="relative overflow-hidden rounded-xl mb-4">
+                  <img
+                    src={image}
+                    alt={frontContent}
+                    className="w-full h-64 md:h-72 object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                </div>
+                <div className="text-center">
+                  <h3 className="font-playfair text-xl md:text-2xl italic text-mauve-700 mb-3 font-semibold">{title}</h3>
+                  <p className="text-sm md:text-base text-mauve-500 font-poppins leading-relaxed">{frontContent}</p>
                 </div>
               </div>
             </div>
 
-            {/* Back of card */}
+            {/* Enhanced back of card */}
             <div className="absolute inset-0 backface-hidden rotate-y-180">
-              <div className="bg-cream-50 p-8 rounded-lg shadow-2xl transform -rotate-1 hover:rotate-0 transition-transform duration-300 border-8 border-white h-full flex items-center justify-center">
+              <div className="bg-gradient-to-br from-cream-50 to-blush-50 p-8 rounded-2xl shadow-2xl transform -rotate-1 group-hover:rotate-0 transition-all duration-500 border-4 border-white/80 h-full flex items-center justify-center backdrop-blur-sm">
                 <blockquote className="text-center">
-                  <p className="font-playfair text-lg italic text-mauve-800 leading-relaxed">
+                  <div className="mb-6 text-blush-400 text-3xl">♡</div>
+                  <p className="font-playfair text-lg md:text-xl italic text-mauve-800 leading-relaxed mb-6 font-medium">
                     "{backContent}"
                   </p>
-                  <div className="mt-6 text-blush-400 text-2xl">♡</div>
+                  <div className="flex justify-center space-x-2">
+                    <div className="w-1 h-1 bg-blush-400 rounded-full animate-pulse"></div>
+                    <div className="w-1 h-1 bg-mauve-400 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
+                    <div className="w-1 h-1 bg-cream-500 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
+                  </div>
                 </blockquote>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Tap hint */}
+        {/* Enhanced tap hint */}
         {!isFlipped && isVisible && (
-          <div className="text-center mt-6 animate-pulse-gentle">
-            <p className="text-sm text-mauve-500 font-poppins">Tap to read the memory</p>
+          <div className="text-center mt-8 animate-pulse-gentle">
+            <div className="bg-white/70 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg inline-block">
+              <p className="text-sm text-mauve-600 font-poppins font-medium">💝 Tap to read my heart</p>
+            </div>
           </div>
         )}
       </div>
 
-      {/* Floating micro-interactions */}
+      {/* Enhanced floating micro-interactions */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-8 w-1 h-1 bg-blush-300 rounded-full animate-pulse opacity-60"></div>
-        <div className="absolute bottom-1/4 right-8 w-2 h-2 bg-mauve-300 rounded-full animate-pulse opacity-60" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-1/6 left-8 w-2 h-2 bg-blush-300 rounded-full animate-pulse opacity-50"></div>
+        <div className="absolute bottom-1/6 right-8 w-3 h-3 bg-mauve-300 rounded-full animate-pulse opacity-50" style={{animationDelay: '1.5s'}}></div>
+        <div className="absolute top-2/3 left-1/4 w-1 h-1 bg-cream-400 rounded-full animate-sparkle opacity-60" style={{animationDelay: '2s'}}></div>
       </div>
     </section>
   );

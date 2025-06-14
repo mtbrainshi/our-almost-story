@@ -27,43 +27,50 @@ const Interlude = () => {
       ref={interludeRef}
       className="min-h-screen flex items-center justify-center bg-gradient-to-br from-mauve-100 via-blush-50 to-cream-100 relative overflow-hidden"
     >
-      {/* Dreamy background effect */}
+      {/* Enhanced dreamy background effect */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(12)].map((_, i) => (
+        {[...Array(16)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-32 h-32 border border-blush-200 rounded-full opacity-20 animate-pulse-gentle"
+            className="absolute w-32 h-32 border border-blush-200 rounded-full opacity-15 animate-pulse-gentle"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 4}s`,
-              animationDuration: `${3 + Math.random() * 2}s`
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${4 + Math.random() * 3}s`
             }}
           />
         ))}
       </div>
 
-      <div className={`max-w-4xl mx-auto text-center px-8 transition-all duration-1000 ${
+      <div className={`max-w-5xl mx-auto text-center px-8 transition-all duration-1500 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}>
-        <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-12 shadow-xl">
-          <blockquote className="font-playfair text-2xl md:text-3xl italic text-mauve-800 leading-relaxed">
-            "Sometimes I dreamt we talked for hours… laughed without deadlines… wandered together."
+        <div className="bg-white/70 backdrop-blur-md rounded-3xl p-16 shadow-2xl border border-white/30">
+          <div className="mb-8 text-6xl">💭</div>
+          
+          <blockquote className="font-playfair text-3xl md:text-4xl italic text-mauve-800 leading-relaxed mb-8 font-medium">
+            "Sakshi, sometimes I dreamt we talked for hours... laughed without deadlines... wandered together through those college corridors."
           </blockquote>
           
-          <div className="mt-8 flex justify-center space-x-4">
-            <div className="w-2 h-2 bg-blush-400 rounded-full animate-pulse"></div>
-            <div className="w-2 h-2 bg-mauve-400 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
-            <div className="w-2 h-2 bg-cream-500 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
+          <p className="font-poppins text-lg md:text-xl text-mauve-600 mb-8 font-light leading-relaxed">
+            In those dreams, you always listened with that same gentle smile.
+          </p>
+          
+          <div className="flex justify-center space-x-6">
+            <div className="w-3 h-3 bg-blush-400 rounded-full animate-pulse"></div>
+            <div className="w-3 h-3 bg-mauve-400 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
+            <div className="w-3 h-3 bg-cream-500 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
           </div>
         </div>
       </div>
 
-      {/* Floating dream elements */}
+      {/* Enhanced floating dream elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/6 text-3xl text-blush-300 animate-sparkle opacity-40">☁️</div>
-        <div className="absolute top-3/4 right-1/6 text-3xl text-mauve-300 animate-sparkle opacity-40" style={{animationDelay: '1.5s'}}>☁️</div>
-        <div className="absolute top-1/2 left-3/4 text-2xl text-cream-400 animate-sparkle opacity-40" style={{animationDelay: '2s'}}>✨</div>
+        <div className="absolute top-1/6 left-1/6 text-4xl text-blush-300 animate-sparkle opacity-40">☁️</div>
+        <div className="absolute top-2/3 right-1/6 text-4xl text-mauve-300 animate-sparkle opacity-40" style={{animationDelay: '2s'}}>☁️</div>
+        <div className="absolute top-1/2 left-4/5 text-3xl text-cream-400 animate-sparkle opacity-40" style={{animationDelay: '3s'}}>✨</div>
+        <div className="absolute bottom-1/4 left-1/3 text-3xl text-blush-400 animate-sparkle opacity-40" style={{animationDelay: '1s'}}>💫</div>
       </div>
     </section>
   );
