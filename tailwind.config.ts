@@ -62,7 +62,6 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Romantic color palette
 				blush: {
 					50: '#fef7f7',
 					100: '#feeaea',
@@ -137,7 +136,7 @@ export default {
 				'float-in': {
 					'0%': { 
 						opacity: '0', 
-						transform: 'translateY(30px) scale(0.95)' 
+						transform: 'translateY(20px) scale(0.98)' 
 					},
 					'100%': { 
 						opacity: '1', 
@@ -155,7 +154,7 @@ export default {
 					},
 					'50%': { 
 						opacity: '0.8',
-						transform: 'scale(1.05)'
+						transform: 'scale(1.02)'
 					}
 				},
 				'sparkle': {
@@ -171,44 +170,17 @@ export default {
 				'rain-drop': {
 					'0%': { 
 						transform: 'translateY(-100vh) translateX(0)',
-						opacity: '0.8'
+						opacity: '0.9'
 					},
 					'10%': {
 						opacity: '1'
 					},
 					'90%': {
-						opacity: '0.8'
+						opacity: '0.9'
 					},
 					'100%': { 
-						transform: 'translateY(100vh) translateX(-20px)',
+						transform: 'translateY(100vh) translateX(-15px)',
 						opacity: '0'
-					}
-				},
-				'dodge': {
-					'0%, 100%': { transform: 'translateX(0)' },
-					'25%': { transform: 'translateX(-10px)' },
-					'75%': { transform: 'translateX(10px)' }
-				},
-				'glow': {
-					'0%, 100%': { 
-						boxShadow: '0 0 20px rgba(247, 174, 174, 0.3)' 
-					},
-					'50%': { 
-						boxShadow: '0 0 30px rgba(176, 152, 176, 0.5)' 
-					}
-				},
-				'drift': {
-					'0%, 100%': { 
-						transform: 'translateX(0) translateY(0)' 
-					},
-					'25%': { 
-						transform: 'translateX(10px) translateY(-5px)' 
-					},
-					'50%': { 
-						transform: 'translateX(-5px) translateY(-10px)' 
-					},
-					'75%': { 
-						transform: 'translateX(-10px) translateY(5px)' 
 					}
 				}
 			},
@@ -217,19 +189,37 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'typing': 'typing 1.5s steps(30, end)',
 				'blink': 'blink 1s infinite',
-				'float-in': 'float-in 0.8s ease-out',
+				'float-in': 'float-in 1s ease-out',
 				'flip': 'flip 0.6s ease-in-out',
-				'pulse-gentle': 'pulse-gentle 2s ease-in-out infinite',
-				'sparkle': 'sparkle 1.5s ease-in-out infinite',
-				'rain-drop': 'rain-drop 2s linear infinite',
-				'dodge': 'dodge 0.4s ease-in-out',
-				'glow': 'glow 3s ease-in-out infinite',
-				'drift': 'drift 8s ease-in-out infinite'
+				'pulse-gentle': 'pulse-gentle 3s ease-in-out infinite',
+				'sparkle': 'sparkle 2s ease-in-out infinite',
+				'rain-drop': 'rain-drop 1.5s linear infinite'
 			},
 			boxShadow: {
 				'3xl': '0 35px 60px -12px rgba(0, 0, 0, 0.25)',
+			},
+			animationDelay: {
+				'500': '500ms',
+				'1000': '1000ms',
+				'2000': '2000ms',
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+		require("tailwindcss-animate"),
+		function({ addUtilities }: any) {
+			const newUtilities = {
+				'.animation-delay-500': {
+					'animation-delay': '500ms',
+				},
+				'.animation-delay-1000': {
+					'animation-delay': '1000ms',
+				},
+				'.animation-delay-2000': {
+					'animation-delay': '2000ms',
+				},
+			};
+			addUtilities(newUtilities);
+		}
+	],
 } satisfies Config;
