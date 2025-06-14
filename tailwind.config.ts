@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -185,6 +186,14 @@ export default {
 						transform: 'translateY(100vh) translateX(-20px)',
 						opacity: '0'
 					}
+				},
+				'float': {
+					'0%, 100%': { 
+						transform: 'translateY(0px)' 
+					},
+					'50%': { 
+						transform: 'translateY(-10px)' 
+					}
 				}
 			},
 			animation: {
@@ -196,7 +205,8 @@ export default {
 				'flip': 'flip 0.6s ease-in-out',
 				'pulse-gentle': 'pulse-gentle 4s ease-in-out infinite',
 				'sparkle': 'sparkle 3s ease-in-out infinite',
-				'rain-drop': 'rain-drop 1.2s linear infinite'
+				'rain-drop': 'rain-drop 1.2s linear infinite',
+				'float': 'float 3s ease-in-out infinite'
 			},
 			boxShadow: {
 				'3xl': '0 35px 60px -12px rgba(0, 0, 0, 0.25)',
