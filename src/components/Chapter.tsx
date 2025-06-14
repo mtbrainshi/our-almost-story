@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 
 interface ChapterProps {
@@ -165,46 +164,48 @@ const Chapter = ({ id, title, background, image, frontContent, backContent, anim
         );
       
       case 4:
-        // Simple, gentle rain atmosphere
+        // Dark rainy atmosphere
         return (
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {/* Soft cloudy background */}
-            <div className="absolute inset-0 bg-gradient-to-b from-gray-200/40 via-gray-100/30 to-gray-50/20" />
+            {/* Dark stormy background */}
+            <div className="absolute inset-0 bg-gradient-to-b from-gray-800/80 via-gray-700/70 to-gray-600/60" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-slate-800/50 via-transparent to-gray-700/40" />
             
-            {/* Simple vertical raindrops */}
-            {[...Array(50)].map((_, i) => (
+            {/* Rain drops */}
+            {[...Array(60)].map((_, i) => (
               <div
-                key={`simple-rain-${i}`}
-                className="absolute bg-blue-300/40 rounded-full animate-simple-rain"
+                key={`rain-${i}`}
+                className="absolute bg-blue-200/60 rounded-full animate-simple-rain"
+                style={{
+                  width: '1.5px',
+                  height: `${12 + Math.random() * 20}px`,
+                  left: `${Math.random() * 100}%`,
+                  top: '-30px',
+                  animationDelay: `${Math.random() * 3}s`,
+                  animationDuration: `${2.5 + Math.random() * 1.5}s`,
+                }}
+              />
+            ))}
+            
+            {/* Lighter rain layer */}
+            {[...Array(40)].map((_, i) => (
+              <div
+                key={`light-rain-${i}`}
+                className="absolute bg-blue-100/40 rounded-full animate-simple-rain"
                 style={{
                   width: '1px',
-                  height: `${10 + Math.random() * 15}px`,
+                  height: `${8 + Math.random() * 15}px`,
                   left: `${Math.random() * 100}%`,
-                  top: '-20px',
+                  top: '-25px',
                   animationDelay: `${Math.random() * 4}s`,
                   animationDuration: `${3 + Math.random() * 2}s`,
                 }}
               />
             ))}
             
-            {/* Lighter rain layer */}
-            {[...Array(30)].map((_, i) => (
-              <div
-                key={`light-simple-rain-${i}`}
-                className="absolute bg-blue-200/30 rounded-full animate-simple-rain"
-                style={{
-                  width: '0.8px',
-                  height: `${6 + Math.random() * 10}px`,
-                  left: `${Math.random() * 100}%`,
-                  top: '-15px',
-                  animationDelay: `${Math.random() * 3}s`,
-                  animationDuration: `${4 + Math.random() * 1.5}s`,
-                }}
-              />
-            ))}
-            
-            {/* Soft atmospheric depth */}
-            <div className="absolute top-1/4 right-1/3 w-72 h-72 bg-gray-200/15 rounded-full blur-3xl animate-breathe" />
+            {/* Storm clouds effect */}
+            <div className="absolute top-1/6 left-1/4 w-80 h-80 bg-gray-700/30 rounded-full blur-3xl animate-breathe" />
+            <div className="absolute bottom-1/4 right-1/5 w-64 h-64 bg-slate-600/25 rounded-full blur-2xl animate-breathe" style={{animationDelay: '3s'}} />
           </div>
         );
       
@@ -217,11 +218,19 @@ const Chapter = ({ id, title, background, image, frontContent, backContent, anim
     setIsFlipped(!isFlipped);
   };
 
+  // Get background class - override for chapter 4
+  const getBackgroundClass = () => {
+    if (id === 4) {
+      return "bg-gradient-to-br from-gray-900 via-slate-800 to-gray-800";
+    }
+    return background;
+  };
+
   return (
     <section
       ref={chapterRef}
       data-chapter={id}
-      className={`min-h-screen flex items-center justify-center ${background} relative overflow-hidden transition-all duration-1000`}
+      className={`min-h-screen flex items-center justify-center ${getBackgroundClass()} relative overflow-hidden transition-all duration-1000`}
     >
       {getChapterAtmosphere()}
 
