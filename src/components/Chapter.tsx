@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from "react";
 
 interface ChapterProps {
@@ -164,12 +165,12 @@ const Chapter = ({ id, title, background, image, frontContent, backContent, anim
         );
       
       case 4:
-        // Much darker rainy atmosphere
+        // Lighter rainy atmosphere
         return (
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {/* Much darker stormy background */}
-            <div className="absolute inset-0 bg-gradient-to-b from-gray-950/95 via-gray-900/90 to-slate-900/85" />
-            <div className="absolute inset-0 bg-gradient-to-tr from-black/60 via-transparent to-gray-900/50" />
+            {/* Lighter stormy background */}
+            <div className="absolute inset-0 bg-gradient-to-b from-gray-700/80 via-gray-600/70 to-slate-700/75" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-gray-800/40 via-transparent to-gray-700/35" />
             
             {/* Rain drops */}
             {[...Array(60)].map((_, i) => (
@@ -203,9 +204,9 @@ const Chapter = ({ id, title, background, image, frontContent, backContent, anim
               />
             ))}
             
-            {/* Dark storm clouds effect */}
-            <div className="absolute top-1/6 left-1/4 w-80 h-80 bg-gray-900/40 rounded-full blur-3xl animate-breathe" />
-            <div className="absolute bottom-1/4 right-1/5 w-64 h-64 bg-black/30 rounded-full blur-2xl animate-breathe" style={{animationDelay: '3s'}} />
+            {/* Lighter storm clouds effect */}
+            <div className="absolute top-1/6 left-1/4 w-80 h-80 bg-gray-600/30 rounded-full blur-3xl animate-breathe" />
+            <div className="absolute bottom-1/4 right-1/5 w-64 h-64 bg-gray-700/20 rounded-full blur-2xl animate-breathe" style={{animationDelay: '3s'}} />
           </div>
         );
       
@@ -221,7 +222,7 @@ const Chapter = ({ id, title, background, image, frontContent, backContent, anim
   // Get background class - override for chapter 4
   const getBackgroundClass = () => {
     if (id === 4) {
-      return "bg-gradient-to-br from-black via-gray-950 to-slate-950";
+      return "bg-gradient-to-br from-gray-800 via-gray-700 to-slate-800";
     }
     return background;
   };
