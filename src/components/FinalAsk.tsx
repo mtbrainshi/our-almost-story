@@ -31,12 +31,11 @@ const FinalAsk = () => {
     setShowCelebration(true);
     setCelebrationPhase(1);
     
-    // Extended phase progression for 10 seconds total
-    setTimeout(() => setCelebrationPhase(2), 500);
-    setTimeout(() => setCelebrationPhase(3), 1200);
-    setTimeout(() => setCelebrationPhase(4), 2000);
+    // Simplified phase progression
+    setTimeout(() => setCelebrationPhase(2), 800);
+    setTimeout(() => setCelebrationPhase(3), 1500);
     
-    // Auto-hide and scroll after 10 seconds
+    // Auto-hide and scroll after 6 seconds
     setTimeout(() => {
       setShowCelebration(false);
       setCelebrationPhase(0);
@@ -44,7 +43,7 @@ const FinalAsk = () => {
                              document.querySelector('[data-section="personal-message"]') ||
                              document.body.lastElementChild;
       personalMessage?.scrollIntoView({ behavior: 'smooth' });
-    }, 10000);
+    }, 6000);
   };
 
   const handleNoClick = () => {
@@ -102,123 +101,78 @@ const FinalAsk = () => {
         <div className="absolute bottom-1/2 right-1/3 w-80 h-80 bg-orange-200/20 rounded-full blur-2xl animate-breathe" style={{animationDelay: '3s'}} />
       </div>
 
-      {/* ENHANCED Celebration Modal with Glass Effect */}
+      {/* IMPROVED Celebration Modal */}
       {showCelebration && (
         <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
-          {/* Enhanced Glass Background with Multiple Layers */}
-          <div className="absolute inset-0 bg-gradient-to-br from-pink-100/40 via-rose-100/30 to-orange-100/35 backdrop-blur-xl" />
-          <div className="absolute inset-0 bg-gradient-to-tr from-white/20 via-pink-50/25 to-rose-50/20 backdrop-blur-lg" />
-          <div className="absolute inset-0 bg-gradient-to-bl from-rose-200/15 via-transparent to-pink-200/20 backdrop-blur-md" />
+          {/* Simplified Glass Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-pink-100/30 via-rose-100/20 to-orange-100/25 backdrop-blur-lg" />
           
-          {/* Frosted Glass Overlay */}
-          <div className="absolute inset-0 bg-white/10 backdrop-blur-2xl" style={{
-            background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 25%, rgba(255,192,203,0.1) 50%, rgba(255,255,255,0.05) 75%, rgba(255,255,255,0.1) 100%)'
-          }} />
-          
-          {/* Expanding Rings */}
+          {/* Gentle expanding rings */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-32 h-32 border-4 border-pink-400/70 rounded-full animate-expand-ring" />
-            <div className="absolute w-48 h-48 border-4 border-rose-400/50 rounded-full animate-expand-ring" style={{animationDelay: '0.1s'}} />
-            <div className="absolute w-64 h-64 border-4 border-orange-400/40 rounded-full animate-expand-ring" style={{animationDelay: '0.2s'}} />
+            <div className="w-20 h-20 border-2 border-pink-300/60 rounded-full animate-expand-ring" />
+            <div className="absolute w-32 h-32 border-2 border-rose-300/40 rounded-full animate-expand-ring" style={{animationDelay: '0.3s'}} />
+            <div className="absolute w-44 h-44 border-2 border-orange-300/30 rounded-full animate-expand-ring" style={{animationDelay: '0.6s'}} />
           </div>
           
-          {/* Heart Confetti - Extended Animation */}
-          {celebrationPhase >= 1 && [...Array(25)].map((_, i) => (
+          {/* Better Heart Confetti */}
+          {celebrationPhase >= 1 && [...Array(12)].map((_, i) => (
             <div
-              key={`wave1-${i}`}
-              className="absolute animate-heart-burst-wave1"
+              key={`hearts-${i}`}
+              className="absolute text-2xl animate-heart-float"
               style={{
-                left: '50%',
-                top: '50%',
-                fontSize: `${12 + Math.random() * 14}px`,
-                animationDelay: `${Math.random() * 0.3}s`,
-                '--random-x': `${(Math.random() - 0.5) * 160}vw`,
-                '--random-y': `${(Math.random() - 0.5) * 160}vh`,
-                '--rotation': `${Math.random() * 360}deg`,
-              } as any}
+                left: `${45 + Math.random() * 10}%`,
+                top: `${45 + Math.random() * 10}%`,
+                animationDelay: `${Math.random() * 0.8}s`,
+                animationDuration: `${2 + Math.random() * 1}s`,
+              }}
             >
-              {['💕', '💖', '💗', '💝', '💞', '❤️'][Math.floor(Math.random() * 6)]}
+              {['💕', '💖', '💗', '❤️'][Math.floor(Math.random() * 4)]}
             </div>
           ))}
           
-          {celebrationPhase >= 2 && [...Array(20)].map((_, i) => (
+          {/* Gentle sparkles */}
+          {celebrationPhase >= 2 && [...Array(8)].map((_, i) => (
             <div
-              key={`wave2-${i}`}
-              className="absolute animate-heart-burst-wave2"
+              key={`sparkles-${i}`}
+              className="absolute text-lg animate-gentle-sparkle"
               style={{
-                left: '50%',
-                top: '50%',
-                fontSize: `${10 + Math.random() * 12}px`,
-                animationDelay: `${Math.random() * 0.2}s`,
-                '--random-x': `${(Math.random() - 0.5) * 140}vw`,
-                '--random-y': `${(Math.random() - 0.5) * 140}vh`,
-                '--rotation': `${Math.random() * 360}deg`,
-              } as any}
-            >
-              {['💕', '💖', '💗', '💝', '💞', '❤️'][Math.floor(Math.random() * 6)]}
-            </div>
-          ))}
-          
-          {/* Sparkles - More Extended */}
-          {celebrationPhase >= 3 && [...Array(35)].map((_, i) => (
-            <div
-              key={`sparkle-${i}`}
-              className="absolute animate-sparkle-cascade"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: '-10%',
-                fontSize: `${8 + Math.random() * 8}px`,
-                animationDelay: `${Math.random() * 2}s`,
-              } as any}
+                left: `${20 + Math.random() * 60}%`,
+                top: `${30 + Math.random() * 40}%`,
+                animationDelay: `${Math.random() * 1}s`,
+              }}
             >
               ✨
             </div>
           ))}
           
-          {/* ENHANCED SUCCESS MODAL with Better Glass Effect */}
+          {/* SUCCESS MODAL with cleaner design */}
           <div className="absolute inset-0 flex items-center justify-center p-4">
-            <div className="relative max-w-md md:max-w-lg mx-auto">
-              {/* Glass Effect Background Layers */}
-              <div className="absolute inset-0 bg-white/30 backdrop-blur-3xl rounded-3xl" />
-              <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-pink-50/30 to-rose-50/40 backdrop-blur-2xl rounded-3xl" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-pink-100/20 via-transparent to-rose-100/25 backdrop-blur-xl rounded-3xl" />
+            <div className="relative max-w-md mx-auto">
+              {/* Clean glass background */}
+              <div className="absolute inset-0 bg-white/80 backdrop-blur-xl rounded-3xl border border-white/60 shadow-xl" />
               
-              {/* Frosted Glass Border */}
-              <div className="absolute inset-0 rounded-3xl border border-white/50 shadow-2xl" style={{
-                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3)'
-              }} />
-              
-              {/* Content Container */}
-              <div className="relative z-10 p-8 md:p-12 text-center">
-                {/* Pulsing Heart Background Effect */}
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-pink-100/40 to-rose-100/40 animate-pulse-heart opacity-60" />
+              {/* Content */}
+              <div className="relative z-10 p-8 text-center">
+                <div className="text-5xl mb-4 animate-heart-pulse-gentle">💖</div>
                 
-                <div className="relative z-10">
-                  {/* Large Pulsing Heart */}
-                  <div className="text-6xl md:text-7xl mb-6 animate-heart-pulse-gentle">💖</div>
-                  
-                  {/* Text Content */}
-                  <div className="space-y-4 mb-8">
-                    <h1 className="font-playfair text-2xl md:text-3xl lg:text-4xl italic text-rose-800 font-bold leading-tight">
-                      You said YES! 💕
-                    </h1>
-                    <p className="font-playfair text-lg md:text-xl italic text-rose-700 leading-relaxed">
-                      Thank you for saying yes!
-                    </p>
-                    <p className="font-poppins text-base md:text-lg text-rose-600 leading-relaxed">
-                      This makes me so incredibly happy! ✨
-                    </p>
-                  </div>
-                  
-                  <div className="mt-8">
-                    <p className="font-poppins text-sm md:text-base text-rose-600 mb-4">
-                      Taking you to leave a message...
-                    </p>
-                    <div className="flex justify-center space-x-2">
-                      <div className="w-2 h-2 bg-rose-400 rounded-full animate-bounce"></div>
-                      <div className="w-2 h-2 bg-rose-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
-                      <div className="w-2 h-2 bg-rose-400 rounded-full animate-bounce" style={{animationDelay: '0.4s'}}></div>
-                    </div>
+                <h1 className="font-playfair text-3xl italic text-rose-800 font-bold mb-3">
+                  You said YES! 💕
+                </h1>
+                <p className="font-playfair text-lg italic text-rose-700 mb-2">
+                  Thank you for saying yes!
+                </p>
+                <p className="font-poppins text-base text-rose-600 mb-6">
+                  This makes me so incredibly happy! ✨
+                </p>
+                
+                <div className="mt-6">
+                  <p className="font-poppins text-sm text-rose-600 mb-3">
+                    Taking you to leave a message...
+                  </p>
+                  <div className="flex justify-center space-x-2">
+                    <div className="w-2 h-2 bg-rose-400 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-rose-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                    <div className="w-2 h-2 bg-rose-400 rounded-full animate-bounce" style={{animationDelay: '0.4s'}}></div>
                   </div>
                 </div>
               </div>
@@ -227,6 +181,7 @@ const FinalAsk = () => {
         </div>
       )}
 
+      {/* Main content card */}
       <div className={`max-w-4xl mx-auto px-8 transition-all duration-1000 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}>

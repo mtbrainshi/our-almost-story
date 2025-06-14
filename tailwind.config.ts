@@ -228,75 +228,39 @@ export default {
         "expand-ring": {
           "0%": {
             transform: "scale(0)",
-            opacity: "0.8",
+            opacity: "0.6",
           },
           "100%": {
-            transform: "scale(8)",
+            transform: "scale(4)",
             opacity: "0",
           },
         },
-        "heart-burst-wave1": {
-          "0%": {
-            transform: "translate(-50%, -50%) scale(0) rotate(0deg)",
-            opacity: "1",
-          },
-          "100%": {
-            transform: `translate(calc(-50% + var(--random-x)), calc(-50% + var(--random-y))) scale(1.2) rotate(var(--rotation))`,
-            opacity: "0",
-          },
-        },
-        "heart-burst-wave2": {
-          "0%": {
-            transform: "translate(-50%, -50%) scale(0) rotate(0deg)",
-            opacity: "1",
-          },
-          "100%": {
-            transform: `translate(calc(-50% + var(--random-x)), calc(-50% + var(--random-y))) scale(1.1) rotate(var(--rotation))`,
-            opacity: "0",
-          },
-        },
-        "heart-balloon": {
+        "heart-float": {
           "0%": {
             transform: "translateY(0) scale(0.8)",
             opacity: "0.9",
           },
-          "100%": {
-            transform: "translateY(-120vh) scale(1.1)",
-            opacity: "0",
-          },
-        },
-        "sparkle-cascade": {
-          "0%": {
-            transform: "translateY(0) rotate(0deg)",
+          "50%": {
+            transform: "translateY(-30px) scale(1.1)",
             opacity: "1",
           },
           "100%": {
-            transform: "translateY(120vh) rotate(360deg)",
+            transform: "translateY(-60px) scale(0.9)",
             opacity: "0",
           },
         },
-        "celebration-modal": {
+        "gentle-sparkle": {
           "0%": {
-            transform: "scale(0.3) translateY(100px)",
-            opacity: "0",
+            transform: "scale(0.8) rotate(0deg)",
+            opacity: "0.6",
           },
           "50%": {
-            transform: "scale(1.05) translateY(-10px)",
-            opacity: "0.9",
-          },
-          "100%": {
-            transform: "scale(1) translateY(0)",
+            transform: "scale(1.2) rotate(180deg)",
             opacity: "1",
           },
-        },
-        "pulse-heart": {
-          "0%, 100%": {
-            transform: "scale(1)",
+          "100%": {
+            transform: "scale(0.8) rotate(360deg)",
             opacity: "0.4",
-          },
-          "50%": {
-            transform: "scale(1.08)",
-            opacity: "0.7",
           },
         },
         "heart-pulse-gentle": {
@@ -304,7 +268,7 @@ export default {
             transform: "scale(1)",
           },
           "50%": {
-            transform: "scale(1.15)",
+            transform: "scale(1.1)",
           },
         },
       },
@@ -322,13 +286,9 @@ export default {
         "steam-rise": "steam-rise 6s ease-out infinite",
         "fade-in-delayed": "fade-in-delayed 0.8s ease-out forwards",
         "celebration-flash": "celebration-flash 0.8s ease-out",
-        "expand-ring": "expand-ring 1.2s ease-out",
-        "heart-burst-wave1": "heart-burst-wave1 1.8s ease-out",
-        "heart-burst-wave2": "heart-burst-wave2 2s ease-out",
-        "heart-balloon": "heart-balloon 3.5s ease-out",
-        "sparkle-cascade": "sparkle-cascade 2.5s linear",
-        "celebration-modal": "celebration-modal 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)",
-        "pulse-heart": "pulse-heart 2.5s ease-in-out infinite",
+        "expand-ring": "expand-ring 2s ease-out",
+        "heart-float": "heart-float 3s ease-out forwards",
+        "gentle-sparkle": "gentle-sparkle 3s ease-in-out infinite",
         "heart-pulse-gentle": "heart-pulse-gentle 1.8s ease-in-out infinite",
         "spin-slow": "spin 20s linear infinite",
       },
