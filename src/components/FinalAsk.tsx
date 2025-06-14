@@ -8,6 +8,7 @@ const FinalAsk = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [noButtonClicked, setNoButtonClicked] = useState(0);
   const [showCelebration, setShowCelebration] = useState(false);
+  const [celebrationPhase, setCelebrationPhase] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -29,15 +30,29 @@ const FinalAsk = () => {
 
   const handleYesClick = () => {
     setShowCelebration(true);
+    setCelebrationPhase(0);
     
-    // Auto-hide celebration and scroll to PersonalMessage
+    // Phase progression
+    const phases = [
+      { delay: 0, phase: 1 },      // Initial burst
+      { delay: 800, phase: 2 },    // Second wave
+      { delay: 1600, phase: 3 },   // Third wave
+      { delay: 2400, phase: 4 },   // Final cascade
+    ];
+    
+    phases.forEach(({ delay, phase }) => {
+      setTimeout(() => setCelebrationPhase(phase), delay);
+    });
+    
+    // Auto-hide and scroll
     setTimeout(() => {
       setShowCelebration(false);
+      setCelebrationPhase(0);
       const personalMessage = document.querySelector('#personal-message') || 
                              document.querySelector('[data-section="personal-message"]') ||
                              document.body.lastElementChild;
       personalMessage?.scrollIntoView({ behavior: 'smooth' });
-    }, 3500);
+    }, 4500);
   };
 
   const handleNoClick = () => {
@@ -95,67 +110,166 @@ const FinalAsk = () => {
         <div className="absolute bottom-1/2 right-1/3 w-80 h-80 bg-orange-200/20 rounded-full blur-2xl animate-breathe" style={{animationDelay: '3s'}} />
       </div>
 
-      {/* Elegant love celebration overlay */}
+      {/* Enhanced Spectacular Celebration */}
       {showCelebration && (
         <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
-          {/* Love-themed confetti burst - one-time only */}
-          {[...Array(25)].map((_, i) => (
+          {/* Screen Flash Effect */}
+          <div className="absolute inset-0 bg-gradient-to-br from-pink-200/40 via-rose-200/30 to-orange-200/40 animate-celebration-flash" />
+          
+          {/* Expanding Rings of Light */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-32 h-32 border-4 border-pink-300/60 rounded-full animate-expand-ring" />
+            <div className="absolute w-48 h-48 border-4 border-rose-300/40 rounded-full animate-expand-ring" style={{animationDelay: '0.3s'}} />
+            <div className="absolute w-64 h-64 border-4 border-orange-300/30 rounded-full animate-expand-ring" style={{animationDelay: '0.6s'}} />
+          </div>
+          
+          {/* Multi-Wave Heart Confetti Burst */}
+          {celebrationPhase >= 1 && [...Array(30)].map((_, i) => (
             <div
-              key={i}
-              className="absolute animate-love-burst"
+              key={`wave1-${i}`}
+              className="absolute animate-heart-burst-wave1"
               style={{
                 left: '50%',
                 top: '50%',
-                fontSize: `${12 + Math.random() * 16}px`,
-                animationDelay: `${Math.random() * 0.3}s`,
-                '--random-x': `${(Math.random() - 0.5) * 150}vw`,
-                '--random-y': `${(Math.random() - 0.5) * 150}vh`,
+                fontSize: `${16 + Math.random() * 20}px`,
+                animationDelay: `${Math.random() * 0.2}s`,
+                '--random-x': `${(Math.random() - 0.5) * 200}vw`,
+                '--random-y': `${(Math.random() - 0.5) * 200}vh`,
+                '--rotation': `${Math.random() * 360}deg`,
               } as any}
             >
               {['💕', '💖', '💗', '💝', '💞', '❤️'][Math.floor(Math.random() * 6)]}
             </div>
           ))}
           
-          {/* Brief golden sparkles - no cascade */}
-          {[...Array(15)].map((_, i) => (
+          {celebrationPhase >= 2 && [...Array(25)].map((_, i) => (
+            <div
+              key={`wave2-${i}`}
+              className="absolute animate-heart-burst-wave2"
+              style={{
+                left: '50%',
+                top: '50%',
+                fontSize: `${12 + Math.random() * 16}px`,
+                animationDelay: `${Math.random() * 0.3}s`,
+                '--random-x': `${(Math.random() - 0.5) * 180}vw`,
+                '--random-y': `${(Math.random() - 0.5) * 180}vh`,
+                '--rotation': `${Math.random() * 360}deg`,
+              } as any}
+            >
+              {['💕', '💖', '💗', '💝', '💞', '❤️'][Math.floor(Math.random() * 6)]}
+            </div>
+          ))}
+          
+          {celebrationPhase >= 3 && [...Array(20)].map((_, i) => (
+            <div
+              key={`wave3-${i}`}
+              className="absolute animate-heart-burst-wave3"
+              style={{
+                left: '50%',
+                top: '50%',
+                fontSize: `${14 + Math.random() * 18}px`,
+                animationDelay: `${Math.random() * 0.4}s`,
+                '--random-x': `${(Math.random() - 0.5) * 160}vw`,
+                '--random-y': `${(Math.random() - 0.5) * 160}vh`,
+                '--rotation': `${Math.random() * 360}deg`,
+              } as any}
+            >
+              {['💕', '💖', '💗', '💝', '💞', '❤️'][Math.floor(Math.random() * 6)]}
+            </div>
+          ))}
+          
+          {/* Floating Heart Balloons */}
+          {celebrationPhase >= 1 && [...Array(8)].map((_, i) => (
+            <div
+              key={`balloon-${i}`}
+              className="absolute animate-heart-balloon"
+              style={{
+                left: `${20 + Math.random() * 60}%`,
+                top: '100%',
+                fontSize: `${20 + Math.random() * 12}px`,
+                animationDelay: `${Math.random() * 1}s`,
+              } as any}
+            >
+              🎈
+            </div>
+          ))}
+          
+          {/* Golden Sparkle Cascade */}
+          {celebrationPhase >= 2 && [...Array(40)].map((_, i) => (
             <div
               key={`sparkle-${i}`}
-              className="absolute animate-gentle-sparkle"
+              className="absolute animate-sparkle-cascade"
               style={{
-                left: `${30 + Math.random() * 40}%`,
-                top: `${30 + Math.random() * 40}%`,
-                fontSize: `${8 + Math.random() * 10}px`,
-                animationDelay: `${Math.random() * 0.5}s`,
+                left: `${Math.random() * 100}%`,
+                top: '-10%',
+                fontSize: `${8 + Math.random() * 12}px`,
+                animationDelay: `${Math.random() * 2}s`,
               } as any}
             >
               ✨
             </div>
           ))}
           
-          {/* Elegant success message */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="bg-white/95 backdrop-blur-md rounded-3xl p-12 shadow-3xl border border-white/60 animate-scale-celebration max-w-md">
+          {/* Firework Bursts */}
+          {celebrationPhase >= 3 && [...Array(6)].map((_, i) => (
+            <div
+              key={`firework-${i}`}
+              className="absolute animate-firework-burst"
+              style={{
+                left: `${20 + Math.random() * 60}%`,
+                top: `${20 + Math.random() * 40}%`,
+                fontSize: '32px',
+                animationDelay: `${Math.random() * 0.8}s`,
+              } as any}
+            >
+              🎆
+            </div>
+          ))}
+          
+          {/* Enhanced Success Modal with Dramatic Animation */}
+          <div className="absolute inset-0 flex items-center justify-center animate-gentle-shake">
+            <div className="bg-white/95 backdrop-blur-md rounded-3xl p-12 shadow-3xl border border-white/60 animate-celebration-modal max-w-lg">
               <div className="text-center">
-                <div className="text-8xl mb-6 animate-gentle-pulse">💖</div>
-                <div className="overflow-hidden">
-                  <p className="font-playfair text-3xl md:text-4xl italic text-rose-800 mb-4 font-bold animate-typewriter">
-                    She said YES!
-                  </p>
-                </div>
-                <p className="font-poppins text-lg text-rose-600 animate-fade-in-delayed">
-                  Taking you to the message section...
-                </p>
-                <div className="mt-6 flex justify-center space-x-2">
-                  <div className="w-3 h-3 bg-rose-400 rounded-full animate-bounce"></div>
-                  <div className="w-3 h-3 bg-rose-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
-                  <div className="w-3 h-3 bg-rose-400 rounded-full animate-bounce" style={{animationDelay: '0.4s'}}></div>
+                {/* Pulsing Heart Background */}
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-pink-100/50 to-rose-100/50 animate-pulse-heart" />
+                
+                <div className="relative z-10">
+                  {/* Large Pulsing Heart */}
+                  <div className="text-8xl mb-6 animate-heart-pulse-gentle">💖</div>
+                  
+                  {/* Enhanced Typewriter Messages */}
+                  <div className="space-y-4 mb-6">
+                    <div className="overflow-hidden">
+                      <p className="font-playfair text-3xl md:text-4xl italic text-rose-800 font-bold animate-typewriter-fast">
+                        You said YES! 💕
+                      </p>
+                    </div>
+                    <div className="overflow-hidden">
+                      <p className="font-playfair text-2xl italic text-rose-700 animate-typewriter-medium" style={{animationDelay: '1.5s', opacity: 0, animationFillMode: 'forwards'}}>
+                        Thank you for saying yes!
+                      </p>
+                    </div>
+                    <div className="overflow-hidden">
+                      <p className="font-poppins text-xl text-rose-600 animate-typewriter-slow" style={{animationDelay: '2.8s', opacity: 0, animationFillMode: 'forwards'}}>
+                        This makes me so incredibly happy! ✨
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-8">
+                    <p className="font-poppins text-lg text-rose-600 animate-fade-in-delayed" style={{animationDelay: '3.5s', opacity: 0, animationFillMode: 'forwards'}}>
+                      Taking you to leave a message...
+                    </p>
+                    <div className="mt-4 flex justify-center space-x-2">
+                      <div className="w-3 h-3 bg-rose-400 rounded-full animate-bounce" style={{animationDelay: '4s'}}></div>
+                      <div className="w-3 h-3 bg-rose-400 rounded-full animate-bounce" style={{animationDelay: '4.2s'}}></div>
+                      <div className="w-3 h-3 bg-rose-400 rounded-full animate-bounce" style={{animationDelay: '4.4s'}}></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          
-          {/* Subtle warm color shift */}
-          <div className="absolute inset-0 bg-gradient-to-br from-rose-100/20 via-pink-100/15 to-orange-100/20 animate-color-shift" />
         </div>
       )}
 
