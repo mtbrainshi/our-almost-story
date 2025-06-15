@@ -136,16 +136,16 @@ const FinalAsk = () => {
             </div>
           ))}
           
-          {/* Shimmering sparkles */}
-          {celebrationPhase >= 2 && [...Array(12)].map((_, i) => (
+          {/* Gentle sparkles - reduced from 12 to 4 */}
+          {celebrationPhase >= 2 && [...Array(4)].map((_, i) => (
             <div
               key={`sparkles-${i}`}
               className="absolute animate-gentle-sparkle"
               style={{
-                left: `${15 + Math.random() * 70}%`,
-                top: `${25 + Math.random() * 50}%`,
-                animationDelay: `${Math.random() * 1.5}s`,
-                fontSize: `${14 + Math.random() * 8}px`,
+                left: `${25 + Math.random() * 50}%`,
+                top: `${35 + Math.random() * 30}%`,
+                animationDelay: `${Math.random() * 2}s`,
+                fontSize: `${12 + Math.random() * 6}px`,
               }}
             >
               ✨
