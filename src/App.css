@@ -41,6 +41,18 @@
   color: #888;
 }
 
+/* Responsive font size for Hero title - make it larger on mobile */
+@media (max-width: 640px) {
+  .hero-title-sakshi {
+    font-size: 2.75rem !important; /* larger than text-3xl */
+  }
+}
+@media (max-width: 480px) {
+  .hero-title-sakshi {
+    font-size: 2.25rem !important; /* larger than before */
+  }
+}
+
 @media (max-width: 640px) {
   #root {
     padding: 0.5rem;
