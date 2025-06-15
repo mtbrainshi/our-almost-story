@@ -2,55 +2,79 @@
 interface ConfettiHeartsProps {}
 
 const ConfettiHearts = ({}: ConfettiHeartsProps) => {
-  // Generate primary burst hearts (24 hearts in perfect circle)
-  const generatePrimaryHearts = () => {
+  // Enhanced heart emojis with sparkles and variety
+  const heartEmojis = ['💕', '💖', '💗', '❤️', '💝', '💘', '💓', '💞', '✨', '🌟', '⭐', '💫'];
+  
+  // Wave 1: Immediate burst (24 hearts)
+  const generateWave1Hearts = () => {
     const hearts = [];
-    const heartEmojis = ['💕', '💖', '💗', '❤️', '💝', '💘', '💓', '💞'];
     
     for (let i = 0; i < 24; i++) {
       const angle = (i * 360) / 24;
-      const distance = 350 + Math.random() * 100; // Increased from 250+50 to 350+100
-      const size = 32 + Math.random() * 12; // Increased from 22+8 to 32+12
+      const distance = 400 + Math.random() * 150;
+      const size = 32 + Math.random() * 18;
       
       hearts.push({
-        id: `primary-${i}`,
+        id: `wave1-${i}`,
         emoji: heartEmojis[i % heartEmojis.length],
         angle,
         distance,
         size,
-        type: 'primary'
+        type: 'wave1'
       });
     }
     
     return hearts;
   };
 
-  // Generate secondary wave hearts (18 hearts, slightly offset)
-  const generateSecondaryHearts = () => {
+  // Wave 2: Secondary burst (18 hearts)
+  const generateWave2Hearts = () => {
     const hearts = [];
-    const heartEmojis = ['💕', '💖', '💗', '❤️', '💝', '💘', '💓', '💞'];
     
     for (let i = 0; i < 18; i++) {
-      const angle = (i * 360) / 18 + 10; // 10 degree offset from primary
-      const distance = 400 + Math.random() * 120; // Increased from 300+80 to 400+120
-      const size = 28 + Math.random() * 14; // Increased from 18+10 to 28+14
+      const angle = (i * 360) / 18 + 10; // 10 degree offset
+      const distance = 480 + Math.random() * 120;
+      const size = 28 + Math.random() * 22;
       
       hearts.push({
-        id: `secondary-${i}`,
+        id: `wave2-${i}`,
         emoji: heartEmojis[i % heartEmojis.length],
         angle,
         distance,
         size,
-        type: 'secondary'
+        type: 'wave2'
       });
     }
     
     return hearts;
   };
 
-  const primaryHearts = generatePrimaryHearts();
-  const secondaryHearts = generateSecondaryHearts();
-  const allHearts = [...primaryHearts, ...secondaryHearts];
+  // Wave 3: Final flourish (12 hearts)
+  const generateWave3Hearts = () => {
+    const hearts = [];
+    
+    for (let i = 0; i < 12; i++) {
+      const angle = (i * 360) / 12 + 20; // 20 degree offset
+      const distance = 550 + Math.random() * 150;
+      const size = 36 + Math.random() * 24;
+      
+      hearts.push({
+        id: `wave3-${i}`,
+        emoji: heartEmojis[i % heartEmojis.length],
+        angle,
+        distance,
+        size,
+        type: 'wave3'
+      });
+    }
+    
+    return hearts;
+  };
+
+  const wave1Hearts = generateWave1Hearts();
+  const wave2Hearts = generateWave2Hearts();
+  const wave3Hearts = generateWave3Hearts();
+  const allHearts = [...wave1Hearts, ...wave2Hearts, ...wave3Hearts];
 
   return (
     <>
@@ -58,27 +82,71 @@ const ConfettiHearts = ({}: ConfettiHeartsProps) => {
         {allHearts.map((heart) => {
           const endX = Math.cos((heart.angle * Math.PI) / 180) * heart.distance;
           const endY = Math.sin((heart.angle * Math.PI) / 180) * heart.distance;
-          const animationDelay = heart.type === 'secondary' ? '0.4s' : '0s'; // Slightly increased delay
-          const duration = heart.type === 'secondary' ? '2.0s' : '1.8s'; // Increased from 1.2s/1.0s to 2.0s/1.8s
+          const rotation = Math.random() * 360;
+          
+          // Wave-specific timing
+          let animationDelay, duration, glowColor;
+          
+          switch (heart.type) {
+            case 'wave1':
+              animationDelay = '0s';
+              duration = '2.5s';
+              glowColor = 'rgba(255, 20, 147, 0.9)';
+              break;
+            case 'wave2':
+              animationDelay = '0.6s';
+              duration = '2.8s';
+              glowColor = 'rgba(255, 105, 180, 0.8)';
+              break;
+            case 'wave3':
+              animationDelay = '1.2s';
+              duration = '3.0s';
+              glowColor = 'rgba(255, 215, 0, 0.9)';
+              break;
+            default:
+              animationDelay = '0s';
+              duration = '2.5s';
+              glowColor = 'rgba(255, 20, 147, 0.9)';
+          }
           
           return `
             @keyframes heartBurst-${heart.id} {
               0% { 
-                transform: translate(-50%, -50%) scale(0);
+                transform: translate(-50%, -50%) scale(0) rotate(0deg);
                 opacity: 0;
               }
-              12% { 
-                transform: translate(-50%, -50%) scale(1.1);
+              8% { 
+                transform: translate(-50%, -50%) scale(0.3) rotate(${rotation * 0.2}deg);
+                opacity: 0.6;
+              }
+              15% { 
+                transform: translate(-50%, -50%) scale(1.2) rotate(${rotation * 0.4}deg);
                 opacity: 1;
               }
+              25% { 
+                transform: translate(-50%, -50%) scale(1) rotate(${rotation * 0.6}deg);
+                opacity: 1;
+              }
+              85% { 
+                transform: translate(-50%, -50%) translateX(${endX * 0.9}px) translateY(${endY * 0.9}px) scale(0.9) rotate(${rotation}deg);
+                opacity: 0.7;
+              }
               100% { 
-                transform: translate(-50%, -50%) translateX(${endX}px) translateY(${endY}px) scale(0.8);
+                transform: translate(-50%, -50%) translateX(${endX}px) translateY(${endY}px) scale(0.6) rotate(${rotation}deg);
                 opacity: 0;
               }
             }
+            
+            @keyframes heartPulse-${heart.id} {
+              0%, 100% { filter: drop-shadow(0 0 15px ${glowColor}); }
+              50% { filter: drop-shadow(0 0 25px ${glowColor}) drop-shadow(0 0 35px ${glowColor}); }
+            }
+            
             .heart-${heart.id} {
-              animation: heartBurst-${heart.id} ${duration} cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-              animation-delay: ${animationDelay};
+              animation: 
+                heartBurst-${heart.id} ${duration} cubic-bezier(0.16, 1, 0.3, 1) forwards,
+                heartPulse-${heart.id} 1.5s ease-in-out infinite;
+              animation-delay: ${animationDelay}, ${animationDelay};
             }
           `;
         }).join('')}
@@ -93,7 +161,7 @@ const ConfettiHearts = ({}: ConfettiHeartsProps) => {
               left: '50%',
               top: '50%',
               fontSize: `${heart.size}px`,
-              filter: 'drop-shadow(0 0 12px rgba(255, 20, 147, 0.9))',
+              zIndex: heart.type === 'wave3' ? 60 : heart.type === 'wave2' ? 55 : 50,
             }}
           >
             {heart.emoji}

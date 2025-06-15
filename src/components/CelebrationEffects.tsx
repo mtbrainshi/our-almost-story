@@ -21,7 +21,7 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
       const timer = setTimeout(() => {
         console.log("Celebration ended");
         onCelebrationEnd();
-      }, 5000); // Increased from 3000ms to 5000ms for longer celebration
+      }, 8000); // Extended to 8 seconds for luxurious celebration
       
       return () => clearTimeout(timer);
     }
@@ -32,7 +32,7 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
     return null;
   }
 
-  console.log("Rendering celebration with confetti");
+  console.log("Rendering celebration with enhanced confetti");
 
   return (
     <>
