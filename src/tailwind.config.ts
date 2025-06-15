@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -200,29 +201,25 @@ export default {
 					'5%, 85%': { opacity: '0.8' }
 				},
 
-				// WORKING CONFETTI ANIMATIONS
+				// UNIFIED CONFETTI ANIMATIONS - Fast & Explosive
 				
-				// Ring expansion animation
+				// Ring expansion - synced with hearts
 				'ring-burst': {
 					'0%': {
 						transform: 'scale(0)',
 						opacity: '1'
 					},
-					'70%': {
-						transform: 'scale(1)',
-						opacity: '0.6'
-					},
 					'100%': {
-						transform: 'scale(1.2)',
+						transform: 'scale(1)',
 						opacity: '0'
 					}
 				},
 
-				// Primary heart burst - hearts move outward from center
+				// Primary heart burst - immediate explosion
 				'heart-burst-primary': {
 					'0%': {
-						transform: 'translate(-50%, -50%) scale(0.5)',
-						opacity: '1'
+						transform: 'translate(-50%, -50%) scale(0)',
+						opacity: '0'
 					},
 					'20%': {
 						transform: 'translate(-50%, -50%) scale(1.2)',
@@ -234,11 +231,11 @@ export default {
 					}
 				},
 
-				// Secondary heart burst with slight delay
+				// Secondary heart wave - quick follow-up
 				'heart-burst-secondary': {
 					'0%': {
-						transform: 'translate(-50%, -50%) scale(0.3)',
-						opacity: '1'
+						transform: 'translate(-50%, -50%) scale(0)',
+						opacity: '0'
 					},
 					'25%': {
 						transform: 'translate(-50%, -50%) scale(1.1)',
@@ -265,31 +262,31 @@ export default {
 						transform: 'translate(0)'
 					},
 					'10%': {
-						transform: 'translate(-1px, -1px)'
+						transform: 'translate(-2px, -2px)'
 					},
 					'20%': {
-						transform: 'translate(1px, -1px)'
+						transform: 'translate(2px, -2px)'
 					},
 					'30%': {
-						transform: 'translate(-1px, 1px)'
+						transform: 'translate(-2px, 2px)'
 					},
 					'40%': {
-						transform: 'translate(1px, 1px)'
+						transform: 'translate(2px, 2px)'
 					},
 					'50%': {
-						transform: 'translate(-1px, -1px)'
+						transform: 'translate(-2px, -2px)'
 					},
 					'60%': {
-						transform: 'translate(1px, -1px)'
+						transform: 'translate(2px, -2px)'
 					},
 					'70%': {
-						transform: 'translate(-1px, 1px)'
+						transform: 'translate(-2px, 2px)'
 					},
 					'80%': {
-						transform: 'translate(1px, 1px)'
+						transform: 'translate(2px, 2px)'
 					},
 					'90%': {
-						transform: 'translate(-1px, 0)'
+						transform: 'translate(-2px, 0)'
 					}
 				},
 
@@ -373,12 +370,12 @@ export default {
 				'float': 'float 3s ease-in-out infinite',
 				'lightning': 'lightning 4s ease-in-out infinite',
 
-				// WORKING CONFETTI ANIMATIONS
-				'ring-burst': 'ring-burst 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
-				'heart-burst-primary': 'heart-burst-primary 2.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
-				'heart-burst-secondary': 'heart-burst-secondary 2.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
+				// UNIFIED CONFETTI ANIMATIONS - Fast & Synchronized
+				'ring-burst': 'ring-burst 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
+				'heart-burst-primary': 'heart-burst-primary 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
+				'heart-burst-secondary': 'heart-burst-secondary 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
 				'celebration-pulse': 'celebration-pulse 2s ease-in-out infinite',
-				'celebration-shake': 'celebration-shake 0.6s ease-in-out',
+				'celebration-shake': 'celebration-shake 0.4s ease-in-out',
 				'modal-breathe': 'modal-breathe 3s ease-in-out infinite',
 				'heart-mega-celebration': 'heart-mega-celebration 1s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
 				'text-shimmer': 'text-shimmer 2s linear infinite',

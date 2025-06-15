@@ -8,54 +8,54 @@ interface CelebrationEffectsProps {
 }
 
 const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEnd }: CelebrationEffectsProps) => {
-  // Only pink/red hearts
+  // Only pink/red hearts for maximum impact
   const heartEmojis = ['💕', '💖', '💗', '❤️', '💝', '💘', '💓', '💞', '💟', '♥️'];
 
-  // Simple primary burst - hearts burst outward immediately
+  // Primary burst - immediate explosion with more hearts
   const generatePrimaryBurst = (count: number) => {
     return Array.from({ length: count }, (_, i) => {
       const angle = (i / count) * 2 * Math.PI;
-      const distance = 250; // Fixed distance for consistent burst
+      const distance = 300; // Increased distance for bigger explosion
       const moveX = Math.cos(angle) * distance;
       const moveY = Math.sin(angle) * distance;
       
       return {
         moveX,
         moveY,
-        delay: 0, // Start immediately with rings
+        delay: 0, // Start immediately
         emoji: heartEmojis[i % heartEmojis.length],
-        size: 24 + (i % 3) * 4,
+        size: 28 + (i % 4) * 6, // Bigger hearts
       };
     });
   };
 
-  // Secondary wave - slightly different angles and distance
+  // Secondary wave - quick follow-up for more density
   const generateSecondaryWave = (count: number) => {
     return Array.from({ length: count }, (_, i) => {
-      const angle = (i / count) * 2 * Math.PI + Math.PI / count; // Offset angle slightly
-      const distance = 200; // Slightly smaller distance
+      const angle = (i / count) * 2 * Math.PI + Math.PI / count; // Offset slightly
+      const distance = 250;
       const moveX = Math.cos(angle) * distance;
       const moveY = Math.sin(angle) * distance;
       
       return {
         moveX,
         moveY,
-        delay: 0.3, // 300ms delay for wave effect
+        delay: 0.1, // Very quick follow-up
         emoji: heartEmojis[Math.floor(Math.random() * heartEmojis.length)],
-        size: 20 + Math.random() * 8,
+        size: 24 + Math.random() * 8,
       };
     });
   };
 
-  // Generate hearts
-  const primaryBurst = generatePrimaryBurst(16); // Reduced count for testing
-  const secondaryWave = generateSecondaryWave(12);
+  // Generate more hearts for bigger impact
+  const primaryBurst = generatePrimaryBurst(20); // More hearts
+  const secondaryWave = generateSecondaryWave(16); // More hearts
 
   useEffect(() => {
     if (showCelebration) {
       const timer = setTimeout(() => {
         onCelebrationEnd();
-      }, 4000); // 4 seconds total
+      }, 3000); // Shortened to 3 seconds
       
       return () => clearTimeout(timer);
     }
@@ -74,16 +74,16 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
       {/* Enhanced screen shake */}
       <div className="absolute inset-0 animate-celebration-shake">
         
-        {/* Expanding rings - synchronized with hearts */}
+        {/* Synchronized expanding rings */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-12 h-12 border-4 border-pink-500/90 rounded-full animate-ring-burst" />
-          <div className="absolute w-24 h-24 border-3 border-rose-500/70 rounded-full animate-ring-burst" style={{animationDelay: '0.1s'}} />
-          <div className="absolute w-40 h-40 border-2 border-red-500/60 rounded-full animate-ring-burst" style={{animationDelay: '0.2s'}} />
-          <div className="absolute w-64 h-64 border-2 border-pink-400/50 rounded-full animate-ring-burst" style={{animationDelay: '0.3s'}} />
-          <div className="absolute w-80 h-80 border-1 border-rose-300/40 rounded-full animate-ring-burst" style={{animationDelay: '0.4s'}} />
+          <div className="absolute w-24 h-24 border-3 border-rose-500/80 rounded-full animate-ring-burst" style={{animationDelay: '0.05s'}} />
+          <div className="absolute w-40 h-40 border-2 border-red-500/70 rounded-full animate-ring-burst" style={{animationDelay: '0.1s'}} />
+          <div className="absolute w-64 h-64 border-2 border-pink-400/60 rounded-full animate-ring-burst" style={{animationDelay: '0.15s'}} />
+          <div className="absolute w-80 h-80 border-1 border-rose-300/50 rounded-full animate-ring-burst" style={{animationDelay: '0.2s'}} />
         </div>
 
-        {/* Primary Heart Burst - starts immediately */}
+        {/* Primary Heart Burst - immediate explosion */}
         <div className="absolute inset-0 flex items-center justify-center">
           {primaryBurst.map((heart, i) => (
             <div
@@ -97,6 +97,7 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
                 animationDelay: `${heart.delay}s`,
                 fontSize: `${heart.size}px`,
                 filter: 'drop-shadow(0 0 12px rgba(255, 20, 147, 0.9)) drop-shadow(0 0 6px rgba(255, 182, 193, 0.7))',
+                zIndex: 10,
               } as React.CSSProperties}
             >
               {heart.emoji}
@@ -104,7 +105,7 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
           ))}
         </div>
 
-        {/* Secondary Heart Wave - 300ms delay */}
+        {/* Secondary Heart Wave - quick follow-up */}
         <div className="absolute inset-0 flex items-center justify-center">
           {secondaryWave.map((heart, i) => (
             <div
@@ -118,6 +119,7 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
                 animationDelay: `${heart.delay}s`,
                 fontSize: `${heart.size}px`,
                 filter: 'drop-shadow(0 0 8px rgba(255, 105, 180, 0.8))',
+                zIndex: 9,
               } as React.CSSProperties}
             >
               {heart.emoji}
@@ -128,7 +130,7 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
       </div>
       
       {/* SUCCESS MODAL */}
-      <div className="absolute inset-0 flex items-center justify-center p-4">
+      <div className="absolute inset-0 flex items-center justify-center p-4 z-20">
         <div className="relative max-w-md mx-auto">
           {/* Enhanced glass background with pulsing effect */}
           <div className="absolute inset-0 bg-white/95 backdrop-blur-xl rounded-3xl border border-white/90 shadow-2xl animate-modal-breathe" />
