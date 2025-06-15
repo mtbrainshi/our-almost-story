@@ -21,7 +21,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
+    <section className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden px-2 sm:px-4 md:px-8 py-8 sm:py-16">
       {/* Simple Aurora-style Background - Clean Gradients Only */}
       <div className="absolute inset-0">
         {/* Base aurora gradient */}
@@ -39,15 +39,15 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="text-center z-10 px-4 max-w-5xl relative">
-        <h1 className="font-playfair text-5xl md:text-7xl lg:text-8xl italic text-rose-800 mb-8 leading-tight">
+      <div className="text-center z-10 px-2 sm:px-4 max-w-5xl w-full relative">
+        <h1 className="font-playfair text-3xl xs:text-4xl sm:text-5xl md:text-7xl lg:text-8xl italic text-rose-800 mb-8 leading-tight">
           <span className="block mb-6 opacity-0 animate-elegant-fade-up" style={{animationDelay: '500ms', animationFillMode: 'forwards'}}>Sakshi,</span>
-          <span className="block text-4xl md:text-6xl lg:text-7xl text-rose-700 opacity-0 animate-elegant-fade-up" style={{animationDelay: '1500ms', animationFillMode: 'forwards'}}>
+          <span className="block text-2xl xs:text-3xl sm:text-4xl md:text-6xl lg:text-7xl text-rose-700 opacity-0 animate-elegant-fade-up" style={{animationDelay: '1500ms', animationFillMode: 'forwards'}}>
             this is our story...
           </span>
         </h1>
         
-        <div className="font-playfair text-2xl md:text-4xl lg:text-5xl italic text-rose-600 mb-12 font-light opacity-0 animate-elegant-fade-up" style={{animationDelay: '2500ms', animationFillMode: 'forwards'}}>
+        <div className="font-playfair text-lg xs:text-xl sm:text-2xl md:text-4xl lg:text-5xl italic text-rose-600 mb-12 font-light opacity-0 animate-elegant-fade-up" style={{animationDelay: '2500ms', animationFillMode: 'forwards'}}>
           The one I've been wanting to tell you.
         </div>
 
@@ -62,19 +62,21 @@ const Hero = () => {
         )}
 
         {showArrow && (
-          <button
-            onClick={scrollToStory}
-            className="opacity-0 animate-elegant-fade-up transition-all duration-500 focus:outline-none group hover:opacity-100"
-            style={{animationFillMode: 'forwards'}}
-            aria-label="Scroll to our story"
-          >
-            <div className="bg-white/95 backdrop-blur-md rounded-full p-3 shadow-2xl transition-all duration-500 border border-white/70 group-hover:bg-white group-hover:shadow-3xl group-hover:scale-110">
-              <ArrowDown 
-                size={16} 
-                className="text-rose-500 mx-auto cursor-pointer group-hover:text-rose-700 transition-colors animate-pulse-gentle" 
-              />
-            </div>
-          </button>
+          <div className="mt-20 flex justify-center">
+            <button
+              onClick={scrollToStory}
+              className="opacity-0 animate-elegant-fade-up transition-all duration-500 focus:outline-none group hover:opacity-100"
+              style={{animationFillMode: 'forwards'}}
+              aria-label="Scroll to our story"
+            >
+              <div className="bg-white/95 backdrop-blur-md rounded-full p-3 shadow-2xl transition-all duration-500 border border-white/70 group-hover:bg-white group-hover:shadow-3xl group-hover:scale-110">
+                <ArrowDown 
+                  size={16} 
+                  className="text-rose-500 mx-auto cursor-pointer group-hover:text-rose-700 transition-colors animate-pulse-gentle" 
+                />
+              </div>
+            </button>
+          </div>
         )}
       </div>
     </section>
