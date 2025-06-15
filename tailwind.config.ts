@@ -267,142 +267,60 @@ export default {
             opacity: "0",
           },
         },
-        "heart-burst-inner": {
+        "heart-burst-smooth": {
           "0%": {
-            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(1) rotate(0deg)",
+            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(0.8)",
+            opacity: "1",
+          },
+          "30%": {
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 1.5), calc(var(--start-y) * 1.5)) scale(1.1)",
             opacity: "1",
           },
           "100%": {
-            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 2.5), calc(var(--start-y) * 2.5)) scale(0.6) rotate(360deg)",
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 2.5), calc(var(--start-y) * 2.5)) scale(0.7)",
             opacity: "0",
           },
         },
-        "heart-burst-middle": {
+        "heart-burst-graceful": {
           "0%": {
-            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(1) rotate(0deg)",
+            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(0.9)",
+            opacity: "1",
+          },
+          "25%": {
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 1.8), calc(var(--start-y) * 1.8)) scale(1.15)",
             opacity: "1",
           },
           "100%": {
-            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 3.2), calc(var(--start-y) * 3.2)) scale(0.4) rotate(540deg)",
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 3.2), calc(var(--start-y) * 3.2)) scale(0.5)",
             opacity: "0",
           },
         },
-        "heart-burst-outer": {
+        "heart-burst-elegant": {
           "0%": {
-            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(1) rotate(0deg)",
+            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(1)",
+            opacity: "1",
+          },
+          "20%": {
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 2), calc(var(--start-y) * 2)) scale(1.2)",
             opacity: "1",
           },
           "100%": {
-            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 4), calc(var(--start-y) * 4)) scale(0.3) rotate(720deg)",
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 4), calc(var(--start-y) * 4)) scale(0.4)",
             opacity: "0",
           },
         },
-        "heart-float-up": {
+        "heart-float-graceful": {
           "0%": {
-            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(0.8) rotate(0deg)",
+            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(0.9)",
             opacity: "0.9",
           },
           "20%": {
-            transform: "translate(-50%, -50%) translate(var(--start-x), calc(var(--start-y) - 50px)) scale(1) rotate(45deg)",
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 1.1), calc(var(--start-y) - 80px)) scale(1.05)",
             opacity: "1",
           },
           "100%": {
-            transform: "translate(-50%, -50%) translate(calc(var(--start-x) + 20px), calc(var(--start-y) - 300px)) scale(0.5) rotate(180deg)",
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 1.3), calc(var(--start-y) - 350px)) scale(0.6)",
             opacity: "0",
-          },
-        },
-        "heart-rain-fall": {
-          "0%": {
-            transform: "translateY(-50px) rotate(0deg)",
-            opacity: "0.8",
-          },
-          "10%": {
-            opacity: "1",
-          },
-          "90%": {
-            opacity: "0.8",
-          },
-          "100%": {
-            transform: "translateY(100vh) rotate(360deg)",
-            opacity: "0",
-          },
-        },
-        "heart-bounce-celebration": {
-          "0%, 100%": {
-            transform: "scale(1) rotate(0deg)",
-          },
-          "25%": {
-            transform: "scale(1.3) rotate(-5deg)",
-          },
-          "50%": {
-            transform: "scale(1.1) rotate(5deg)",
-          },
-          "75%": {
-            transform: "scale(1.2) rotate(-3deg)",
-          },
-        },
-        "heart-glow-pulse": {
-          "0%, 100%": {
-            opacity: "0.4",
-            transform: "scale(1)",
-          },
-          "50%": {
-            opacity: "0.8",
-            transform: "scale(1.05)",
-          },
-        },
-        "celebration-flash": {
-          "0%": { opacity: "0" },
-          "10%": { opacity: "0.7" },
-          "30%": { opacity: "0.4" },
-          "100%": { opacity: "0" },
-        },
-        "expand-ring": {
-          "0%": {
-            transform: "scale(0)",
-            opacity: "0.6",
-          },
-          "100%": {
-            transform: "scale(4)",
-            opacity: "0",
-          },
-        },
-        "expand-ring-slow": {
-          "0%": {
-            transform: "scale(0)",
-            opacity: "0.8",
-          },
-          "100%": {
-            transform: "scale(6)",
-            opacity: "0",
-          },
-        },
-        "expand-ring-synchronized": {
-          "0%": {
-            transform: "scale(0.5)",
-            opacity: "0.8",
-          },
-          "100%": {
-            transform: "scale(6)",
-            opacity: "0",
-          },
-        },
-        "modal-circular-burst-immediate": {
-          "0%": {
-            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(1) rotate(0deg)",
-            opacity: "1",
-          },
-          "100%": {
-            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 3), calc(var(--start-y) * 3)) scale(0.4) rotate(720deg)",
-            opacity: "0",
-          },
-        },
-        "heart-pulse-gentle": {
-          "0%, 100%": {
-            transform: "scale(1)",
-          },
-          "50%": {
-            transform: "scale(1.1)",
           },
         },
       },
@@ -424,11 +342,10 @@ export default {
         "expand-ring-heart-medium": "expand-ring-heart-medium 5s ease-out",
         "expand-ring-heart-slow": "expand-ring-heart-slow 6s ease-out",
         "expand-ring-heart-slowest": "expand-ring-heart-slowest 7s ease-out",
-        "heart-burst-inner": "heart-burst-inner 6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
-        "heart-burst-middle": "heart-burst-middle 7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
-        "heart-burst-outer": "heart-burst-outer 8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
-        "heart-float-up": "heart-float-up 6s ease-out forwards",
-        "heart-rain-fall": "heart-rain-fall 4s linear forwards",
+        "heart-burst-smooth": "heart-burst-smooth 5s cubic-bezier(0.23, 1, 0.32, 1) forwards",
+        "heart-burst-graceful": "heart-burst-graceful 6s cubic-bezier(0.23, 1, 0.32, 1) forwards",
+        "heart-burst-elegant": "heart-burst-elegant 7s cubic-bezier(0.23, 1, 0.32, 1) forwards",
+        "heart-float-graceful": "heart-float-graceful 6s cubic-bezier(0.23, 1, 0.32, 1) forwards",
         "heart-bounce-celebration": "heart-bounce-celebration 2s ease-in-out infinite",
         "heart-glow-pulse": "heart-glow-pulse 3s ease-in-out infinite",
         "celebration-flash": "celebration-flash 0.8s ease-out",
