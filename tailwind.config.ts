@@ -219,6 +219,138 @@ export default {
             transform: "translateY(0)",
           },
         },
+        "heart-screen-shake": {
+          "0%, 100%": { transform: "translate(0)" },
+          "2%": { transform: "translate(-1px, 1px)" },
+          "4%": { transform: "translate(1px, -1px)" },
+          "6%": { transform: "translate(-1px, -1px)" },
+          "8%": { transform: "translate(1px, 1px)" },
+          "10%": { transform: "translate(0)" },
+        },
+        "expand-ring-heart-fast": {
+          "0%": {
+            transform: "scale(0.8)",
+            opacity: "0.9",
+          },
+          "100%": {
+            transform: "scale(8)",
+            opacity: "0",
+          },
+        },
+        "expand-ring-heart-medium": {
+          "0%": {
+            transform: "scale(0.6)",
+            opacity: "0.8",
+          },
+          "100%": {
+            transform: "scale(10)",
+            opacity: "0",
+          },
+        },
+        "expand-ring-heart-slow": {
+          "0%": {
+            transform: "scale(0.4)",
+            opacity: "0.7",
+          },
+          "100%": {
+            transform: "scale(12)",
+            opacity: "0",
+          },
+        },
+        "expand-ring-heart-slowest": {
+          "0%": {
+            transform: "scale(0.2)",
+            opacity: "0.6",
+          },
+          "100%": {
+            transform: "scale(15)",
+            opacity: "0",
+          },
+        },
+        "heart-burst-inner": {
+          "0%": {
+            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(1) rotate(0deg)",
+            opacity: "1",
+          },
+          "100%": {
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 2.5), calc(var(--start-y) * 2.5)) scale(0.6) rotate(360deg)",
+            opacity: "0",
+          },
+        },
+        "heart-burst-middle": {
+          "0%": {
+            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(1) rotate(0deg)",
+            opacity: "1",
+          },
+          "100%": {
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 3.2), calc(var(--start-y) * 3.2)) scale(0.4) rotate(540deg)",
+            opacity: "0",
+          },
+        },
+        "heart-burst-outer": {
+          "0%": {
+            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(1) rotate(0deg)",
+            opacity: "1",
+          },
+          "100%": {
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 4), calc(var(--start-y) * 4)) scale(0.3) rotate(720deg)",
+            opacity: "0",
+          },
+        },
+        "heart-float-up": {
+          "0%": {
+            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(0.8) rotate(0deg)",
+            opacity: "0.9",
+          },
+          "20%": {
+            transform: "translate(-50%, -50%) translate(var(--start-x), calc(var(--start-y) - 50px)) scale(1) rotate(45deg)",
+            opacity: "1",
+          },
+          "100%": {
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) + 20px), calc(var(--start-y) - 300px)) scale(0.5) rotate(180deg)",
+            opacity: "0",
+          },
+        },
+        "heart-rain-fall": {
+          "0%": {
+            transform: "translateY(-50px) rotate(0deg)",
+            opacity: "0.8",
+          },
+          "10%": {
+            opacity: "1",
+          },
+          "90%": {
+            opacity: "0.8",
+          },
+          "100%": {
+            transform: "translateY(100vh) rotate(360deg)",
+            opacity: "0",
+          },
+        },
+        "heart-bounce-celebration": {
+          "0%, 100%": {
+            transform: "scale(1) rotate(0deg)",
+          },
+          "25%": {
+            transform: "scale(1.3) rotate(-5deg)",
+          },
+          "50%": {
+            transform: "scale(1.1) rotate(5deg)",
+          },
+          "75%": {
+            transform: "scale(1.2) rotate(-3deg)",
+          },
+        },
+        "heart-glow-pulse": {
+          "0%, 100%": {
+            opacity: "0.4",
+            transform: "scale(1)",
+          },
+          "50%": {
+            opacity: "0.8",
+            transform: "scale(1.05)",
+          },
+        },
         "celebration-flash": {
           "0%": { opacity: "0" },
           "10%": { opacity: "0.7" },
@@ -287,6 +419,18 @@ export default {
         "sparkle": "sparkle 2s ease-in-out infinite",
         "steam-rise": "steam-rise 6s ease-out infinite",
         "fade-in-delayed": "fade-in-delayed 0.8s ease-out forwards",
+        "heart-screen-shake": "heart-screen-shake 0.8s ease-in-out",
+        "expand-ring-heart-fast": "expand-ring-heart-fast 4s ease-out",
+        "expand-ring-heart-medium": "expand-ring-heart-medium 5s ease-out",
+        "expand-ring-heart-slow": "expand-ring-heart-slow 6s ease-out",
+        "expand-ring-heart-slowest": "expand-ring-heart-slowest 7s ease-out",
+        "heart-burst-inner": "heart-burst-inner 6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
+        "heart-burst-middle": "heart-burst-middle 7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
+        "heart-burst-outer": "heart-burst-outer 8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
+        "heart-float-up": "heart-float-up 6s ease-out forwards",
+        "heart-rain-fall": "heart-rain-fall 4s linear forwards",
+        "heart-bounce-celebration": "heart-bounce-celebration 2s ease-in-out infinite",
+        "heart-glow-pulse": "heart-glow-pulse 3s ease-in-out infinite",
         "celebration-flash": "celebration-flash 0.8s ease-out",
         "expand-ring": "expand-ring 2s ease-out",
         "expand-ring-slow": "expand-ring-slow 4s ease-out",

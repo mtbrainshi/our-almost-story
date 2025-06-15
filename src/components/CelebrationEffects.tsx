@@ -8,11 +8,13 @@ interface CelebrationEffectsProps {
 }
 
 const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEnd }: CelebrationEffectsProps) => {
-  // Generate circular positions around the modal perimeter
-  const generateCircularPositions = (count: number) => {
+  // Enhanced heart emojis - MORE HEARTS!
+  const heartEmojis = ['💕', '💖', '💗', '❤️', '💝', '💘', '💓', '💞', '💟', '♥️', '🧡', '💛', '💚', '💙', '💜', '🖤', '🤍'];
+
+  // Generate multiple layers of hearts
+  const generateHeartLayer = (count: number, radius: number, startDelay: number = 0) => {
     return Array.from({ length: count }, (_, i) => {
       const angle = (i / count) * 2 * Math.PI;
-      const radius = 90; // Reduced from 200px to 90px for tighter circle
       const x = Math.cos(angle) * radius;
       const y = Math.sin(angle) * radius;
       
@@ -20,17 +22,45 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
         startX: x,
         startY: y,
         angle,
-        delay: i * 0.02, // Much faster stagger for near-instant appearance
-        emoji: ['💕', '💖', '💗', '❤️', '💝', '💘', '🌸', '✨'][i % 8],
+        delay: startDelay + (i * 0.01), // Very fast stagger
+        emoji: heartEmojis[i % heartEmojis.length],
+        size: 20 + (i % 6) * 4, // Sizes from 20px to 44px
       };
     });
   };
 
-  const circularPositions = generateCircularPositions(28); // Increased count for fuller circle
+  // Generate floating hearts that go upward
+  const generateFloatingHearts = (count: number) => {
+    return Array.from({ length: count }, (_, i) => ({
+      startX: (Math.random() - 0.5) * 400, // Random horizontal spread
+      startY: 0,
+      delay: Math.random() * 2, // Random delays
+      emoji: heartEmojis[Math.floor(Math.random() * heartEmojis.length)],
+      size: 16 + Math.random() * 16, // Random sizes 16-32px
+      duration: 4 + Math.random() * 4, // Random durations 4-8s
+    }));
+  };
+
+  // Generate heart rain from top
+  const generateHeartRain = (count: number) => {
+    return Array.from({ length: count }, (_, i) => ({
+      startX: Math.random() * 100, // Percentage across screen
+      delay: Math.random() * 6, // Spread across celebration duration
+      emoji: heartEmojis[Math.floor(Math.random() * heartEmojis.length)],
+      size: 18 + Math.random() * 12, // Random sizes 18-30px
+      duration: 3 + Math.random() * 3, // Random fall speeds
+    }));
+  };
+
+  // Create multiple heart layers
+  const innerHearts = generateHeartLayer(30, 60, 0); // Close to modal
+  const middleHearts = generateHeartLayer(40, 120, 0.2); // Medium distance
+  const outerHearts = generateHeartLayer(35, 200, 0.4); // Far distance
+  const floatingHearts = generateFloatingHearts(25); // Upward floating
+  const rainHearts = generateHeartRain(30); // Falling from top
 
   useEffect(() => {
     if (showCelebration) {
-      // Extended duration to 8 seconds as requested
       const timer = setTimeout(() => {
         onCelebrationEnd();
       }, 8000);
@@ -43,52 +73,146 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
 
   return (
     <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
-      {/* Dreamy background overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-pink-100/40 via-rose-100/30 to-orange-100/35 backdrop-blur-lg">
-        <div className="absolute inset-0 bg-gradient-to-t from-purple-100/20 via-transparent to-yellow-100/20" />
+      {/* Enhanced dreamy background with heart patterns */}
+      <div className="absolute inset-0 bg-gradient-to-br from-pink-100/50 via-rose-100/40 to-red-100/45 backdrop-blur-lg">
+        <div className="absolute inset-0 bg-gradient-to-t from-purple-100/30 via-transparent to-yellow-100/25" />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-pink-50/20 to-transparent" />
       </div>
       
-      {/* Expanding rings for depth - ALL START IMMEDIATELY */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-20 h-20 border-2 border-pink-400/70 rounded-full animate-expand-ring-synchronized" />
-        <div className="absolute w-32 h-32 border-2 border-rose-400/50 rounded-full animate-expand-ring-synchronized" />
-        <div className="absolute w-44 h-44 border-2 border-orange-400/40 rounded-full animate-expand-ring-synchronized" />
-      </div>
-      
-      {/* Circular Burst Hearts - positioned relative to modal center - APPEAR IMMEDIATELY */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        {circularPositions.map((pos, i) => (
-          <div
-            key={`circular-${i}`}
-            className="absolute animate-modal-circular-burst-immediate"
-            style={{
-              left: '50%',
-              top: '50%',
-              '--start-x': `${pos.startX}px`,
-              '--start-y': `${pos.startY}px`,
-              '--burst-angle': `${pos.angle}rad`,
-              animationDelay: `${pos.delay}s`,
-              fontSize: `${24 + (i % 4) * 2}px`, // Increased from 16-25px to 24-32px
-            } as React.CSSProperties}
-          >
-            {pos.emoji}
-          </div>
-        ))}
+      {/* Screen shake effect */}
+      <div className="absolute inset-0 animate-heart-screen-shake">
+        
+        {/* Multiple expanding heart rings */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-16 h-16 border-4 border-pink-500/80 rounded-full animate-expand-ring-heart-fast" />
+          <div className="absolute w-28 h-28 border-3 border-rose-500/60 rounded-full animate-expand-ring-heart-medium" />
+          <div className="absolute w-40 h-40 border-2 border-red-500/50 rounded-full animate-expand-ring-heart-slow" />
+          <div className="absolute w-56 h-56 border-2 border-pink-400/40 rounded-full animate-expand-ring-heart-slowest" />
+        </div>
+
+        {/* Inner Heart Burst Layer - closest to modal */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          {innerHearts.map((heart, i) => (
+            <div
+              key={`inner-${i}`}
+              className="absolute animate-heart-burst-inner"
+              style={{
+                left: '50%',
+                top: '50%',
+                '--start-x': `${heart.startX}px`,
+                '--start-y': `${heart.startY}px`,
+                '--burst-angle': `${heart.angle}rad`,
+                animationDelay: `${heart.delay}s`,
+                fontSize: `${heart.size}px`,
+                filter: 'drop-shadow(0 0 8px rgba(255, 182, 193, 0.8))',
+              } as React.CSSProperties}
+            >
+              {heart.emoji}
+            </div>
+          ))}
+        </div>
+
+        {/* Middle Heart Burst Layer */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          {middleHearts.map((heart, i) => (
+            <div
+              key={`middle-${i}`}
+              className="absolute animate-heart-burst-middle"
+              style={{
+                left: '50%',
+                top: '50%',
+                '--start-x': `${heart.startX}px`,
+                '--start-y': `${heart.startY}px`,
+                '--burst-angle': `${heart.angle}rad`,
+                animationDelay: `${heart.delay}s`,
+                fontSize: `${heart.size}px`,
+                filter: 'drop-shadow(0 0 6px rgba(255, 105, 180, 0.6))',
+              } as React.CSSProperties}
+            >
+              {heart.emoji}
+            </div>
+          ))}
+        </div>
+
+        {/* Outer Heart Burst Layer - farthest */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          {outerHearts.map((heart, i) => (
+            <div
+              key={`outer-${i}`}
+              className="absolute animate-heart-burst-outer"
+              style={{
+                left: '50%',
+                top: '50%',
+                '--start-x': `${heart.startX}px`,
+                '--start-y': `${heart.startY}px`,
+                '--burst-angle': `${heart.angle}rad`,
+                animationDelay: `${heart.delay}s`,
+                fontSize: `${heart.size}px`,
+                filter: 'drop-shadow(0 0 4px rgba(220, 20, 60, 0.5))',
+              } as React.CSSProperties}
+            >
+              {heart.emoji}
+            </div>
+          ))}
+        </div>
+
+        {/* Floating Hearts Going Upward */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          {floatingHearts.map((heart, i) => (
+            <div
+              key={`float-${i}`}
+              className="absolute animate-heart-float-up"
+              style={{
+                left: '50%',
+                top: '50%',
+                '--start-x': `${heart.startX}px`,
+                '--start-y': `${heart.startY}px`,
+                animationDelay: `${heart.delay}s`,
+                animationDuration: `${heart.duration}s`,
+                fontSize: `${heart.size}px`,
+                filter: 'drop-shadow(0 0 10px rgba(255, 20, 147, 0.7))',
+              } as React.CSSProperties}
+            >
+              {heart.emoji}
+            </div>
+          ))}
+        </div>
+
+        {/* Heart Rain from Top */}
+        <div className="absolute inset-0">
+          {rainHearts.map((heart, i) => (
+            <div
+              key={`rain-${i}`}
+              className="absolute animate-heart-rain-fall"
+              style={{
+                left: `${heart.startX}%`,
+                top: '-50px',
+                animationDelay: `${heart.delay}s`,
+                animationDuration: `${heart.duration}s`,
+                fontSize: `${heart.size}px`,
+                filter: 'drop-shadow(0 0 6px rgba(255, 69, 0, 0.6))',
+              } as React.CSSProperties}
+            >
+              {heart.emoji}
+            </div>
+          ))}
+        </div>
+
       </div>
       
       {/* SUCCESS MODAL */}
       <div className="absolute inset-0 flex items-center justify-center p-4">
         <div className="relative max-w-md mx-auto">
-          {/* Enhanced glass background */}
+          {/* Enhanced glass background with heart glow */}
           <div className="absolute inset-0 bg-white/90 backdrop-blur-xl rounded-3xl border border-white/80 shadow-2xl" />
-          <div className="absolute inset-0 bg-gradient-to-br from-pink-50/60 via-rose-50/40 to-orange-50/50 rounded-3xl" />
+          <div className="absolute inset-0 bg-gradient-to-br from-pink-50/70 via-rose-50/50 to-red-50/60 rounded-3xl" />
           
-          {/* Subtle glow effect */}
-          <div className="absolute -inset-2 bg-gradient-to-br from-pink-200/30 via-rose-200/20 to-orange-200/25 rounded-3xl blur-xl" />
+          {/* Enhanced heart glow effect */}
+          <div className="absolute -inset-4 bg-gradient-to-br from-pink-300/40 via-rose-300/30 to-red-300/35 rounded-3xl blur-2xl animate-heart-glow-pulse" />
           
           {/* Content */}
           <div className="relative z-10 p-8 text-center">
-            <div className="text-6xl mb-6 animate-heart-pulse-gentle">💖</div>
+            <div className="text-7xl mb-6 animate-heart-bounce-celebration">💖</div>
             
             <h1 className="font-playfair text-4xl italic text-rose-800 font-bold mb-4">
               You said YES! 💕
