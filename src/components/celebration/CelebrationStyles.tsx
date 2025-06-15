@@ -23,15 +23,15 @@ const CelebrationStyles = () => {
       
       @keyframes screenShake {
         0%, 100% { transform: translate(0); }
-        10% { transform: translate(-2px, -2px); }
-        20% { transform: translate(2px, -2px); }
-        30% { transform: translate(-2px, 2px); }
-        40% { transform: translate(2px, 2px); }
-        50% { transform: translate(-2px, -2px); }
-        60% { transform: translate(2px, -2px); }
-        70% { transform: translate(-2px, 2px); }
-        80% { transform: translate(2px, 2px); }
-        90% { transform: translate(-2px, 0); }
+        10% { transform: translate(-1px, -1px); }
+        20% { transform: translate(1px, -1px); }
+        30% { transform: translate(-1px, 1px); }
+        40% { transform: translate(1px, 1px); }
+        50% { transform: translate(-1px, -1px); }
+        60% { transform: translate(1px, -1px); }
+        70% { transform: translate(-1px, 1px); }
+        80% { transform: translate(1px, 1px); }
+        90% { transform: translate(-1px, 0); }
       }
       
       @keyframes modalPulse {
@@ -46,11 +46,11 @@ const CelebrationStyles = () => {
       }
       
       .celebration-ring {
-        animation: ringExpand 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        animation: ringExpand 1.0s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
       }
       
       .celebration-shake {
-        animation: screenShake 0.5s ease-in-out;
+        animation: screenShake 0.8s ease-in-out;
       }
       
       .celebration-modal {

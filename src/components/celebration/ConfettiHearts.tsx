@@ -58,8 +58,8 @@ const ConfettiHearts = ({}: ConfettiHeartsProps) => {
         {allHearts.map((heart) => {
           const endX = Math.cos((heart.angle * Math.PI) / 180) * heart.distance;
           const endY = Math.sin((heart.angle * Math.PI) / 180) * heart.distance;
-          const animationDelay = heart.type === 'secondary' ? '0.1s' : '0s';
-          const duration = heart.type === 'secondary' ? '0.6s' : '0.5s';
+          const animationDelay = heart.type === 'secondary' ? '0.3s' : '0s';
+          const duration = heart.type === 'secondary' ? '1.2s' : '1.0s';
           
           return `
             @keyframes heartBurst-${heart.id} {
@@ -67,17 +67,17 @@ const ConfettiHearts = ({}: ConfettiHeartsProps) => {
                 transform: translate(-50%, -50%) scale(0);
                 opacity: 0;
               }
-              20% { 
-                transform: translate(-50%, -50%) scale(1.2);
+              15% { 
+                transform: translate(-50%, -50%) scale(1.1);
                 opacity: 1;
               }
               100% { 
-                transform: translate(-50%, -50%) translateX(${endX}px) translateY(${endY}px) scale(0.6);
+                transform: translate(-50%, -50%) translateX(${endX}px) translateY(${endY}px) scale(0.7);
                 opacity: 0;
               }
             }
             .heart-${heart.id} {
-              animation: heartBurst-${heart.id} ${duration} cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+              animation: heartBurst-${heart.id} ${duration} cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
               animation-delay: ${animationDelay};
             }
           `;
