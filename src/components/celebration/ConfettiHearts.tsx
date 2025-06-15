@@ -2,49 +2,75 @@
 interface ConfettiHeartsProps {}
 
 const ConfettiHearts = ({}: ConfettiHeartsProps) => {
-  // Generate hearts for confetti burst
-  const generateConfettiHearts = () => {
+  // Generate primary burst hearts (24 hearts in perfect circle)
+  const generatePrimaryHearts = () => {
     const hearts = [];
     const heartEmojis = ['💕', '💖', '💗', '❤️', '💝', '💘', '💓', '💞'];
     
-    // Create 24 hearts in a circle pattern
     for (let i = 0; i < 24; i++) {
       const angle = (i * 360) / 24;
-      const distance = 200 + Math.random() * 100;
-      const size = 20 + Math.random() * 16;
-      const delay = Math.random() * 0.3;
+      const distance = 250 + Math.random() * 50;
+      const size = 22 + Math.random() * 8;
       
       hearts.push({
-        id: i,
+        id: `primary-${i}`,
         emoji: heartEmojis[i % heartEmojis.length],
         angle,
         distance,
         size,
-        delay
+        type: 'primary'
       });
     }
     
     return hearts;
   };
 
-  const confettiHearts = generateConfettiHearts();
+  // Generate secondary wave hearts (18 hearts, slightly offset)
+  const generateSecondaryHearts = () => {
+    const hearts = [];
+    const heartEmojis = ['💕', '💖', '💗', '❤️', '💝', '💘', '💓', '💞'];
+    
+    for (let i = 0; i < 18; i++) {
+      const angle = (i * 360) / 18 + 10; // 10 degree offset from primary
+      const distance = 300 + Math.random() * 80;
+      const size = 18 + Math.random() * 10;
+      
+      hearts.push({
+        id: `secondary-${i}`,
+        emoji: heartEmojis[i % heartEmojis.length],
+        angle,
+        distance,
+        size,
+        type: 'secondary'
+      });
+    }
+    
+    return hearts;
+  };
+
+  const primaryHearts = generatePrimaryHearts();
+  const secondaryHearts = generateSecondaryHearts();
+  const allHearts = [...primaryHearts, ...secondaryHearts];
 
   return (
     <div className="absolute inset-0 flex items-center justify-center">
-      {confettiHearts.map((heart) => {
+      {allHearts.map((heart) => {
         const endX = Math.cos((heart.angle * Math.PI) / 180) * heart.distance;
         const endY = Math.sin((heart.angle * Math.PI) / 180) * heart.distance;
         
         return (
           <div
             key={heart.id}
-            className="absolute celebration-heart"
+            className={`absolute ${
+              heart.type === 'primary' 
+                ? 'celebration-heart-primary' 
+                : 'celebration-heart-secondary'
+            }`}
             style={{
               left: '50%',
               top: '50%',
               fontSize: `${heart.size}px`,
               filter: 'drop-shadow(0 0 8px rgba(255, 20, 147, 0.8))',
-              animationDelay: `${heart.delay}s`,
               '--end-x': `${endX}px`,
               '--end-y': `${endY}px`,
             } as React.CSSProperties}
