@@ -22,7 +22,6 @@ const FinalAsk = () => {
   // Helper function for sending notifications
   const sendNotification = async (session_id: string, response: boolean | null) => {
     try {
-      console.log('Sending notification with auth:', SERVICE_ROLE_KEY);
       const notifRes = await fetch(EDGE_FUNCTION_URL, {
         method: 'POST',
         headers: {
@@ -33,8 +32,6 @@ const FinalAsk = () => {
       });
 
       const notifText = await notifRes.text();
-      console.log('Notification status:', notifRes.status);
-      console.log('Notification response:', notifText);
 
       if (!notifRes.ok) {
         throw new Error(`Notification failed: ${notifRes.status} - ${notifText}`);
@@ -42,7 +39,6 @@ const FinalAsk = () => {
       
       return true;
     } catch (err) {
-      console.error('Notification error:', err);
       return false;
     }
   };
@@ -88,7 +84,6 @@ const FinalAsk = () => {
     }]);
     
     if (dbError) {
-      console.error('Database error:', dbError);
       return;
     }
     
@@ -104,7 +99,6 @@ const FinalAsk = () => {
     }]);
     
     if (dbError) {
-      console.error('Database error:', dbError);
       return;
     }
     

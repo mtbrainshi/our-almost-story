@@ -15,16 +15,9 @@ const CelebrationEffects = ({
   celebrationPhase,
   onCelebrationEnd,
 }: CelebrationEffectsProps) => {
-  console.log("CelebrationEffects rendered:", {
-    showCelebration,
-    celebrationPhase,
-  });
-
   useEffect(() => {
     if (showCelebration) {
-      console.log("Starting Heart Bloom celebration for 8 seconds");
       const timer = setTimeout(() => {
-        console.log("Heart Bloom celebration ended after 8 seconds");
         onCelebrationEnd();
       }, 8000);
 
@@ -33,11 +26,8 @@ const CelebrationEffects = ({
   }, [showCelebration, onCelebrationEnd]);
 
   if (!showCelebration) {
-    console.log("Celebration not showing - returning null");
     return null;
   }
-
-  console.log("Rendering Heart Bloom: hearts only - no interfering rings");
 
   return (
     <>

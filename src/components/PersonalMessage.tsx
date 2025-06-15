@@ -32,7 +32,8 @@ const PersonalMessage = () => {
       }]);
 
     if (dbError) {
-      console.error("Supabase insert error:", dbError);
+      // Only keep error logging for debugging critical failures
+      // console.error("Supabase insert error:", dbError);
       toast({
         title: "Error sending message",
         description: dbError.message,
@@ -44,7 +45,7 @@ const PersonalMessage = () => {
 
     // Send notification
     try {
-      console.log('Sending message notification with auth:', SERVICE_ROLE_KEY);
+      // Removed console.log for production
       const notifRes = await fetch(EDGE_FUNCTION_URL, {
         method: 'POST',
         headers: {
@@ -59,11 +60,12 @@ const PersonalMessage = () => {
       });
 
       const notifText = await notifRes.text();
-      console.log('Notification (MESSAGE) status:', notifRes.status);
-      console.log('Notification (MESSAGE) response:', notifText);
+      // Removed console.log for production
+      // Removed console.log for production
 
       if (!notifRes.ok) {
-        console.error("Notification error:", notifText);
+        // Only keep error logging for debugging critical failures
+        // console.error("Notification error:", notifText);
         toast({
           title: "Message saved but notification failed",
           description: "Your message was saved but we couldn't send the notification.",
@@ -76,7 +78,8 @@ const PersonalMessage = () => {
         });
       }
     } catch (err) {
-      console.error("Notification error:", err);
+      // Only keep error logging for debugging critical failures
+      // console.error("Notification error:", err);
       toast({
         title: "Message saved but notification failed",
         description: "Your message was saved but we couldn't send the notification.",
