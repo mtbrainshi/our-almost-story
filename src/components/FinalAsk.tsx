@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -31,11 +32,12 @@ const FinalAsk = () => {
     setShowCelebration(true);
     setCelebrationPhase(1);
     
-    // Simplified phase progression
-    setTimeout(() => setCelebrationPhase(2), 800);
-    setTimeout(() => setCelebrationPhase(3), 1500);
+    // Enhanced phase progression for more romance
+    setTimeout(() => setCelebrationPhase(2), 600);
+    setTimeout(() => setCelebrationPhase(3), 1200);
+    setTimeout(() => setCelebrationPhase(4), 2000);
     
-    // Auto-hide and scroll after 6 seconds
+    // Auto-hide and scroll after 8 seconds
     setTimeout(() => {
       setShowCelebration(false);
       setCelebrationPhase(0);
@@ -43,7 +45,7 @@ const FinalAsk = () => {
                              document.querySelector('[data-section="personal-message"]') ||
                              document.body.lastElementChild;
       personalMessage?.scrollIntoView({ behavior: 'smooth' });
-    }, 6000);
+    }, 8000);
   };
 
   const handleNoClick = () => {
@@ -101,72 +103,114 @@ const FinalAsk = () => {
         <div className="absolute bottom-1/2 right-1/3 w-80 h-80 bg-orange-200/20 rounded-full blur-2xl animate-breathe" style={{animationDelay: '3s'}} />
       </div>
 
-      {/* IMPROVED Celebration Modal */}
+      {/* ENHANCED Romantic Celebration Modal */}
       {showCelebration && (
         <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
-          {/* Simplified Glass Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-pink-100/30 via-rose-100/20 to-orange-100/25 backdrop-blur-lg" />
-          
-          {/* Gentle expanding rings */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-20 h-20 border-2 border-pink-300/60 rounded-full animate-expand-ring" />
-            <div className="absolute w-32 h-32 border-2 border-rose-300/40 rounded-full animate-expand-ring" style={{animationDelay: '0.3s'}} />
-            <div className="absolute w-44 h-44 border-2 border-orange-300/30 rounded-full animate-expand-ring" style={{animationDelay: '0.6s'}} />
+          {/* Dreamy Glass Background with gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-pink-100/40 via-rose-100/30 to-orange-100/35 backdrop-blur-lg">
+            <div className="absolute inset-0 bg-gradient-to-t from-purple-100/20 via-transparent to-yellow-100/20" />
           </div>
           
-          {/* Better Heart Confetti */}
-          {celebrationPhase >= 1 && [...Array(12)].map((_, i) => (
+          {/* Multiple expanding rings for depth */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-16 h-16 border-2 border-pink-400/70 rounded-full animate-expand-ring" />
+            <div className="absolute w-28 h-28 border-2 border-rose-400/50 rounded-full animate-expand-ring" style={{animationDelay: '0.2s'}} />
+            <div className="absolute w-40 h-40 border-2 border-orange-400/40 rounded-full animate-expand-ring" style={{animationDelay: '0.4s'}} />
+            <div className="absolute w-52 h-52 border border-purple-300/30 rounded-full animate-expand-ring" style={{animationDelay: '0.6s'}} />
+          </div>
+          
+          {/* Romantic floating hearts with variety */}
+          {celebrationPhase >= 1 && [...Array(16)].map((_, i) => (
             <div
               key={`hearts-${i}`}
-              className="absolute text-2xl animate-heart-float"
+              className="absolute animate-heart-float"
               style={{
-                left: `${45 + Math.random() * 10}%`,
-                top: `${45 + Math.random() * 10}%`,
-                animationDelay: `${Math.random() * 0.8}s`,
-                animationDuration: `${2 + Math.random() * 1}s`,
+                left: `${40 + Math.random() * 20}%`,
+                top: `${40 + Math.random() * 20}%`,
+                animationDelay: `${Math.random() * 1.2}s`,
+                animationDuration: `${2.5 + Math.random() * 1.5}s`,
+                fontSize: `${16 + Math.random() * 12}px`,
               }}
             >
-              {['💕', '💖', '💗', '❤️'][Math.floor(Math.random() * 4)]}
+              {['💕', '💖', '💗', '❤️', '💝', '💘'][Math.floor(Math.random() * 6)]}
             </div>
           ))}
           
-          {/* Gentle sparkles */}
-          {celebrationPhase >= 2 && [...Array(8)].map((_, i) => (
+          {/* Shimmering sparkles */}
+          {celebrationPhase >= 2 && [...Array(12)].map((_, i) => (
             <div
               key={`sparkles-${i}`}
-              className="absolute text-lg animate-gentle-sparkle"
+              className="absolute animate-gentle-sparkle"
               style={{
-                left: `${20 + Math.random() * 60}%`,
-                top: `${30 + Math.random() * 40}%`,
-                animationDelay: `${Math.random() * 1}s`,
+                left: `${15 + Math.random() * 70}%`,
+                top: `${25 + Math.random() * 50}%`,
+                animationDelay: `${Math.random() * 1.5}s`,
+                fontSize: `${14 + Math.random() * 8}px`,
               }}
             >
               ✨
             </div>
           ))}
           
-          {/* SUCCESS MODAL with cleaner design */}
+          {/* Dreamy floating particles */}
+          {celebrationPhase >= 3 && [...Array(20)].map((_, i) => (
+            <div
+              key={`particles-${i}`}
+              className="absolute w-1 h-1 bg-pink-300/60 rounded-full animate-float"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 2}s`,
+                animationDuration: `${3 + Math.random() * 2}s`,
+              }}
+            />
+          ))}
+          
+          {/* Additional romantic elements */}
+          {celebrationPhase >= 4 && [...Array(6)].map((_, i) => (
+            <div
+              key={`roses-${i}`}
+              className="absolute animate-heart-float"
+              style={{
+                left: `${30 + Math.random() * 40}%`,
+                top: `${50 + Math.random() * 30}%`,
+                animationDelay: `${Math.random() * 0.8}s`,
+                animationDuration: `${3 + Math.random() * 1}s`,
+                fontSize: `${18 + Math.random() * 6}px`,
+              }}
+            >
+              🌹
+            </div>
+          ))}
+          
+          {/* SUCCESS MODAL with enhanced romantic design */}
           <div className="absolute inset-0 flex items-center justify-center p-4">
             <div className="relative max-w-md mx-auto">
-              {/* Clean glass background */}
-              <div className="absolute inset-0 bg-white/80 backdrop-blur-xl rounded-3xl border border-white/60 shadow-xl" />
+              {/* Enhanced glass background with multiple layers */}
+              <div className="absolute inset-0 bg-white/85 backdrop-blur-xl rounded-3xl border border-white/70 shadow-2xl" />
+              <div className="absolute inset-0 bg-gradient-to-br from-pink-50/60 via-rose-50/40 to-orange-50/50 rounded-3xl" />
+              
+              {/* Subtle glow effect */}
+              <div className="absolute -inset-2 bg-gradient-to-br from-pink-200/30 via-rose-200/20 to-orange-200/25 rounded-3xl blur-xl" />
               
               {/* Content */}
               <div className="relative z-10 p-8 text-center">
-                <div className="text-5xl mb-4 animate-heart-pulse-gentle">💖</div>
+                <div className="text-6xl mb-6 animate-heart-pulse-gentle">💖</div>
                 
-                <h1 className="font-playfair text-3xl italic text-rose-800 font-bold mb-3">
+                <h1 className="font-playfair text-4xl italic text-rose-800 font-bold mb-4">
                   You said YES! 💕
                 </h1>
-                <p className="font-playfair text-lg italic text-rose-700 mb-2">
+                <p className="font-playfair text-xl italic text-rose-700 mb-3">
                   Thank you for saying yes!
                 </p>
-                <p className="font-poppins text-base text-rose-600 mb-6">
+                <p className="font-poppins text-lg text-rose-600 mb-8 leading-relaxed">
                   This makes me so incredibly happy! ✨
+                  <br />
+                  <span className="text-sm italic text-rose-500">I can't wait to hear from you...</span>
                 </p>
                 
-                <div className="mt-6">
-                  <p className="font-poppins text-sm text-rose-600 mb-3">
+                <div className="mt-8">
+                  <p className="font-poppins text-sm text-rose-600 mb-4">
                     Taking you to leave a message...
                   </p>
                   <div className="flex justify-center space-x-2">
