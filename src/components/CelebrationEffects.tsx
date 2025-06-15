@@ -8,54 +8,52 @@ interface CelebrationEffectsProps {
 }
 
 const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEnd }: CelebrationEffectsProps) => {
-  // Only pink/red hearts for maximum impact
+  // Heart emojis for maximum impact
   const heartEmojis = ['💕', '💖', '💗', '❤️', '💝', '💘', '💓', '💞', '💟', '♥️'];
 
-  // Primary burst - immediate explosion with more hearts
-  const generatePrimaryBurst = (count: number) => {
-    return Array.from({ length: count }, (_, i) => {
-      const angle = (i / count) * 2 * Math.PI;
-      const distance = 300; // Increased distance for bigger explosion
-      const moveX = Math.cos(angle) * distance;
-      const moveY = Math.sin(angle) * distance;
-      
-      return {
-        moveX,
-        moveY,
-        delay: 0, // Start immediately
-        emoji: heartEmojis[i % heartEmojis.length],
-        size: 28 + (i % 4) * 6, // Bigger hearts
-      };
-    });
+  // 8 direction animations for explosive effect
+  const directions = [
+    'heart-burst-up',
+    'heart-burst-up-right', 
+    'heart-burst-right',
+    'heart-burst-down-right',
+    'heart-burst-down',
+    'heart-burst-down-left',
+    'heart-burst-left',
+    'heart-burst-up-left'
+  ];
+
+  // Generate primary burst hearts - immediate explosion
+  const generatePrimaryHearts = (count: number) => {
+    return Array.from({ length: count }, (_, i) => ({
+      id: `primary-${i}`,
+      emoji: heartEmojis[i % heartEmojis.length],
+      direction: directions[i % directions.length],
+      size: 28 + (i % 4) * 6,
+      delay: 0 // Start immediately
+    }));
   };
 
-  // Secondary wave - quick follow-up for more density
-  const generateSecondaryWave = (count: number) => {
-    return Array.from({ length: count }, (_, i) => {
-      const angle = (i / count) * 2 * Math.PI + Math.PI / count; // Offset slightly
-      const distance = 250;
-      const moveX = Math.cos(angle) * distance;
-      const moveY = Math.sin(angle) * distance;
-      
-      return {
-        moveX,
-        moveY,
-        delay: 0.1, // Very quick follow-up
-        emoji: heartEmojis[Math.floor(Math.random() * heartEmojis.length)],
-        size: 24 + Math.random() * 8,
-      };
-    });
+  // Generate secondary wave hearts - quick follow-up
+  const generateSecondaryHearts = (count: number) => {
+    return Array.from({ length: count }, (_, i) => ({
+      id: `secondary-${i}`,
+      emoji: heartEmojis[Math.floor(Math.random() * heartEmojis.length)],
+      direction: directions[Math.floor(Math.random() * directions.length)],
+      size: 24 + Math.random() * 8,
+      delay: 0.1 // Quick follow-up
+    }));
   };
 
-  // Generate more hearts for bigger impact
-  const primaryBurst = generatePrimaryBurst(20); // More hearts
-  const secondaryWave = generateSecondaryWave(16); // More hearts
+  // More hearts for bigger impact
+  const primaryHearts = generatePrimaryHearts(24);
+  const secondaryHearts = generateSecondaryHearts(16);
 
   useEffect(() => {
     if (showCelebration) {
       const timer = setTimeout(() => {
         onCelebrationEnd();
-      }, 3000); // Shortened to 3 seconds
+      }, 3000);
       
       return () => clearTimeout(timer);
     }
@@ -74,53 +72,49 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
       {/* Enhanced screen shake */}
       <div className="absolute inset-0 animate-celebration-shake">
         
-        {/* Synchronized expanding rings */}
+        {/* Perfectly synchronized expanding rings */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-12 h-12 border-4 border-pink-500/90 rounded-full animate-ring-burst" />
-          <div className="absolute w-24 h-24 border-3 border-rose-500/80 rounded-full animate-ring-burst" style={{animationDelay: '0.05s'}} />
+          <div className="absolute w-24 h-24 border-[3px] border-rose-500/80 rounded-full animate-ring-burst" style={{animationDelay: '0.05s'}} />
           <div className="absolute w-40 h-40 border-2 border-red-500/70 rounded-full animate-ring-burst" style={{animationDelay: '0.1s'}} />
           <div className="absolute w-64 h-64 border-2 border-pink-400/60 rounded-full animate-ring-burst" style={{animationDelay: '0.15s'}} />
-          <div className="absolute w-80 h-80 border-1 border-rose-300/50 rounded-full animate-ring-burst" style={{animationDelay: '0.2s'}} />
+          <div className="absolute w-80 h-80 border border-rose-300/50 rounded-full animate-ring-burst" style={{animationDelay: '0.2s'}} />
         </div>
 
-        {/* Primary Heart Burst - immediate explosion */}
+        {/* Primary Heart Burst - immediate explosion in all directions */}
         <div className="absolute inset-0 flex items-center justify-center">
-          {primaryBurst.map((heart, i) => (
+          {primaryHearts.map((heart) => (
             <div
-              key={`primary-${i}`}
-              className="absolute animate-heart-burst-primary"
+              key={heart.id}
+              className={`absolute animate-${heart.direction}`}
               style={{
                 left: '50%',
                 top: '50%',
-                '--move-x': `${heart.moveX}px`,
-                '--move-y': `${heart.moveY}px`,
                 animationDelay: `${heart.delay}s`,
                 fontSize: `${heart.size}px`,
                 filter: 'drop-shadow(0 0 12px rgba(255, 20, 147, 0.9)) drop-shadow(0 0 6px rgba(255, 182, 193, 0.7))',
                 zIndex: 10,
-              } as React.CSSProperties}
+              }}
             >
               {heart.emoji}
             </div>
           ))}
         </div>
 
-        {/* Secondary Heart Wave - quick follow-up */}
+        {/* Secondary Heart Wave - quick follow-up for density */}
         <div className="absolute inset-0 flex items-center justify-center">
-          {secondaryWave.map((heart, i) => (
+          {secondaryHearts.map((heart) => (
             <div
-              key={`secondary-${i}`}
-              className="absolute animate-heart-burst-secondary"
+              key={heart.id}
+              className={`absolute animate-${heart.direction}`}
               style={{
                 left: '50%',
                 top: '50%',
-                '--move-x': `${heart.moveX}px`,
-                '--move-y': `${heart.moveY}px`,
                 animationDelay: `${heart.delay}s`,
                 fontSize: `${heart.size}px`,
                 filter: 'drop-shadow(0 0 8px rgba(255, 105, 180, 0.8))',
                 zIndex: 9,
-              } as React.CSSProperties}
+              }}
             >
               {heart.emoji}
             </div>

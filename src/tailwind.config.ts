@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -201,9 +200,9 @@ export default {
 					'5%, 85%': { opacity: '0.8' }
 				},
 
-				// UNIFIED CONFETTI ANIMATIONS - Fast & Explosive
+				// WORKING CONFETTI ANIMATIONS - Fixed Directions
 				
-				// Ring expansion - synced with hearts
+				// Ring expansion - perfectly synced
 				'ring-burst': {
 					'0%': {
 						transform: 'scale(0)',
@@ -215,8 +214,8 @@ export default {
 					}
 				},
 
-				// Primary heart burst - immediate explosion
-				'heart-burst-primary': {
+				// 8 Directional Heart Bursts - No CSS Variables
+				'heart-burst-up': {
 					'0%': {
 						transform: 'translate(-50%, -50%) scale(0)',
 						opacity: '0'
@@ -226,28 +225,117 @@ export default {
 						opacity: '1'
 					},
 					'100%': {
-						transform: 'translate(calc(-50% + var(--move-x)), calc(-50% + var(--move-y))) scale(0.8)',
+						transform: 'translate(-50%, -250px) scale(0.8)',
 						opacity: '0'
 					}
 				},
 
-				// Secondary heart wave - quick follow-up
-				'heart-burst-secondary': {
+				'heart-burst-up-right': {
 					'0%': {
 						transform: 'translate(-50%, -50%) scale(0)',
 						opacity: '0'
 					},
-					'25%': {
-						transform: 'translate(-50%, -50%) scale(1.1)',
+					'20%': {
+						transform: 'translate(-50%, -50%) scale(1.2)',
 						opacity: '1'
 					},
 					'100%': {
-						transform: 'translate(calc(-50% + var(--move-x)), calc(-50% + var(--move-y))) scale(0.6)',
+						transform: 'translate(150px, -200px) scale(0.8)',
 						opacity: '0'
 					}
 				},
 
-				// Background and modal effects
+				'heart-burst-right': {
+					'0%': {
+						transform: 'translate(-50%, -50%) scale(0)',
+						opacity: '0'
+					},
+					'20%': {
+						transform: 'translate(-50%, -50%) scale(1.2)',
+						opacity: '1'
+					},
+					'100%': {
+						transform: 'translate(250px, -50%) scale(0.8)',
+						opacity: '0'
+					}
+				},
+
+				'heart-burst-down-right': {
+					'0%': {
+						transform: 'translate(-50%, -50%) scale(0)',
+						opacity: '0'
+					},
+					'20%': {
+						transform: 'translate(-50%, -50%) scale(1.2)',
+						opacity: '1'
+					},
+					'100%': {
+						transform: 'translate(150px, 150px) scale(0.8)',
+						opacity: '0'
+					}
+				},
+
+				'heart-burst-down': {
+					'0%': {
+						transform: 'translate(-50%, -50%) scale(0)',
+						opacity: '0'
+					},
+					'20%': {
+						transform: 'translate(-50%, -50%) scale(1.2)',
+						opacity: '1'
+					},
+					'100%': {
+						transform: 'translate(-50%, 200px) scale(0.8)',
+						opacity: '0'
+					}
+				},
+
+				'heart-burst-down-left': {
+					'0%': {
+						transform: 'translate(-50%, -50%) scale(0)',
+						opacity: '0'
+					},
+					'20%': {
+						transform: 'translate(-50%, -50%) scale(1.2)',
+						opacity: '1'
+					},
+					'100%': {
+						transform: 'translate(-200px, 150px) scale(0.8)',
+						opacity: '0'
+					}
+				},
+
+				'heart-burst-left': {
+					'0%': {
+						transform: 'translate(-50%, -50%) scale(0)',
+						opacity: '0'
+					},
+					'20%': {
+						transform: 'translate(-50%, -50%) scale(1.2)',
+						opacity: '1'
+					},
+					'100%': {
+						transform: 'translate(-250px, -50%) scale(0.8)',
+						opacity: '0'
+					}
+				},
+
+				'heart-burst-up-left': {
+					'0%': {
+						transform: 'translate(-50%, -50%) scale(0)',
+						opacity: '0'
+					},
+					'20%': {
+						transform: 'translate(-50%, -50%) scale(1.2)',
+						opacity: '1'
+					},
+					'100%': {
+						transform: 'translate(-200px, -200px) scale(0.8)',
+						opacity: '0'
+					}
+				},
+
+				// Background and modal effects - keep existing
 				'celebration-pulse': {
 					'0%, 100%': {
 						opacity: '0.3'
@@ -290,6 +378,7 @@ export default {
 					}
 				},
 
+				// ... keep existing code (modal-breathe, heart-mega-celebration, text-shimmer, heart-glow-intense, heart-glow-pulse, bounce-enhanced) the same
 				'modal-breathe': {
 					'0%, 100%': {
 						transform: 'scale(1)'
@@ -370,10 +459,20 @@ export default {
 				'float': 'float 3s ease-in-out infinite',
 				'lightning': 'lightning 4s ease-in-out infinite',
 
-				// UNIFIED CONFETTI ANIMATIONS - Fast & Synchronized
+				// WORKING CONFETTI ANIMATIONS - Perfectly Synchronized
 				'ring-burst': 'ring-burst 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
-				'heart-burst-primary': 'heart-burst-primary 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
-				'heart-burst-secondary': 'heart-burst-secondary 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
+				
+				// All directional heart bursts
+				'heart-burst-up': 'heart-burst-up 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
+				'heart-burst-up-right': 'heart-burst-up-right 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
+				'heart-burst-right': 'heart-burst-right 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
+				'heart-burst-down-right': 'heart-burst-down-right 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
+				'heart-burst-down': 'heart-burst-down 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
+				'heart-burst-down-left': 'heart-burst-down-left 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
+				'heart-burst-left': 'heart-burst-left 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
+				'heart-burst-up-left': 'heart-burst-up-left 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
+
+				// Background effects - keep existing
 				'celebration-pulse': 'celebration-pulse 2s ease-in-out infinite',
 				'celebration-shake': 'celebration-shake 0.4s ease-in-out',
 				'modal-breathe': 'modal-breathe 3s ease-in-out infinite',
