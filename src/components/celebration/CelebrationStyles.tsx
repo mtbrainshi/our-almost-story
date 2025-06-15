@@ -20,16 +20,8 @@ const CelebrationStyles = () => {
           transform: scale(1) rotate(0deg); 
           filter: brightness(1) saturate(1);
         }
-        25% { 
-          transform: scale(1.01) rotate(0.3deg); 
-          filter: brightness(1.05) saturate(1.1);
-        }
         50% { 
-          transform: scale(1.02) rotate(-0.3deg); 
-          filter: brightness(1.1) saturate(1.2);
-        }
-        75% { 
-          transform: scale(1.01) rotate(0.2deg); 
+          transform: scale(1.02) rotate(0deg); 
           filter: brightness(1.05) saturate(1.1);
         }
       }
@@ -38,17 +30,8 @@ const CelebrationStyles = () => {
         0%, 20%, 50%, 80%, 100% { 
           transform: translateY(0) scale(1); 
         }
-        10% { 
-          transform: translateY(-3px) scale(1.02); 
-        }
-        30% { 
-          transform: translateY(-6px) scale(1.04); 
-        }
         40% { 
           transform: translateY(-4px) scale(1.03); 
-        }
-        60% { 
-          transform: translateY(-2px) scale(1.01); 
         }
       }
       
@@ -58,7 +41,7 @@ const CelebrationStyles = () => {
           filter: drop-shadow(0 0 10px rgba(255, 20, 147, 0.6));
         }
         50% { 
-          transform: scale(1.08);
+          transform: scale(1.05);
           filter: drop-shadow(0 0 20px rgba(255, 20, 147, 0.8)) drop-shadow(0 0 30px rgba(255, 105, 180, 0.6));
         }
       }
@@ -67,11 +50,8 @@ const CelebrationStyles = () => {
         0% { 
           background: radial-gradient(circle at 30% 30%, rgba(255, 20, 147, 0.05) 0%, transparent 50%);
         }
-        33% { 
-          background: radial-gradient(circle at 70% 40%, rgba(255, 105, 180, 0.08) 0%, transparent 50%);
-        }
-        66% { 
-          background: radial-gradient(circle at 40% 70%, rgba(255, 215, 0, 0.06) 0%, transparent 50%);
+        50% { 
+          background: radial-gradient(circle at 70% 70%, rgba(255, 105, 180, 0.08) 0%, transparent 50%);
         }
         100% { 
           background: radial-gradient(circle at 30% 30%, rgba(255, 20, 147, 0.05) 0%, transparent 50%);
@@ -79,7 +59,7 @@ const CelebrationStyles = () => {
       }
       
       .celebration-shake {
-        animation: gentleScreenShake 2.5s cubic-bezier(0.4, 0, 0.6, 1);
+        animation: gentleScreenShake 1.5s ease-out;
       }
       
       .celebration-modal {
@@ -93,8 +73,7 @@ const CelebrationStyles = () => {
       .celebration-mega-heart {
         animation: 
           softBounce 2s ease-in-out infinite,
-          gentleHeartbeat 2.5s ease-in-out infinite,
-          modalGentlePulse 4s ease-in-out infinite;
+          gentleHeartbeat 2.5s ease-in-out infinite;
         filter: drop-shadow(0 0 15px rgba(255, 20, 147, 0.8)) drop-shadow(0 0 25px rgba(255, 105, 180, 0.6));
       }
       
@@ -108,7 +87,7 @@ const CelebrationStyles = () => {
       .celebration-modal,
       .celebration-bounce,
       .celebration-mega-heart,
-      [class*="confetti-"] {
+      .confetti-heart {
         will-change: transform, opacity, filter;
         transform: translateZ(0);
         backface-visibility: hidden;
