@@ -245,13 +245,19 @@ export default {
             opacity: "0",
           },
         },
-        "modal-circular-burst": {
+        "expand-ring-synchronized": {
           "0%": {
-            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(0) rotate(0deg)",
+            transform: "scale(0.5)",
+            opacity: "0.8",
+          },
+          "100%": {
+            transform: "scale(6)",
             opacity: "0",
           },
-          "15%": {
-            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(1.2) rotate(0deg)",
+        },
+        "modal-circular-burst-immediate": {
+          "0%": {
+            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(1) rotate(0deg)",
             opacity: "1",
           },
           "100%": {
@@ -284,7 +290,8 @@ export default {
         "celebration-flash": "celebration-flash 0.8s ease-out",
         "expand-ring": "expand-ring 2s ease-out",
         "expand-ring-slow": "expand-ring-slow 4s ease-out",
-        "modal-circular-burst": "modal-circular-burst 7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
+        "expand-ring-synchronized": "expand-ring-synchronized 7s ease-out",
+        "modal-circular-burst-immediate": "modal-circular-burst-immediate 7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
         "heart-pulse-gentle": "heart-pulse-gentle 1.8s ease-in-out infinite",
         "spin-slow": "spin 20s linear infinite",
       },
