@@ -17,11 +17,11 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
 
   useEffect(() => {
     if (showCelebration) {
-      console.log("Starting celebration timer");
+      console.log("Starting celebration timer for 8 seconds total");
       const timer = setTimeout(() => {
-        console.log("Celebration ended");
+        console.log("Celebration ended after 8 seconds");
         onCelebrationEnd();
-      }, 7500); // 7.5 seconds for perfect timing
+      }, 8000); // Full 8 seconds for level-wise effect
       
       return () => clearTimeout(timer);
     }
@@ -32,7 +32,7 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
     return null;
   }
 
-  console.log("Rendering elegant celebration: rings expand first, then synchronized heart burst");
+  console.log("Rendering level-wise celebration: rings first, then 3 waves of hearts bursting outward");
 
   return (
     <>
@@ -45,7 +45,7 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
         <div className="absolute inset-0 celebration-shake">
           {/* Rings expand first from modal center */}
           <CelebrationRings />
-          {/* Hearts burst in synchronized wave after rings start */}
+          {/* Hearts burst in 3 distinct levels/waves after rings */}
           <ConfettiHearts />
         </div>
         
