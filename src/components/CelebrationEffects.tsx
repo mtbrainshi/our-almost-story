@@ -20,7 +20,7 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
         startX: x,
         startY: y,
         angle,
-        delay: i * 0.05, // Reduced delay for faster simultaneous appearance
+        delay: i * 0.02, // Much faster stagger for near-instant appearance
         emoji: ['💕', '💖', '💗', '❤️', '💝', '💘', '🌸', '✨'][i % 8],
       };
     });
@@ -48,6 +48,13 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
         <div className="absolute inset-0 bg-gradient-to-t from-purple-100/20 via-transparent to-yellow-100/20" />
       </div>
       
+      {/* Expanding rings for depth - ALL START IMMEDIATELY */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="w-20 h-20 border-2 border-pink-400/70 rounded-full animate-expand-ring-synchronized" />
+        <div className="absolute w-32 h-32 border-2 border-rose-400/50 rounded-full animate-expand-ring-synchronized" />
+        <div className="absolute w-44 h-44 border-2 border-orange-400/40 rounded-full animate-expand-ring-synchronized" />
+      </div>
+      
       {/* Circular Burst Hearts - positioned relative to modal center - APPEAR IMMEDIATELY */}
       <div className="absolute inset-0 flex items-center justify-center">
         {circularPositions.map((pos, i) => (
@@ -61,19 +68,12 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
               '--start-y': `${pos.startY}px`,
               '--burst-angle': `${pos.angle}rad`,
               animationDelay: `${pos.delay}s`,
-              fontSize: `${16 + (i % 4) * 3}px`,
+              fontSize: `${24 + (i % 4) * 2}px`, // Increased from 16-25px to 24-32px
             } as React.CSSProperties}
           >
             {pos.emoji}
           </div>
         ))}
-      </div>
-      
-      {/* Expanding rings for depth - synchronized with hearts */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-20 h-20 border-2 border-pink-400/70 rounded-full animate-expand-ring-synchronized" />
-        <div className="absolute w-32 h-32 border-2 border-rose-400/50 rounded-full animate-expand-ring-synchronized" style={{animationDelay: '0.2s'}} />
-        <div className="absolute w-44 h-44 border-2 border-orange-400/40 rounded-full animate-expand-ring-synchronized" style={{animationDelay: '0.4s'}} />
       </div>
       
       {/* SUCCESS MODAL */}
