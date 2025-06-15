@@ -5,6 +5,7 @@ import Chapter from "@/components/Chapter";
 import Interlude from "@/components/Interlude";
 import FinalAsk from "@/components/FinalAsk";
 import PersonalMessage from "@/components/PersonalMessage";
+import NavigationButton from "@/components/NavigationButton";
 
 const Index = () => {
   const [currentChapter, setCurrentChapter] = useState(0);
@@ -76,18 +77,44 @@ const Index = () => {
 
   return (
     <div className="bg-gradient-to-b from-blush-50 to-cream-50 font-poppins">
-      <Hero />
+      <div id="hero-section">
+        <Hero />
+        <NavigationButton targetSectionId="chapter-1" text="Our story begins here" />
+      </div>
       
       {chapters.map((chapter, index) => (
-        <Chapter
-          key={chapter.id}
-          {...chapter}
-          isActive={currentChapter === index + 1}
-        />
+        <div key={chapter.id}>
+          <div id={`chapter-${chapter.id}`} data-chapter={chapter.id}>
+            <Chapter
+              {...chapter}
+              isActive={currentChapter === index + 1}
+            />
+          </div>
+          {index < chapters.length - 1 && (
+            <NavigationButton 
+              targetSectionId={`chapter-${chapters[index + 1].id}`} 
+              text="Continue the story" 
+            />
+          )}
+          {index === chapters.length - 1 && (
+            <NavigationButton 
+              targetSectionId="interlude-section" 
+              text="There's more to tell" 
+            />
+          )}
+        </div>
       ))}
       
-      <Interlude />
-      <FinalAsk />
+      <div id="interlude-section">
+        <Interlude />
+        <NavigationButton targetSectionId="final-ask-section" text="The moment of truth" />
+      </div>
+      
+      <div id="final-ask-section">
+        <FinalAsk />
+        <NavigationButton targetSectionId="personal-message" text="A space just for you" />
+      </div>
+      
       <PersonalMessage />
     </div>
   );
