@@ -219,109 +219,236 @@ export default {
             transform: "translateY(0)",
           },
         },
-        "heart-screen-shake": {
+
+        // Enhanced celebration animations
+        "celebration-shake-intense": {
           "0%, 100%": { transform: "translate(0)" },
-          "2%": { transform: "translate(-1px, 1px)" },
-          "4%": { transform: "translate(1px, -1px)" },
-          "6%": { transform: "translate(-1px, -1px)" },
-          "8%": { transform: "translate(1px, 1px)" },
-          "10%": { transform: "translate(0)" },
+          "1%": { transform: "translate(-2px, 2px)" },
+          "2%": { transform: "translate(2px, -2px)" },
+          "3%": { transform: "translate(-2px, -2px)" },
+          "4%": { transform: "translate(2px, 2px)" },
+          "5%": { transform: "translate(-1px, 1px)" },
+          "6%": { transform: "translate(1px, -1px)" },
+          "7%": { transform: "translate(0)" },
         },
-        "expand-ring-heart-fast": {
-          "0%": {
-            transform: "scale(0.8)",
-            opacity: "0.9",
-          },
-          "100%": {
-            transform: "scale(8)",
-            opacity: "0",
-          },
+        
+        "celebration-pulse": {
+          "0%, 100%": { opacity: "0.4" },
+          "25%": { opacity: "0.8" },
+          "50%": { opacity: "0.6" },
+          "75%": { opacity: "0.9" },
         },
-        "expand-ring-heart-medium": {
+
+        // Ring burst animations with perfect timing
+        "ring-burst-immediate": {
+          "0%": { transform: "scale(0.5)", opacity: "1" },
+          "100%": { transform: "scale(15)", opacity: "0" },
+        },
+        "ring-burst-fast": {
+          "0%": { transform: "scale(0.4)", opacity: "0.9" },
+          "100%": { transform: "scale(18)", opacity: "0" },
+        },
+        "ring-burst-medium": {
+          "0%": { transform: "scale(0.3)", opacity: "0.8" },
+          "100%": { transform: "scale(22)", opacity: "0" },
+        },
+        "ring-burst-slow": {
+          "0%": { transform: "scale(0.2)", opacity: "0.7" },
+          "100%": { transform: "scale(26)", opacity: "0" },
+        },
+        "ring-burst-slowest": {
+          "0%": { transform: "scale(0.1)", opacity: "0.6" },
+          "100%": { transform: "scale(30)", opacity: "0" },
+        },
+
+        // Advanced heart burst animations with physics
+        "heart-explosive-burst": {
           "0%": {
-            transform: "scale(0.6)",
+            transform: "translate(-50%, -50%) translate(0, 0) scale(0.5) rotate(0deg)",
+            opacity: "1",
+          },
+          "15%": {
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 0.8), calc(var(--start-y) * 0.8)) scale(1.3) rotate(45deg)",
+            opacity: "1",
+          },
+          "40%": {
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 2), calc(var(--start-y) * 2)) scale(1.1) rotate(90deg)",
+            opacity: "1",
+          },
+          "70%": {
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 3.2 + sin(var(--burst-angle)) * 30px), calc(var(--start-y) * 3.2 + cos(var(--burst-angle)) * 30px)) scale(0.9) rotate(135deg)",
             opacity: "0.8",
           },
           "100%": {
-            transform: "scale(10)",
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 4.5 + sin(var(--burst-angle)) * 50px), calc(var(--start-y) * 4.5 + cos(var(--burst-angle)) * 50px)) scale(0.3) rotate(180deg)",
             opacity: "0",
           },
         },
-        "expand-ring-heart-slow": {
+
+        "heart-wave-cascade": {
           "0%": {
-            transform: "scale(0.4)",
+            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(0.8)",
+            opacity: "0.9",
+          },
+          "25%": {
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 1.5), calc(var(--start-y) * 1.5)) scale(1.2)",
+            opacity: "1",
+          },
+          "50%": {
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 2.5), calc(var(--start-y) * 2.5 - 20px)) scale(1.1)",
+            opacity: "1",
+          },
+          "75%": {
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 3.5), calc(var(--start-y) * 3.5 - 10px)) scale(0.9)",
             opacity: "0.7",
           },
           "100%": {
-            transform: "scale(12)",
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 4.5), calc(var(--start-y) * 4.5)) scale(0.4)",
             opacity: "0",
           },
         },
-        "expand-ring-heart-slowest": {
+
+        // Dancing sparkle hearts
+        "heart-dance-twirl": {
           "0%": {
-            transform: "scale(0.2)",
-            opacity: "0.6",
-          },
-          "100%": {
-            transform: "scale(15)",
-            opacity: "0",
-          },
-        },
-        "heart-burst-smooth": {
-          "0%": {
-            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(0.8)",
-            opacity: "1",
-          },
-          "30%": {
-            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 1.5), calc(var(--start-y) * 1.5)) scale(1.1)",
-            opacity: "1",
-          },
-          "100%": {
-            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 2.5), calc(var(--start-y) * 2.5)) scale(0.7)",
-            opacity: "0",
-          },
-        },
-        "heart-burst-graceful": {
-          "0%": {
-            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(0.9)",
-            opacity: "1",
+            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(0.6) rotate(0deg)",
+            opacity: "0.8",
           },
           "25%": {
-            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 1.8), calc(var(--start-y) * 1.8)) scale(1.15)",
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) + 20px), calc(var(--start-y) - 15px)) scale(1.1) rotate(90deg)",
             opacity: "1",
           },
+          "50%": {
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) - 15px), calc(var(--start-y) + 10px)) scale(0.9) rotate(180deg)",
+            opacity: "1",
+          },
+          "75%": {
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) + 10px), calc(var(--start-y) + 20px)) scale(1.2) rotate(270deg)",
+            opacity: "0.9",
+          },
           "100%": {
-            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 3.2), calc(var(--start-y) * 3.2)) scale(0.5)",
+            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(0.3) rotate(360deg)",
             opacity: "0",
           },
         },
-        "heart-burst-elegant": {
+
+        "heart-dance-bounce": {
           "0%": {
-            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(1)",
-            opacity: "1",
-          },
-          "20%": {
-            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 2), calc(var(--start-y) * 2)) scale(1.2)",
-            opacity: "1",
-          },
-          "100%": {
-            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 4), calc(var(--start-y) * 4)) scale(0.4)",
-            opacity: "0",
-          },
-        },
-        "heart-float-graceful": {
-          "0%": {
-            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(0.9)",
+            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(0.7)",
             opacity: "0.9",
           },
           "20%": {
-            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 1.1), calc(var(--start-y) - 80px)) scale(1.05)",
+            transform: "translate(-50%, -50%) translate(var(--start-x), calc(var(--start-y) - 30px)) scale(1.3)",
             opacity: "1",
           },
+          "40%": {
+            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(0.8)",
+            opacity: "1",
+          },
+          "60%": {
+            transform: "translate(-50%, -50%) translate(var(--start-x), calc(var(--start-y) - 15px)) scale(1.1)",
+            opacity: "0.9",
+          },
+          "80%": {
+            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(0.9)",
+            opacity: "0.7",
+          },
           "100%": {
-            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 1.3), calc(var(--start-y) - 350px)) scale(0.6)",
+            transform: "translate(-50%, -50%) translate(var(--start-x), calc(var(--start-y) + 20px)) scale(0.4)",
             opacity: "0",
           },
+        },
+
+        "heart-dance-shimmer": {
+          "0%": {
+            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(0.8)",
+            opacity: "0.7",
+            filter: "brightness(1)",
+          },
+          "33%": {
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) + 15px), calc(var(--start-y) - 10px)) scale(1.2)",
+            opacity: "1",
+            filter: "brightness(1.5)",
+          },
+          "66%": {
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) - 10px), calc(var(--start-y) + 15px)) scale(1.1)",
+            opacity: "1",
+            filter: "brightness(1.3)",
+          },
+          "100%": {
+            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(0.5)",
+            opacity: "0",
+            filter: "brightness(1)",
+          },
+        },
+
+        // Ambient floating hearts
+        "heart-ambient-gentle": {
+          "0%": {
+            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(0.9)",
+            opacity: "0.6",
+          },
+          "50%": {
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 1.2), calc(var(--start-y) - 150px)) scale(1.1)",
+            opacity: "0.8",
+          },
+          "100%": {
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 1.1), calc(var(--start-y) - 280px)) scale(0.6)",
+            opacity: "0",
+          },
+        },
+
+        "heart-ambient-dreamy": {
+          "0%": {
+            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(0.8)",
+            opacity: "0.5",
+          },
+          "30%": {
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) + 20px), calc(var(--start-y) - 80px)) scale(1.0)",
+            opacity: "0.7",
+          },
+          "70%": {
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) - 15px), calc(var(--start-y) - 180px)) scale(1.1)",
+            opacity: "0.6",
+          },
+          "100%": {
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) + 10px), calc(var(--start-y) - 300px)) scale(0.4)",
+            opacity: "0",
+          },
+        },
+
+        // Enhanced modal and UI animations
+        "heart-mega-celebration": {
+          "0%": { transform: "scale(1) rotate(0deg)", filter: "brightness(1)" },
+          "25%": { transform: "scale(1.2) rotate(5deg)", filter: "brightness(1.3)" },
+          "50%": { transform: "scale(1.1) rotate(-3deg)", filter: "brightness(1.5)" },
+          "75%": { transform: "scale(1.15) rotate(2deg)", filter: "brightness(1.2)" },
+          "100%": { transform: "scale(1) rotate(0deg)", filter: "brightness(1)" },
+        },
+
+        "heart-glow-intense": {
+          "0%, 100%": { opacity: "0.4", transform: "scale(1)" },
+          "50%": { opacity: "0.8", transform: "scale(1.1)" },
+        },
+
+        "heart-glow-pulse": {
+          "0%, 100%": { opacity: "0.3", transform: "scale(0.95)" },
+          "50%": { opacity: "0.7", transform: "scale(1.05)" },
+        },
+
+        "modal-breathe": {
+          "0%, 100%": { transform: "scale(1)", opacity: "0.95" },
+          "50%": { transform: "scale(1.02)", opacity: "1" },
+        },
+
+        "text-shimmer": {
+          "0%, 100%": { filter: "brightness(1)" },
+          "50%": { filter: "brightness(1.2) drop-shadow(0 0 10px rgba(255, 20, 147, 0.5))" },
+        },
+
+        "bounce-enhanced": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-8px)" },
         },
       },
       animation: {
@@ -337,24 +464,38 @@ export default {
         "sparkle": "sparkle 2s ease-in-out infinite",
         "steam-rise": "steam-rise 6s ease-out infinite",
         "fade-in-delayed": "fade-in-delayed 0.8s ease-out forwards",
-        "heart-screen-shake": "heart-screen-shake 0.8s ease-in-out",
-        "expand-ring-heart-fast": "expand-ring-heart-fast 4s ease-out",
-        "expand-ring-heart-medium": "expand-ring-heart-medium 5s ease-out",
-        "expand-ring-heart-slow": "expand-ring-heart-slow 6s ease-out",
-        "expand-ring-heart-slowest": "expand-ring-heart-slowest 7s ease-out",
-        "heart-burst-smooth": "heart-burst-smooth 5s cubic-bezier(0.23, 1, 0.32, 1) forwards",
-        "heart-burst-graceful": "heart-burst-graceful 6s cubic-bezier(0.23, 1, 0.32, 1) forwards",
-        "heart-burst-elegant": "heart-burst-elegant 7s cubic-bezier(0.23, 1, 0.32, 1) forwards",
-        "heart-float-graceful": "heart-float-graceful 6s cubic-bezier(0.23, 1, 0.32, 1) forwards",
-        "heart-bounce-celebration": "heart-bounce-celebration 2s ease-in-out infinite",
+
+        // Enhanced celebration animations
+        "celebration-shake-intense": "celebration-shake-intense 1.2s ease-in-out",
+        "celebration-pulse": "celebration-pulse 4s ease-in-out infinite",
+        
+        // Ring burst animations
+        "ring-burst-immediate": "ring-burst-immediate 3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+        "ring-burst-fast": "ring-burst-fast 4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+        "ring-burst-medium": "ring-burst-medium 5s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+        "ring-burst-slow": "ring-burst-slow 6s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+        "ring-burst-slowest": "ring-burst-slowest 7s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+        
+        // Advanced heart animations
+        "heart-explosive-burst": "heart-explosive-burst 4.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
+        "heart-wave-cascade": "heart-wave-cascade 5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
+        
+        // Dancing sparkle hearts
+        "heart-dance-twirl": "heart-dance-twirl 3s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards",
+        "heart-dance-bounce": "heart-dance-bounce 2.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards",
+        "heart-dance-shimmer": "heart-dance-shimmer 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
+        
+        // Ambient floating
+        "heart-ambient-gentle": "heart-ambient-gentle 5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
+        "heart-ambient-dreamy": "heart-ambient-dreamy 6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
+        
+        // Enhanced modal animations
+        "heart-mega-celebration": "heart-mega-celebration 2.5s ease-in-out infinite",
+        "heart-glow-intense": "heart-glow-intense 2s ease-in-out infinite",
         "heart-glow-pulse": "heart-glow-pulse 3s ease-in-out infinite",
-        "celebration-flash": "celebration-flash 0.8s ease-out",
-        "expand-ring": "expand-ring 2s ease-out",
-        "expand-ring-slow": "expand-ring-slow 4s ease-out",
-        "expand-ring-synchronized": "expand-ring-synchronized 7s ease-out",
-        "modal-circular-burst-immediate": "modal-circular-burst-immediate 7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
-        "heart-pulse-gentle": "heart-pulse-gentle 1.8s ease-in-out infinite",
-        "spin-slow": "spin 20s linear infinite",
+        "modal-breathe": "modal-breathe 4s ease-in-out infinite",
+        "text-shimmer": "text-shimmer 3s ease-in-out infinite",
+        "bounce-enhanced": "bounce-enhanced 1s infinite",
       },
       animationDelay: {
         '1000': '1000ms',
