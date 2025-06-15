@@ -27,8 +27,9 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
     }
   }, [showCelebration, onCelebrationEnd]);
 
+  // Only render when celebration is actually showing
   if (!showCelebration) {
-    console.log("Celebration not showing");
+    console.log("Celebration not showing - returning null");
     return null;
   }
 
@@ -43,7 +44,7 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
         
         {/* Gentle screen shake for drama */}
         <div className="absolute inset-0 celebration-shake">
-          {/* Glowing rings expand gently from modal */}
+          {/* Glowing rings expand gently from modal - only during celebration */}
           <GlowingRings />
           {/* Heart Bloom - 3 waves of beautiful heart bursts */}
           <HeartBloomConfetti />

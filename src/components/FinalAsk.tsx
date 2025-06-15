@@ -4,9 +4,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import CelebrationEffects from "./CelebrationEffects";
 import CoffeeButtons from "./CoffeeButtons";
 import CoffeeInvitation from "./CoffeeInvitation";
+import MomentOfTruth from "./MomentOfTruth";
 
 const FinalAsk = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [showMomentOfTruth, setShowMomentOfTruth] = useState(false);
+  const [showCoffeeQuestion, setShowCoffeeQuestion] = useState(false);
   const [showCelebration, setShowCelebration] = useState(false);
   const [celebrationPhase, setCelebrationPhase] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
@@ -16,6 +19,10 @@ const FinalAsk = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
+          // Start the moment of truth after a brief delay
+          setTimeout(() => {
+            setShowMomentOfTruth(true);
+          }, 1000);
         }
       },
       { threshold: 0.3 }
@@ -27,6 +34,11 @@ const FinalAsk = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  const handleMomentOfTruthComplete = () => {
+    setShowMomentOfTruth(false);
+    setShowCoffeeQuestion(true);
+  };
 
   const handleYesClick = () => {
     setShowCelebration(true);
@@ -73,6 +85,11 @@ const FinalAsk = () => {
         <div className="absolute bottom-1/2 right-1/3 w-80 h-80 bg-orange-200/20 rounded-full blur-2xl animate-breathe" style={{animationDelay: '3s'}} />
       </div>
 
+      {/* Moment of Truth Transition */}
+      {showMomentOfTruth && (
+        <MomentOfTruth onComplete={handleMomentOfTruthComplete} />
+      )}
+
       {/* Celebration Effects */}
       <CelebrationEffects 
         showCelebration={showCelebration}
@@ -80,17 +97,19 @@ const FinalAsk = () => {
         onCelebrationEnd={handleCelebrationEnd}
       />
 
-      {/* Main content card */}
-      <div className={`max-w-4xl mx-auto px-8 transition-all duration-1000 ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      }`}>
-        <Card className="bg-white/95 backdrop-blur-sm border border-white/50 shadow-2xl rounded-3xl overflow-hidden">
-          <CardContent className="p-12 relative">
-            <CoffeeInvitation />
-            <CoffeeButtons onYesClick={handleYesClick} />
-          </CardContent>
-        </Card>
-      </div>
+      {/* Main content card - only show after moment of truth */}
+      {showCoffeeQuestion && (
+        <div className={`max-w-4xl mx-auto px-8 transition-all duration-1000 ${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        }`}>
+          <Card className="bg-white/95 backdrop-blur-sm border border-white/50 shadow-2xl rounded-3xl overflow-hidden">
+            <CardContent className="p-12 relative">
+              <CoffeeInvitation />
+              <CoffeeButtons onYesClick={handleYesClick} />
+            </CardContent>
+          </Card>
+        </div>
+      )}
     </section>
   );
 };
