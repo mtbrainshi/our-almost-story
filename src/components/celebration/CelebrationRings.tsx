@@ -1,24 +1,35 @@
 
 const CelebrationRings = () => {
-  // Create 3 synchronized rings as specified
+  // Create rings that appear in levels to match hearts
   const rings = [
-    { size: 100, finalSize: 300, color: 'rgb(236 72 153)', borderWidth: 3, opacity: 0.8 },
-    { size: 120, finalSize: 350, color: 'rgb(244 114 182)', borderWidth: 2, opacity: 0.6 },
-    { size: 140, finalSize: 400, color: 'rgb(251 146 60)', borderWidth: 2, opacity: 0.4 }
+    // Level 1 rings (start immediately)
+    { size: 80, finalSize: 200, color: 'rgb(236 72 153)', borderWidth: 3, opacity: 0.8, delay: 0 },
+    { size: 100, finalSize: 250, color: 'rgb(244 114 182)', borderWidth: 2, opacity: 0.6, delay: 0.3 },
+    
+    // Level 2 rings (start after 1.5s)
+    { size: 100, finalSize: 280, color: 'rgb(251 146 60)', borderWidth: 2, opacity: 0.5, delay: 1.5 },
+    { size: 120, finalSize: 320, color: 'rgb(236 72 153)', borderWidth: 2, opacity: 0.4, delay: 1.8 },
+    
+    // Level 3 rings (start after 3s)
+    { size: 120, finalSize: 350, color: 'rgb(244 114 182)', borderWidth: 1, opacity: 0.3, delay: 3 },
   ];
 
   return (
     <>
       <style>
         {`
-          @keyframes ringExpand {
+          @keyframes ringExpandSlow {
             0% { 
-              transform: translate(-50%, -50%) scale(0.3); 
+              transform: translate(-50%, -50%) scale(0.2); 
               opacity: 0; 
             }
-            20% { 
-              transform: translate(-50%, -50%) scale(0.6); 
+            15% { 
+              transform: translate(-50%, -50%) scale(0.4); 
               opacity: var(--ring-opacity); 
+            }
+            85% { 
+              transform: translate(-50%, -50%) scale(0.95); 
+              opacity: calc(var(--ring-opacity) * 0.7); 
             }
             100% { 
               transform: translate(-50%, -50%) scale(1); 
@@ -27,7 +38,7 @@ const CelebrationRings = () => {
           }
           
           .celebration-ring {
-            animation: ringExpand 1.5s cubic-bezier(0.3, -0.5, 0.7, 1.5) forwards;
+            animation: ringExpandSlow 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
             will-change: transform, opacity;
             backface-visibility: hidden;
           }
@@ -47,6 +58,7 @@ const CelebrationRings = () => {
               borderWidth: `${ring.borderWidth}px`,
               borderColor: ring.color,
               '--ring-opacity': ring.opacity,
+              animationDelay: `${ring.delay}s`,
               zIndex: 55,
             } as React.CSSProperties}
           />
