@@ -2,140 +2,71 @@
 interface ConfettiHeartsProps {}
 
 const ConfettiHearts = ({}: ConfettiHeartsProps) => {
-  // Only pink/red heart emojis as specified
   const heartEmojis = ['💕', '💖', '💗', '❤️', '💝', '💘', '💓', '💞', '💟', '♥️'];
   
-  // Create hearts in 3 levels with reduced counts and proper timing
-  const generateLevelHearts = () => {
+  const generateHearts = () => {
     const hearts = [];
+    const totalHearts = 16; // Perfect circle of hearts
+    const startRadius = 60; // Circle around the modal card
+    const endRadius = 280; // Final position
     
-    // Level 1: Inner circle - 12 hearts (starts 0.2s after ring 1)
-    const level1Count = 12;
-    const level1Radius = 50;
-    const level1EndRadius = 180;
-    
-    for (let i = 0; i < level1Count; i++) {
-      const angle = (i * 360) / level1Count;
-      const size = 24 + Math.random() * 4; // 24-28px
-      const rotationDirection = Math.random() > 0.5 ? 1 : -1;
-      const wobbleAmount = 1 + Math.random() * 2; // Gentle ±2° wobble
+    for (let i = 0; i < totalHearts; i++) {
+      const angle = (i * 360) / totalHearts;
+      const size = 26 + Math.random() * 6; // 26-32px for good visibility
+      const gentleWobble = (Math.random() - 0.5) * 15; // ±7.5° gentle tilt
       
-      const startX = Math.cos((angle * Math.PI) / 180) * level1Radius;
-      const startY = Math.sin((angle * Math.PI) / 180) * level1Radius;
-      const endX = Math.cos((angle * Math.PI) / 180) * level1EndRadius;
-      const endY = Math.sin((angle * Math.PI) / 180) * level1EndRadius;
+      const startX = Math.cos((angle * Math.PI) / 180) * startRadius;
+      const startY = Math.sin((angle * Math.PI) / 180) * startRadius;
+      const endX = Math.cos((angle * Math.PI) / 180) * endRadius;
+      const endY = Math.sin((angle * Math.PI) / 180) * endRadius;
       
       hearts.push({
-        id: `heart-level1-${i}`,
+        id: `heart-${i}`,
         emoji: heartEmojis[Math.floor(Math.random() * heartEmojis.length)],
         size,
         startX,
         startY,
         endX,
         endY,
-        wobble: wobbleAmount * rotationDirection,
+        wobble: gentleWobble,
         opacity: 0.9 + Math.random() * 0.1,
-        level: 1,
-        delay: 0.2
-      });
-    }
-    
-    // Level 2: Middle circle - 10 hearts (starts 1.0s after ring 2)
-    const level2Count = 10;
-    const level2Radius = 70;
-    const level2EndRadius = 240;
-    
-    for (let i = 0; i < level2Count; i++) {
-      const angle = (i * 360) / level2Count;
-      const size = 22 + Math.random() * 4; // 22-26px
-      const rotationDirection = Math.random() > 0.5 ? 1 : -1;
-      const wobbleAmount = 1 + Math.random() * 2;
-      
-      const startX = Math.cos((angle * Math.PI) / 180) * level2Radius;
-      const startY = Math.sin((angle * Math.PI) / 180) * level2Radius;
-      const endX = Math.cos((angle * Math.PI) / 180) * level2EndRadius;
-      const endY = Math.sin((angle * Math.PI) / 180) * level2EndRadius;
-      
-      hearts.push({
-        id: `heart-level2-${i}`,
-        emoji: heartEmojis[Math.floor(Math.random() * heartEmojis.length)],
-        size,
-        startX,
-        startY,
-        endX,
-        endY,
-        wobble: wobbleAmount * rotationDirection,
-        opacity: 0.8 + Math.random() * 0.2,
-        level: 2,
-        delay: 1.0
-      });
-    }
-    
-    // Level 3: Outer circle - 8 hearts (starts 1.8s after ring 3)
-    const level3Count = 8;
-    const level3Radius = 90;
-    const level3EndRadius = 300;
-    
-    for (let i = 0; i < level3Count; i++) {
-      const angle = (i * 360) / level3Count;
-      const size = 20 + Math.random() * 4; // 20-24px
-      const rotationDirection = Math.random() > 0.5 ? 1 : -1;
-      const wobbleAmount = 1 + Math.random() * 2;
-      
-      const startX = Math.cos((angle * Math.PI) / 180) * level3Radius;
-      const startY = Math.sin((angle * Math.PI) / 180) * level3Radius;
-      const endX = Math.cos((angle * Math.PI) / 180) * level3EndRadius;
-      const endY = Math.sin((angle * Math.PI) / 180) * level3EndRadius;
-      
-      hearts.push({
-        id: `heart-level3-${i}`,
-        emoji: heartEmojis[Math.floor(Math.random() * heartEmojis.length)],
-        size,
-        startX,
-        startY,
-        endX,
-        endY,
-        wobble: wobbleAmount * rotationDirection,
-        opacity: 0.7 + Math.random() * 0.2,
-        level: 3,
-        delay: 1.8
       });
     }
     
     return hearts;
   };
 
-  const hearts = generateLevelHearts();
+  const hearts = generateHearts();
 
   return (
     <>
       <style>
         {`
-          @keyframes heartBurst {
+          @keyframes heartCelebration {
             0% { 
-              transform: translate(-50%, -50%) translateX(var(--start-x)) translateY(var(--start-y)) scale(0.2) rotate(0deg);
+              transform: translate(-50%, -50%) translateX(var(--start-x)) translateY(var(--start-y)) scale(0.3) rotate(0deg);
               opacity: 0;
-              filter: drop-shadow(0 0 6px rgba(255, 20, 147, 0.4));
+              filter: drop-shadow(0 0 8px rgba(255, 20, 147, 0.6));
             }
-            25% { 
-              transform: translate(-50%, -50%) translateX(calc(var(--start-x) + (var(--end-x) - var(--start-x)) * 0.3)) translateY(calc(var(--start-y) + (var(--end-y) - var(--start-y)) * 0.3)) scale(1.1) rotate(calc(var(--wobble) * 0.4));
+            20% { 
+              transform: translate(-50%, -50%) translateX(calc(var(--start-x) + (var(--end-x) - var(--start-x)) * 0.2)) translateY(calc(var(--start-y) + (var(--end-y) - var(--start-y)) * 0.2)) scale(1.1) rotate(calc(var(--wobble) * 0.3));
               opacity: 1;
-              filter: drop-shadow(0 0 10px rgba(255, 20, 147, 0.7)) drop-shadow(0 0 18px rgba(255, 105, 180, 0.4));
+              filter: drop-shadow(0 0 12px rgba(255, 20, 147, 0.8)) drop-shadow(0 0 20px rgba(255, 105, 180, 0.6));
             }
-            80% { 
-              transform: translate(-50%, -50%) translateX(calc(var(--start-x) + (var(--end-x) - var(--start-x)) * 0.95)) translateY(calc(var(--start-y) + (var(--end-y) - var(--start-y)) * 0.95)) scale(0.9) rotate(calc(var(--wobble) * 0.9));
-              opacity: 0.7;
+            70% { 
+              transform: translate(-50%, -50%) translateX(calc(var(--start-x) + (var(--end-x) - var(--start-x)) * 0.85)) translateY(calc(var(--start-y) + (var(--end-y) - var(--start-y)) * 0.85)) scale(0.95) rotate(calc(var(--wobble) * 0.8));
+              opacity: 0.8;
               filter: drop-shadow(0 0 8px rgba(255, 20, 147, 0.5));
             }
             100% { 
-              transform: translate(-50%, -50%) translateX(var(--end-x)) translateY(var(--end-y)) scale(0.6) rotate(var(--wobble));
+              transform: translate(-50%, -50%) translateX(var(--end-x)) translateY(var(--end-y)) scale(0.7) rotate(var(--wobble));
               opacity: 0;
               filter: drop-shadow(0 0 4px rgba(255, 20, 147, 0.2));
             }
           }
           
           .confetti-heart {
-            animation: heartBurst 2.8s ease-out forwards;
+            animation: heartCelebration 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
             will-change: transform, opacity, filter;
             backface-visibility: hidden;
           }
@@ -156,7 +87,7 @@ const ConfettiHearts = ({}: ConfettiHeartsProps) => {
               '--end-x': `${heart.endX}px`,
               '--end-y': `${heart.endY}px`,
               '--wobble': `${heart.wobble}deg`,
-              animationDelay: `${heart.delay}s`,
+              animationDelay: '0.5s', // Hearts start right after rings begin
               zIndex: 60,
             } as React.CSSProperties}
           >

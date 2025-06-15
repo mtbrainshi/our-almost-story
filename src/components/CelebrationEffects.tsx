@@ -21,7 +21,7 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
       const timer = setTimeout(() => {
         console.log("Celebration ended");
         onCelebrationEnd();
-      }, 8500); // 8.5 seconds for complete celebration sequence
+      }, 7500); // 7.5 seconds for perfect timing
       
       return () => clearTimeout(timer);
     }
@@ -32,7 +32,7 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
     return null;
   }
 
-  console.log("Rendering celebration with bubble-ring-first, then level-wise heart burst");
+  console.log("Rendering elegant celebration: rings expand first, then synchronized heart burst");
 
   return (
     <>
@@ -41,11 +41,11 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
       <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
         <CelebrationBackground />
         
-        {/* Screen shake container - gentler shake */}
+        {/* Gentle screen shake for drama */}
         <div className="absolute inset-0 celebration-shake">
-          {/* Rings appear first in sequence */}
+          {/* Rings expand first from modal center */}
           <CelebrationRings />
-          {/* Hearts burst after rings in synchronized waves */}
+          {/* Hearts burst in synchronized wave after rings start */}
           <ConfettiHearts />
         </div>
         
