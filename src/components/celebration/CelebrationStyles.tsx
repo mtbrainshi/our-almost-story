@@ -46,11 +46,11 @@ const CelebrationStyles = () => {
       }
       
       .celebration-ring {
-        animation: ringExpand 1.0s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        animation: ringExpand 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
       }
       
       .celebration-shake {
-        animation: screenShake 0.8s ease-in-out;
+        animation: screenShake 1.2s ease-in-out;
       }
       
       .celebration-modal {

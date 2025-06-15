@@ -9,8 +9,8 @@ const ConfettiHearts = ({}: ConfettiHeartsProps) => {
     
     for (let i = 0; i < 24; i++) {
       const angle = (i * 360) / 24;
-      const distance = 250 + Math.random() * 50;
-      const size = 22 + Math.random() * 8;
+      const distance = 350 + Math.random() * 100; // Increased from 250+50 to 350+100
+      const size = 32 + Math.random() * 12; // Increased from 22+8 to 32+12
       
       hearts.push({
         id: `primary-${i}`,
@@ -32,8 +32,8 @@ const ConfettiHearts = ({}: ConfettiHeartsProps) => {
     
     for (let i = 0; i < 18; i++) {
       const angle = (i * 360) / 18 + 10; // 10 degree offset from primary
-      const distance = 300 + Math.random() * 80;
-      const size = 18 + Math.random() * 10;
+      const distance = 400 + Math.random() * 120; // Increased from 300+80 to 400+120
+      const size = 28 + Math.random() * 14; // Increased from 18+10 to 28+14
       
       hearts.push({
         id: `secondary-${i}`,
@@ -58,8 +58,8 @@ const ConfettiHearts = ({}: ConfettiHeartsProps) => {
         {allHearts.map((heart) => {
           const endX = Math.cos((heart.angle * Math.PI) / 180) * heart.distance;
           const endY = Math.sin((heart.angle * Math.PI) / 180) * heart.distance;
-          const animationDelay = heart.type === 'secondary' ? '0.3s' : '0s';
-          const duration = heart.type === 'secondary' ? '1.2s' : '1.0s';
+          const animationDelay = heart.type === 'secondary' ? '0.4s' : '0s'; // Slightly increased delay
+          const duration = heart.type === 'secondary' ? '2.0s' : '1.8s'; // Increased from 1.2s/1.0s to 2.0s/1.8s
           
           return `
             @keyframes heartBurst-${heart.id} {
@@ -67,12 +67,12 @@ const ConfettiHearts = ({}: ConfettiHeartsProps) => {
                 transform: translate(-50%, -50%) scale(0);
                 opacity: 0;
               }
-              15% { 
+              12% { 
                 transform: translate(-50%, -50%) scale(1.1);
                 opacity: 1;
               }
               100% { 
-                transform: translate(-50%, -50%) translateX(${endX}px) translateY(${endY}px) scale(0.7);
+                transform: translate(-50%, -50%) translateX(${endX}px) translateY(${endY}px) scale(0.8);
                 opacity: 0;
               }
             }
@@ -93,7 +93,7 @@ const ConfettiHearts = ({}: ConfettiHeartsProps) => {
               left: '50%',
               top: '50%',
               fontSize: `${heart.size}px`,
-              filter: 'drop-shadow(0 0 8px rgba(255, 20, 147, 0.8))',
+              filter: 'drop-shadow(0 0 12px rgba(255, 20, 147, 0.9))',
             }}
           >
             {heart.emoji}

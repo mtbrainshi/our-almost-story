@@ -21,7 +21,7 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
       const timer = setTimeout(() => {
         console.log("Celebration ended");
         onCelebrationEnd();
-      }, 3000);
+      }, 5000); // Increased from 3000ms to 5000ms for longer celebration
       
       return () => clearTimeout(timer);
     }
