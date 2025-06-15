@@ -84,28 +84,28 @@ const ConfettiHearts = ({}: ConfettiHeartsProps) => {
           const endY = Math.sin((heart.angle * Math.PI) / 180) * heart.distance;
           const rotation = Math.random() * 360;
           
-          // Wave-specific timing
+          // Wave-specific timing - significantly slowed down
           let animationDelay, duration, glowColor;
           
           switch (heart.type) {
             case 'wave1':
               animationDelay = '0s';
-              duration = '2.5s';
+              duration = '4.0s'; // Increased from 2.5s
               glowColor = 'rgba(255, 20, 147, 0.9)';
               break;
             case 'wave2':
               animationDelay = '0.6s';
-              duration = '2.8s';
+              duration = '4.5s'; // Increased from 2.8s
               glowColor = 'rgba(255, 105, 180, 0.8)';
               break;
             case 'wave3':
               animationDelay = '1.2s';
-              duration = '3.0s';
+              duration = '5.0s'; // Increased from 3.0s
               glowColor = 'rgba(255, 215, 0, 0.9)';
               break;
             default:
               animationDelay = '0s';
-              duration = '2.5s';
+              duration = '4.0s';
               glowColor = 'rgba(255, 20, 147, 0.9)';
           }
           
@@ -115,21 +115,25 @@ const ConfettiHearts = ({}: ConfettiHeartsProps) => {
                 transform: translate(-50%, -50%) scale(0) rotate(0deg);
                 opacity: 0;
               }
-              8% { 
-                transform: translate(-50%, -50%) scale(0.3) rotate(${rotation * 0.2}deg);
+              12% { 
+                transform: translate(-50%, -50%) scale(0.3) rotate(${rotation * 0.15}deg);
                 opacity: 0.6;
               }
-              15% { 
-                transform: translate(-50%, -50%) scale(1.2) rotate(${rotation * 0.4}deg);
-                opacity: 1;
-              }
               25% { 
-                transform: translate(-50%, -50%) scale(1) rotate(${rotation * 0.6}deg);
+                transform: translate(-50%, -50%) scale(1.2) rotate(${rotation * 0.3}deg);
                 opacity: 1;
               }
-              85% { 
-                transform: translate(-50%, -50%) translateX(${endX * 0.9}px) translateY(${endY * 0.9}px) scale(0.9) rotate(${rotation}deg);
-                opacity: 0.7;
+              35% { 
+                transform: translate(-50%, -50%) scale(1) rotate(${rotation * 0.4}deg);
+                opacity: 1;
+              }
+              75% { 
+                transform: translate(-50%, -50%) translateX(${endX * 0.7}px) translateY(${endY * 0.7}px) scale(0.95) rotate(${rotation * 0.8}deg);
+                opacity: 0.9;
+              }
+              90% { 
+                transform: translate(-50%, -50%) translateX(${endX * 0.9}px) translateY(${endY * 0.9}px) scale(0.8) rotate(${rotation * 0.9}deg);
+                opacity: 0.6;
               }
               100% { 
                 transform: translate(-50%, -50%) translateX(${endX}px) translateY(${endY}px) scale(0.6) rotate(${rotation}deg);
@@ -144,8 +148,8 @@ const ConfettiHearts = ({}: ConfettiHeartsProps) => {
             
             .heart-${heart.id} {
               animation: 
-                heartBurst-${heart.id} ${duration} cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                heartPulse-${heart.id} 1.5s ease-in-out infinite;
+                heartBurst-${heart.id} ${duration} cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
+                heartPulse-${heart.id} 2.0s ease-in-out infinite;
               animation-delay: ${animationDelay}, ${animationDelay};
             }
           `;

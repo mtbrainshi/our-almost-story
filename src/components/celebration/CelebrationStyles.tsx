@@ -4,7 +4,9 @@ const CelebrationStyles = () => {
     <style>{`
       @keyframes ringExpand {
         0% { transform: scale(0); opacity: 1; }
-        15% { transform: scale(0.3); opacity: 0.9; }
+        20% { transform: scale(0.2); opacity: 0.9; }
+        40% { transform: scale(0.5); opacity: 0.8; }
+        70% { transform: scale(0.8); opacity: 0.5; }
         100% { transform: scale(1); opacity: 0; }
       }
       
@@ -65,12 +67,12 @@ const CelebrationStyles = () => {
       
       .celebration-ring {
         animation: 
-          ringExpand 2.0s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-          ringPulse 1.5s ease-in-out infinite;
+          ringExpand 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
+          ringPulse 2.0s ease-in-out infinite;
       }
       
       .celebration-shake {
-        animation: screenShake 2.0s cubic-bezier(0.4, 0, 0.6, 1);
+        animation: screenShake 2.5s cubic-bezier(0.4, 0, 0.6, 1);
       }
       
       .celebration-modal {
@@ -78,12 +80,12 @@ const CelebrationStyles = () => {
       }
       
       .celebration-bounce {
-        animation: celebrationBounce 1.6s ease-in-out infinite;
+        animation: celebrationBounce 1.8s ease-in-out infinite;
       }
       
       .celebration-mega-heart {
         animation: 
-          celebrationBounce 1.6s ease-in-out infinite,
+          celebrationBounce 1.8s ease-in-out infinite,
           modalPulse 3s ease-in-out infinite;
         filter: drop-shadow(0 0 20px rgba(255, 20, 147, 0.8));
       }
