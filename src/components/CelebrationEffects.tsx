@@ -11,53 +11,51 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
   // Only pink/red hearts
   const heartEmojis = ['💕', '💖', '💗', '❤️', '💝', '💘', '💓', '💞', '💟', '♥️'];
 
-  // Primary explosive burst - immediate dramatic effect (MORE HEARTS)
-  const generatePrimaryBurst = (count: number, radius: number) => {
+  // Primary burst - immediate hearts bursting outward
+  const generatePrimaryBurst = (count: number) => {
     return Array.from({ length: count }, (_, i) => {
       const angle = (i / count) * 2 * Math.PI;
-      const x = Math.cos(angle) * radius;
-      const y = Math.sin(angle) * radius;
+      const distance = 200 + Math.random() * 100; // How far they travel
+      const moveX = Math.cos(angle) * distance;
+      const moveY = Math.sin(angle) * distance;
       
       return {
-        startX: x,
-        startY: y,
-        angle,
-        delay: 0, // NO DELAY - immediate burst
+        moveX,
+        moveY,
+        delay: 0, // Start immediately
         emoji: heartEmojis[i % heartEmojis.length],
         size: 22 + (i % 4) * 4,
-        spiralIntensity: 0.3 + Math.random() * 0.4,
       };
     });
   };
 
-  // Secondary wave - quick follow-up (MORE HEARTS)
-  const generateSecondaryWave = (count: number, radius: number) => {
+  // Secondary wave - quick follow-up burst
+  const generateSecondaryWave = (count: number) => {
     return Array.from({ length: count }, (_, i) => {
-      const angle = (i / count) * 2 * Math.PI + Math.PI / count;
-      const x = Math.cos(angle) * radius;
-      const y = Math.sin(angle) * radius;
+      const angle = (i / count) * 2 * Math.PI + Math.PI / count; // Offset angle
+      const distance = 150 + Math.random() * 80;
+      const moveX = Math.cos(angle) * distance;
+      const moveY = Math.sin(angle) * distance;
       
       return {
-        startX: x,
-        startY: y,
-        angle,
-        delay: 0.1, // Very short delay
+        moveX,
+        moveY,
+        delay: 0.3, // Small delay for wave effect
         emoji: heartEmojis[Math.floor(Math.random() * heartEmojis.length)],
         size: 18 + Math.random() * 8,
-        bounceIntensity: 0.4 + Math.random() * 0.3,
       };
     });
   };
 
-  // More hearts in each layer for bigger impact
-  const primaryBurst = generatePrimaryBurst(30, 80); // Increased from 20
-  const secondaryWave = generateSecondaryWave(24, 140); // Increased from 16
+  // Reduced heart count for testing
+  const primaryBurst = generatePrimaryBurst(20);
+  const secondaryWave = generateSecondaryWave(16);
 
   useEffect(() => {
     if (showCelebration) {
       const timer = setTimeout(() => {
         onCelebrationEnd();
-      }, 4000); // Shorter total duration
+      }, 4000);
       
       return () => clearTimeout(timer);
     }
@@ -74,30 +72,28 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
       </div>
       
       {/* Enhanced screen shake */}
-      <div className="absolute inset-0 animate-celebration-shake-intense">
+      <div className="absolute inset-0 animate-celebration-shake">
         
-        {/* SYNCHRONIZED expanding rings - all start immediately */}
+        {/* SYNCHRONIZED expanding rings */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-12 h-12 border-4 border-pink-500/90 rounded-full animate-ring-burst-immediate" />
-          <div className="absolute w-24 h-24 border-3 border-rose-500/70 rounded-full animate-ring-burst-immediate" style={{animationDelay: '0s'}} />
-          <div className="absolute w-40 h-40 border-2 border-red-500/60 rounded-full animate-ring-burst-immediate" style={{animationDelay: '0s'}} />
-          <div className="absolute w-64 h-64 border-2 border-pink-400/50 rounded-full animate-ring-burst-immediate" style={{animationDelay: '0s'}} />
-          <div className="absolute w-80 h-80 border-1 border-rose-300/40 rounded-full animate-ring-burst-immediate" style={{animationDelay: '0s'}} />
+          <div className="w-12 h-12 border-4 border-pink-500/90 rounded-full animate-ring-burst" />
+          <div className="absolute w-24 h-24 border-3 border-rose-500/70 rounded-full animate-ring-burst" />
+          <div className="absolute w-40 h-40 border-2 border-red-500/60 rounded-full animate-ring-burst" />
+          <div className="absolute w-64 h-64 border-2 border-pink-400/50 rounded-full animate-ring-burst" />
+          <div className="absolute w-80 h-80 border-1 border-rose-300/40 rounded-full animate-ring-burst" />
         </div>
 
-        {/* Primary Explosive Burst - IMMEDIATE */}
+        {/* Primary Heart Burst - IMMEDIATE */}
         <div className="absolute inset-0 flex items-center justify-center">
           {primaryBurst.map((heart, i) => (
             <div
               key={`primary-${i}`}
-              className="absolute animate-heart-explosive-burst-fast"
+              className="absolute animate-heart-burst-primary"
               style={{
                 left: '50%',
                 top: '50%',
-                '--start-x': `${heart.startX}px`,
-                '--start-y': `${heart.startY}px`,
-                '--burst-angle': `${heart.angle}rad`,
-                '--spiral-intensity': heart.spiralIntensity,
+                '--move-x': `${heart.moveX}px`,
+                '--move-y': `${heart.moveY}px`,
                 animationDelay: `${heart.delay}s`,
                 fontSize: `${heart.size}px`,
                 filter: 'drop-shadow(0 0 12px rgba(255, 20, 147, 0.9)) drop-shadow(0 0 6px rgba(255, 182, 193, 0.7))',
@@ -108,19 +104,17 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
           ))}
         </div>
 
-        {/* Secondary Wave - quick follow-up */}
+        {/* Secondary Heart Wave - slight delay */}
         <div className="absolute inset-0 flex items-center justify-center">
           {secondaryWave.map((heart, i) => (
             <div
               key={`secondary-${i}`}
-              className="absolute animate-heart-wave-cascade-fast"
+              className="absolute animate-heart-burst-secondary"
               style={{
                 left: '50%',
                 top: '50%',
-                '--start-x': `${heart.startX}px`,
-                '--start-y': `${heart.startY}px`,
-                '--burst-angle': `${heart.angle}rad`,
-                '--bounce-intensity': heart.bounceIntensity,
+                '--move-x': `${heart.moveX}px`,
+                '--move-y': `${heart.moveY}px`,
                 animationDelay: `${heart.delay}s`,
                 fontSize: `${heart.size}px`,
                 filter: 'drop-shadow(0 0 8px rgba(255, 105, 180, 0.8))',

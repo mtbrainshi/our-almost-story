@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -199,49 +200,11 @@ export default {
 					'0%, 90%, 100%': { opacity: '0' },
 					'5%, 85%': { opacity: '0.8' }
 				},
-				'heart-explosion': {
-					'0%': {
-						transform: 'translate(-50%, -50%) scale(0) rotate(0deg)',
-						opacity: '1'
-					},
-					'15%': {
-						transform: 'translate(-50%, -50%) scale(1.2) rotate(45deg)',
-						opacity: '1'
-					},
-					'100%': {
-						transform: 'translate(calc(-50% + var(--random-x)), calc(-50% + var(--random-y))) scale(0) rotate(360deg)',
-						opacity: '0'
-					}
-				},
-				'sparkle-confetti': {
-					'0%': {
-						transform: 'translate(-50%, -50%) scale(0) rotate(0deg)',
-						opacity: '1'
-					},
-					'15%': {
-						transform: 'translate(-50%, -50%) scale(1) rotate(180deg)',
-						opacity: '1'
-					},
-					'100%': {
-						transform: 'translate(calc(-50% + var(--random-x)), calc(-50% + var(--random-y))) scale(0.3) rotate(720deg)',
-						opacity: '0'
-					}
-				},
-				'scale-in': {
-					'0%': {
-						transform: 'scale(0.8)',
-						opacity: '0'
-					},
-					'100%': {
-						transform: 'scale(1)',
-						opacity: '1'
-					}
-				},
 
-				// SIMPLIFIED & SYNCHRONIZED HEART CONFETTI ANIMATIONS
+				// FIXED & SIMPLIFIED CONFETTI ANIMATIONS
 				
-				// Immediate ring burst - all start together
-				'ring-burst-immediate': {
+				// Slower ring burst that syncs with hearts
+				'ring-burst': {
 					'0%': {
 						transform: 'scale(0)',
 						opacity: '1'
@@ -256,34 +219,34 @@ export default {
 					}
 				},
 
-				// Fast explosive heart burst
-				'heart-explosive-burst-fast': {
+				// Simple heart burst - hearts move outward from center
+				'heart-burst-primary': {
 					'0%': {
-						transform: 'translate(-50%, -50%) scale(0) rotate(0deg)',
+						transform: 'translate(-50%, -50%) scale(0.5)',
 						opacity: '1'
 					},
-					'10%': {
-						transform: 'translate(-50%, -50%) scale(1.3) rotate(90deg)',
+					'20%': {
+						transform: 'translate(-50%, -50%) scale(1.2)',
 						opacity: '1'
 					},
 					'100%': {
-						transform: 'translate(calc(-50% + var(--start-x) * 2), calc(-50% + var(--start-y) * 2)) scale(0.3) rotate(360deg)',
+						transform: 'translate(calc(-50% + var(--move-x)), calc(-50% + var(--move-y))) scale(0.6)',
 						opacity: '0'
 					}
 				},
 
-				// Fast wave cascade
-				'heart-wave-cascade-fast': {
+				// Secondary wave with slight delay
+				'heart-burst-secondary': {
 					'0%': {
-						transform: 'translate(-50%, -50%) scale(0) rotate(0deg)',
+						transform: 'translate(-50%, -50%) scale(0.3)',
 						opacity: '1'
 					},
-					'15%': {
-						transform: 'translate(-50%, -50%) scale(1.1) rotate(60deg)',
+					'25%': {
+						transform: 'translate(-50%, -50%) scale(1.1)',
 						opacity: '1'
 					},
 					'100%': {
-						transform: 'translate(calc(-50% + var(--start-x) * 1.8), calc(-50% + var(--start-y) * 1.8)) scale(0.4) rotate(270deg)',
+						transform: 'translate(calc(-50% + var(--move-x)), calc(-50% + var(--move-y))) scale(0.4)',
 						opacity: '0'
 					}
 				},
@@ -298,21 +261,21 @@ export default {
 					}
 				},
 
-				'celebration-shake-intense': {
+				'celebration-shake': {
 					'0%, 100%': {
 						transform: 'translate(0)'
 					},
 					'10%': {
-						transform: 'translate(-2px, -2px)'
+						transform: 'translate(-1px, -1px)'
 					},
 					'20%': {
-						transform: 'translate(2px, -2px)'
+						transform: 'translate(1px, -1px)'
 					},
 					'30%': {
-						transform: 'translate(-2px, 2px)'
+						transform: 'translate(-1px, 1px)'
 					},
 					'40%': {
-						transform: 'translate(2px, 2px)'
+						transform: 'translate(1px, 1px)'
 					},
 					'50%': {
 						transform: 'translate(-1px, -1px)'
@@ -410,16 +373,13 @@ export default {
 				'rain-drop': 'rain-drop 1.2s linear infinite',
 				'float': 'float 3s ease-in-out infinite',
 				'lightning': 'lightning 4s ease-in-out infinite',
-				'heart-explosion': 'heart-explosion 3s ease-out forwards',
-				'sparkle-confetti': 'sparkle-confetti 4s ease-out forwards',
-				'scale-in': 'scale-in 0.5s ease-out',
 
-				// NEW FAST & SYNCHRONIZED ANIMATIONS
-				'ring-burst-immediate': 'ring-burst-immediate 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
-				'heart-explosive-burst-fast': 'heart-explosive-burst-fast 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
-				'heart-wave-cascade-fast': 'heart-wave-cascade-fast 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
+				// FIXED CONFETTI ANIMATIONS
+				'ring-burst': 'ring-burst 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
+				'heart-burst-primary': 'heart-burst-primary 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
+				'heart-burst-secondary': 'heart-burst-secondary 1.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
 				'celebration-pulse': 'celebration-pulse 2s ease-in-out infinite',
-				'celebration-shake-intense': 'celebration-shake-intense 0.6s ease-in-out',
+				'celebration-shake': 'celebration-shake 0.6s ease-in-out',
 				'modal-breathe': 'modal-breathe 3s ease-in-out infinite',
 				'heart-mega-celebration': 'heart-mega-celebration 1s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
 				'text-shimmer': 'text-shimmer 2s linear infinite',
