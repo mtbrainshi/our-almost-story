@@ -17,22 +17,6 @@ const CelebrationStyles = () => {
           opacity: 1;
         }
         100% { 
-          transform: translate(-50%, -50%) translate(var(--end-x), var(--end-y)) scale(0.6);
-          opacity: 0;
-        }
-      }
-      
-      @keyframes heartBurstSecondary {
-        0% { 
-          transform: translate(-50%, -50%) scale(0);
-          opacity: 0;
-        }
-        15% { 
-          transform: translate(-50%, -50%) scale(1.1);
-          opacity: 1;
-        }
-        100% { 
-          transform: translate(-50%, -50%) translate(var(--end-x), var(--end-y)) scale(0.5);
           opacity: 0;
         }
       }
@@ -55,17 +39,14 @@ const CelebrationStyles = () => {
         50% { transform: scale(1.02); }
       }
       
+      @keyframes celebrationBounce {
+        0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+        40% { transform: translateY(-10px); }
+        60% { transform: translateY(-5px); }
+      }
+      
       .celebration-ring {
         animation: ringExpand 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
-      }
-      
-      .celebration-heart-primary {
-        animation: heartBurst 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
-      }
-      
-      .celebration-heart-secondary {
-        animation: heartBurstSecondary 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
-        animation-delay: 0.1s;
       }
       
       .celebration-shake {
@@ -74,6 +55,10 @@ const CelebrationStyles = () => {
       
       .celebration-modal {
         animation: modalPulse 3s ease-in-out infinite;
+      }
+      
+      .celebration-bounce {
+        animation: celebrationBounce 1.4s ease-in-out infinite;
       }
     `}</style>
   );

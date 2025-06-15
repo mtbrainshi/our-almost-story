@@ -53,33 +53,54 @@ const ConfettiHearts = ({}: ConfettiHeartsProps) => {
   const allHearts = [...primaryHearts, ...secondaryHearts];
 
   return (
-    <div className="absolute inset-0 flex items-center justify-center">
-      {allHearts.map((heart) => {
-        const endX = Math.cos((heart.angle * Math.PI) / 180) * heart.distance;
-        const endY = Math.sin((heart.angle * Math.PI) / 180) * heart.distance;
-        
-        return (
+    <>
+      <style>
+        {allHearts.map((heart) => {
+          const endX = Math.cos((heart.angle * Math.PI) / 180) * heart.distance;
+          const endY = Math.sin((heart.angle * Math.PI) / 180) * heart.distance;
+          const animationDelay = heart.type === 'secondary' ? '0.1s' : '0s';
+          const duration = heart.type === 'secondary' ? '0.6s' : '0.5s';
+          
+          return `
+            @keyframes heartBurst-${heart.id} {
+              0% { 
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0;
+              }
+              20% { 
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 1;
+              }
+              100% { 
+                transform: translate(-50%, -50%) translateX(${endX}px) translateY(${endY}px) scale(0.6);
+                opacity: 0;
+              }
+            }
+            .heart-${heart.id} {
+              animation: heartBurst-${heart.id} ${duration} cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+              animation-delay: ${animationDelay};
+            }
+          `;
+        }).join('')}
+      </style>
+      
+      <div className="absolute inset-0 flex items-center justify-center">
+        {allHearts.map((heart) => (
           <div
             key={heart.id}
-            className={`absolute ${
-              heart.type === 'primary' 
-                ? 'celebration-heart-primary' 
-                : 'celebration-heart-secondary'
-            }`}
+            className={`absolute heart-${heart.id}`}
             style={{
               left: '50%',
               top: '50%',
               fontSize: `${heart.size}px`,
               filter: 'drop-shadow(0 0 8px rgba(255, 20, 147, 0.8))',
-              '--end-x': `${endX}px`,
-              '--end-y': `${endY}px`,
-            } as React.CSSProperties}
+            }}
           >
             {heart.emoji}
           </div>
-        );
-      })}
-    </div>
+        ))}
+      </div>
+    </>
   );
 };
 
