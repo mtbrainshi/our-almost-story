@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -27,6 +26,64 @@ const FinalAsk = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  // Generate circular burst positions for hearts
+  const generateBurstPositions = (count: number) => {
+    return Array.from({ length: count }, (_, i) => {
+      const angle = (i / count) * 2 * Math.PI;
+      const radius = 120 + Math.random() * 80; // Random radius between 120-200px
+      const burstX = Math.cos(angle) * radius;
+      const burstY = Math.sin(angle) * radius;
+      const rotation = angle * (180 / Math.PI) + Math.random() * 180;
+      
+      return {
+        burstX,
+        burstY,
+        rotation,
+        delay: (i % 8) * 0.1, // Staggered bursts
+        scale: 0.8 + Math.random() * 0.6, // Varied sizes
+      };
+    });
+  };
+
+  // Generate curved arc trajectories
+  const generateArcPositions = (count: number) => {
+    return Array.from({ length: count }, (_, i) => {
+      const baseAngle = (i / count) * 2 * Math.PI;
+      const arcMidX = Math.cos(baseAngle) * (80 + Math.random() * 40);
+      const arcMidY = Math.sin(baseAngle) * (60 + Math.random() * 40) - 60;
+      const arcEndX = Math.cos(baseAngle + 0.5) * (150 + Math.random() * 100);
+      const arcEndY = Math.sin(baseAngle + 0.5) * (100 + Math.random() * 80) + 50;
+      
+      return {
+        arcMidX,
+        arcMidY,
+        arcEndX,
+        arcEndY,
+        delay: (i % 6) * 0.2,
+        duration: 2.5 + Math.random() * 1.5,
+      };
+    });
+  };
+
+  // Generate spiral positions
+  const generateSpiralPositions = (count: number) => {
+    return Array.from({ length: count }, (_, i) => {
+      const spiralAngle = (i / count) * 720; // 2 full rotations
+      const spiralRadius = 30 + (i / count) * 120;
+      
+      return {
+        spiralAngle,
+        spiralRadius,
+        delay: i * 0.15,
+        direction: i % 2 === 0 ? 1 : -1, // Alternate spiral directions
+      };
+    });
+  };
+
+  const burstPositions = generateBurstPositions(20);
+  const arcPositions = generateArcPositions(16);
+  const spiralPositions = generateSpiralPositions(12);
 
   const handleYesClick = () => {
     setShowCelebration(true);
@@ -103,7 +160,7 @@ const FinalAsk = () => {
         <div className="absolute bottom-1/2 right-1/3 w-80 h-80 bg-orange-200/20 rounded-full blur-2xl animate-breathe" style={{animationDelay: '3s'}} />
       </div>
 
-      {/* ENHANCED Romantic Celebration Modal */}
+      {/* ENHANCED Romantic Celebration Modal with Circular Confetti */}
       {showCelebration && (
         <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
           {/* Dreamy Glass Background with gradient overlay */}
@@ -119,55 +176,78 @@ const FinalAsk = () => {
             <div className="absolute w-52 h-52 border border-purple-300/30 rounded-full animate-expand-ring" style={{animationDelay: '0.6s'}} />
           </div>
           
-          {/* More romantic floating hearts with consistent timing */}
-          {celebrationPhase >= 1 && [...Array(24)].map((_, i) => (
-            <div
-              key={`hearts-${i}`}
-              className="absolute animate-heart-float"
-              style={{
-                left: `${20 + Math.random() * 60}%`,
-                top: `${30 + Math.random() * 40}%`,
-                animationDelay: `${(i % 6) * 0.3}s`,
-                animationDuration: `3s`,
-                fontSize: `${14 + (i % 3) * 4}px`,
-              }}
-            >
-              {['💕', '💖', '💗', '❤️', '💝', '💘'][i % 6]}
+          {/* PHASE 1: Circular Burst Hearts */}
+          {celebrationPhase >= 1 && (
+            <div className="absolute inset-0 flex items-center justify-center">
+              {burstPositions.map((pos, i) => (
+                <div
+                  key={`burst-${i}`}
+                  className="absolute animate-heart-burst"
+                  style={{
+                    left: '50%',
+                    top: '50%',
+                    '--burst-x': `${pos.burstX}px`,
+                    '--burst-y': `${pos.burstY}px`,
+                    '--burst-rotation': `${pos.rotation}deg`,
+                    animationDelay: `${pos.delay}s`,
+                    fontSize: `${16 + pos.scale * 8}px`,
+                    zIndex: Math.floor(pos.scale * 10),
+                  } as React.CSSProperties}
+                >
+                  {['💕', '💖', '💗', '❤️', '💝', '💘'][i % 6]}
+                </div>
+              ))}
             </div>
-          ))}
+          )}
           
-          {/* Consistent sparkles with proper timing */}
-          {celebrationPhase >= 2 && [...Array(4)].map((_, i) => (
-            <div
-              key={`sparkles-${i}`}
-              className="absolute animate-gentle-sparkle"
-              style={{
-                left: `${30 + i * 15}%`,
-                top: `${40 + (i % 2) * 20}%`,
-                animationDelay: `${i * 0.5}s`,
-                animationDuration: `3s`,
-                fontSize: `14px`,
-              }}
-            >
-              ✨
+          {/* PHASE 2: Curved Arc Trajectories */}
+          {celebrationPhase >= 2 && (
+            <div className="absolute inset-0 flex items-center justify-center">
+              {arcPositions.map((pos, i) => (
+                <div
+                  key={`arc-${i}`}
+                  className="absolute animate-heart-arc"
+                  style={{
+                    left: '50%',
+                    top: '50%',
+                    '--arc-mid-x': `${pos.arcMidX}px`,
+                    '--arc-mid-y': `${pos.arcMidY}px`,
+                    '--arc-end-x': `${pos.arcEndX}px`,
+                    '--arc-end-y': `${pos.arcEndY}px`,
+                    animationDelay: `${pos.delay}s`,
+                    animationDuration: `${pos.duration}s`,
+                    fontSize: `${14 + (i % 3) * 3}px`,
+                  } as React.CSSProperties}
+                >
+                  {['💕', '💖', '💗'][i % 3]}
+                </div>
+              ))}
             </div>
-          ))}
+          )}
           
-          {/* Dreamy floating particles with consistent movement */}
-          {celebrationPhase >= 3 && [...Array(20)].map((_, i) => (
-            <div
-              key={`particles-${i}`}
-              className="absolute w-1 h-1 bg-pink-300/60 rounded-full animate-float"
-              style={{
-                left: `${(i % 10) * 10 + 5}%`,
-                top: `${(Math.floor(i / 10) * 30) + 25}%`,
-                animationDelay: `${(i % 4) * 0.5}s`,
-                animationDuration: `4s`,
-              }}
-            />
-          ))}
+          {/* PHASE 3: Spiral Hearts */}
+          {celebrationPhase >= 3 && (
+            <div className="absolute inset-0 flex items-center justify-center">
+              {spiralPositions.map((pos, i) => (
+                <div
+                  key={`spiral-${i}`}
+                  className="absolute animate-heart-spiral"
+                  style={{
+                    left: '50%',
+                    top: '50%',
+                    '--spiral-angle': `${pos.spiralAngle * pos.direction}deg`,
+                    animationDelay: `${pos.delay}s`,
+                    fontSize: `${12 + (i % 4) * 2}px`,
+                    transform: `scale(${0.8 + (i % 3) * 0.2})`,
+                  } as React.CSSProperties}
+                >
+                  {['💖', '🌸', '✨'][i % 3]}
+                </div>
+              ))}
+            </div>
+          )}
           
-          {/* Additional romantic elements with consistent placement */}
+          {/* PHASE 4: Gentle Floating Elements */}
           {celebrationPhase >= 4 && [...Array(8)].map((_, i) => (
             <div
               key={`roses-${i}`}

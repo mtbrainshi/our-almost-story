@@ -235,6 +235,55 @@ export default {
             opacity: "0",
           },
         },
+        "heart-burst": {
+          "0%": {
+            transform: "translate(-50%, -50%) scale(0) rotate(0deg)",
+            opacity: "1",
+          },
+          "15%": {
+            transform: "translate(-50%, -50%) scale(1.2) rotate(45deg)",
+            opacity: "1",
+          },
+          "100%": {
+            transform: "translate(calc(-50% + var(--burst-x, 0px)), calc(-50% + var(--burst-y, 0px))) scale(0.6) rotate(var(--burst-rotation, 360deg))",
+            opacity: "0",
+          },
+        },
+        "heart-arc": {
+          "0%": {
+            transform: "translate(0, 0) rotate(0deg) scale(1)",
+            opacity: "0",
+          },
+          "10%": {
+            opacity: "1",
+          },
+          "50%": {
+            transform: "translate(var(--arc-mid-x, 100px), var(--arc-mid-y, -80px)) rotate(180deg) scale(1.1)",
+            opacity: "1",
+          },
+          "100%": {
+            transform: "translate(var(--arc-end-x, 200px), var(--arc-end-y, 100px)) rotate(360deg) scale(0.8)",
+            opacity: "0",
+          },
+        },
+        "heart-spiral": {
+          "0%": {
+            transform: "translate(-50%, -50%) rotate(0deg) scale(0)",
+            opacity: "1",
+          },
+          "25%": {
+            transform: "translate(calc(-50% + 30px * cos(var(--spiral-angle, 0deg))), calc(-50% + 30px * sin(var(--spiral-angle, 0deg)))) rotate(90deg) scale(1)",
+            opacity: "1",
+          },
+          "75%": {
+            transform: "translate(calc(-50% + 100px * cos(var(--spiral-angle, 180deg))), calc(-50% + 100px * sin(var(--spiral-angle, 180deg)))) rotate(270deg) scale(0.9)",
+            opacity: "0.7",
+          },
+          "100%": {
+            transform: "translate(calc(-50% + 150px * cos(var(--spiral-angle, 360deg))), calc(-50% + 150px * sin(var(--spiral-angle, 360deg)))) rotate(360deg) scale(0)",
+            opacity: "0",
+          },
+        },
         "heart-float": {
           "0%": {
             transform: "translateY(0) scale(0.8)",
@@ -287,6 +336,9 @@ export default {
         "fade-in-delayed": "fade-in-delayed 0.8s ease-out forwards",
         "celebration-flash": "celebration-flash 0.8s ease-out",
         "expand-ring": "expand-ring 2s ease-out",
+        "heart-burst": "heart-burst 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
+        "heart-arc": "heart-arc 3s cubic-bezier(0.4, 0, 0.2, 1) forwards",
+        "heart-spiral": "heart-spiral 3.5s ease-out forwards",
         "heart-float": "heart-float 3s ease-out forwards",
         "gentle-sparkle": "gentle-sparkle 3s ease-in-out infinite",
         "heart-pulse-gentle": "heart-pulse-gentle 1.8s ease-in-out infinite",
