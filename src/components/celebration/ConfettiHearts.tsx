@@ -2,171 +2,180 @@
 interface ConfettiHeartsProps {}
 
 const ConfettiHearts = ({}: ConfettiHeartsProps) => {
-  // Enhanced heart emojis with more variety
-  const heartEmojis = ['💕', '💖', '💗', '❤️', '💝', '💘', '💓', '💞', '✨', '🌟', '⭐', '💫'];
+  // Enhanced heart emojis with varied colors and sparkles
+  const heartEmojis = ['💕', '💖', '💗', '❤️', '💝', '💘', '💓', '💞'];
   const sparkleEmojis = ['✨', '🌟', '⭐', '💫'];
   
-  // Wave 1: Gentle Burst (16 hearts) - Soft and romantic
-  const generateWave1Hearts = () => {
+  // Generate circular burst patterns with physics
+  const generateCircularBurst = (wave: number, heartCount: number, burstRadius: number) => {
     const hearts = [];
     
-    for (let i = 0; i < 16; i++) {
-      const angle = (i * 360) / 16;
-      const distance = 280 + Math.random() * 80;
-      const size = 24 + Math.random() * 12;
+    for (let i = 0; i < heartCount; i++) {
+      const angle = (i * 360) / heartCount + (wave * 15); // Offset each wave
+      const distance = burstRadius + Math.random() * 60;
+      const size = 20 + Math.random() * 16;
+      const rotationSpeed = 180 + Math.random() * 360;
+      const fallSpeed = 0.3 + Math.random() * 0.4;
+      const opacity = 0.7 + Math.random() * 0.3;
+      
+      // Calculate curved trajectory points
+      const midX = Math.cos((angle * Math.PI) / 180) * (distance * 0.6);
+      const midY = Math.sin((angle * Math.PI) / 180) * (distance * 0.6) - 50; // Arc upward
+      const endX = Math.cos((angle * Math.PI) / 180) * distance;
+      const endY = Math.sin((angle * Math.PI) / 180) * distance + 200; // Fall down with gravity
       
       hearts.push({
-        id: `wave1-${i}`,
-        emoji: heartEmojis[i % heartEmojis.length],
+        id: `burst-${wave}-${i}`,
+        emoji: heartEmojis[Math.floor(Math.random() * heartEmojis.length)],
         angle,
-        distance,
         size,
-        type: 'gentle'
+        opacity,
+        rotationSpeed,
+        fallSpeed,
+        trajectory: {
+          startX: 0,
+          startY: 0,
+          midX,
+          midY,
+          endX,
+          endY
+        },
+        wave,
+        delay: wave * 0.4 + (i * 0.05) // Stagger within burst
       });
     }
     
     return hearts;
   };
 
-  // Wave 2: Floating Hearts (12 hearts) - Slow and dreamy
-  const generateFloatingHearts = () => {
-    const hearts = [];
+  // Generate sparkle effects
+  const generateSparkles = (count: number) => {
+    const sparkles = [];
     
-    for (let i = 0; i < 12; i++) {
-      const angle = (i * 360) / 12 + 15; // Offset
-      const distance = 350 + Math.random() * 100;
-      const size = 28 + Math.random() * 16;
+    for (let i = 0; i < count; i++) {
+      const angle = Math.random() * 360;
+      const distance = 100 + Math.random() * 200;
+      const size = 16 + Math.random() * 8;
+      const floatHeight = -100 - Math.random() * 150;
       
-      hearts.push({
-        id: `float-${i}`,
-        emoji: heartEmojis[i % heartEmojis.length],
-        angle,
-        distance,
-        size,
-        type: 'floating'
-      });
-    }
-    
-    return hearts;
-  };
-
-  // Wave 3: Sparkle Hearts (10 hearts) - Twinkling effect
-  const generateSparkleHearts = () => {
-    const hearts = [];
-    
-    for (let i = 0; i < 10; i++) {
-      const angle = (i * 360) / 10 + 30; // Offset
-      const distance = 400 + Math.random() * 120;
-      const size = 26 + Math.random() * 14;
-      
-      hearts.push({
+      sparkles.push({
         id: `sparkle-${i}`,
-        emoji: sparkleEmojis[i % sparkleEmojis.length],
+        emoji: sparkleEmojis[Math.floor(Math.random() * sparkleEmojis.length)],
         angle,
         distance,
         size,
-        type: 'sparkle'
+        floatHeight,
+        delay: Math.random() * 2
       });
     }
     
-    return hearts;
+    return sparkles;
   };
 
-  const wave1Hearts = generateWave1Hearts();
-  const floatingHearts = generateFloatingHearts();
-  const sparkleHearts = generateSparkleHearts();
-  const allConfetti = [...wave1Hearts, ...floatingHearts, ...sparkleHearts];
+  // Create multiple burst waves
+  const wave1Hearts = generateCircularBurst(1, 12, 180); // First burst
+  const wave2Hearts = generateCircularBurst(2, 16, 240); // Second burst
+  const wave3Hearts = generateCircularBurst(3, 10, 300); // Third burst
+  const sparkleEffects = generateSparkles(8);
+  
+  const allConfetti = [...wave1Hearts, ...wave2Hearts, ...wave3Hearts, ...sparkleEffects];
 
   return (
     <>
       <style>
         {allConfetti.map((item) => {
-          const endX = Math.cos((item.angle * Math.PI) / 180) * item.distance;
-          const endY = Math.sin((item.angle * Math.PI) / 180) * item.distance;
-          const rotation = Math.random() * 360 + 180; // Gentle rotation
-          
-          // Type-specific gentle animations
-          let animationDelay, duration, glowColor;
-          
-          switch (item.type) {
-            case 'gentle':
-              animationDelay = `${Math.random() * 0.5}s`;
-              duration = '3.5s'; // Gentle timing
-              glowColor = 'rgba(255, 20, 147, 0.8)';
-              break;
-            case 'floating':
-              animationDelay = `${0.8 + Math.random() * 0.6}s`;
-              duration = '4.2s'; // Slower floating
-              glowColor = 'rgba(255, 105, 180, 0.7)';
-              break;
-            case 'sparkle':
-              animationDelay = `${1.5 + Math.random() * 0.8}s`;
-              duration = '4.8s'; // Slowest sparkles
-              glowColor = 'rgba(255, 215, 0, 0.9)';
-              break;
-            default:
-              animationDelay = '0s';
-              duration = '3.5s';
-              glowColor = 'rgba(255, 20, 147, 0.8)';
+          if (item.id.includes('sparkle')) {
+            // Sparkle floating animation
+            const floatX = Math.cos((item.angle * Math.PI) / 180) * item.distance;
+            const floatY = Math.sin((item.angle * Math.PI) / 180) * item.distance;
+            
+            return `
+              @keyframes sparkleFloat-${item.id} {
+                0% { 
+                  transform: translate(-50%, -50%) translateY(0px) scale(0) rotate(0deg);
+                  opacity: 0;
+                }
+                20% { 
+                  transform: translate(-50%, -50%) translateY(-20px) scale(1) rotate(90deg);
+                  opacity: 1;
+                }
+                80% { 
+                  transform: translate(-50%, -50%) translateX(${floatX}px) translateY(${item.floatHeight}px) scale(1) rotate(450deg);
+                  opacity: 1;
+                }
+                100% { 
+                  transform: translate(-50%, -50%) translateX(${floatX}px) translateY(${item.floatHeight - 50}px) scale(0.3) rotate(540deg);
+                  opacity: 0;
+                }
+              }
+              
+              @keyframes sparkleGlow-${item.id} {
+                0%, 100% { filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8)) brightness(1); }
+                50% { filter: drop-shadow(0 0 16px rgba(255, 215, 0, 1)) brightness(1.3); }
+              }
+              
+              .confetti-${item.id} {
+                animation: 
+                  sparkleFloat-${item.id} 5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
+                  sparkleGlow-${item.id} 2s ease-in-out infinite;
+                animation-delay: ${item.delay}s, ${item.delay + 0.5}s;
+              }
+            `;
+          } else {
+            // Heart burst with curved trajectory and physics
+            const { trajectory, rotationSpeed, fallSpeed } = item;
+            
+            return `
+              @keyframes heartBurst-${item.id} {
+                0% { 
+                  transform: translate(-50%, -50%) scale(0) rotate(0deg);
+                  opacity: 0;
+                }
+                15% { 
+                  transform: translate(-50%, -50%) scale(1.2) rotate(${rotationSpeed * 0.15}deg);
+                  opacity: ${item.opacity};
+                }
+                30% { 
+                  transform: translate(-50%, -50%) translateX(${trajectory.midX}px) translateY(${trajectory.midY}px) scale(1) rotate(${rotationSpeed * 0.3}deg);
+                  opacity: ${item.opacity};
+                }
+                70% { 
+                  transform: translate(-50%, -50%) translateX(${trajectory.endX * 0.8}px) translateY(${trajectory.endY * 0.6}px) scale(0.9) rotate(${rotationSpeed * 0.7}deg);
+                  opacity: ${item.opacity * 0.8};
+                }
+                90% { 
+                  transform: translate(-50%, -50%) translateX(${trajectory.endX}px) translateY(${trajectory.endY * 0.9}px) scale(0.7) rotate(${rotationSpeed}deg);
+                  opacity: ${item.opacity * 0.4};
+                }
+                100% { 
+                  transform: translate(-50%, -50%) translateX(${trajectory.endX}px) translateY(${trajectory.endY}px) scale(0.3) rotate(${rotationSpeed + 180}deg);
+                  opacity: 0;
+                }
+              }
+              
+              @keyframes heartGlow-${item.id} {
+                0%, 100% { 
+                  filter: drop-shadow(0 0 6px rgba(255, 20, 147, 0.6)) brightness(1);
+                }
+                50% { 
+                  filter: drop-shadow(0 0 12px rgba(255, 20, 147, 0.9)) brightness(1.1);
+                }
+              }
+              
+              @keyframes heartPulse-${item.id} {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.05); }
+              }
+              
+              .confetti-${item.id} {
+                animation: 
+                  heartBurst-${item.id} ${4.5 + item.fallSpeed}s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
+                  heartGlow-${item.id} 2s ease-in-out infinite,
+                  heartPulse-${item.id} 3s ease-in-out infinite;
+                animation-delay: ${item.delay}s, ${item.delay + 0.3}s, ${item.delay + 0.8}s;
+              }
+            `;
           }
-          
-          return `
-            @keyframes gentleMotion-${item.id} {
-              0% { 
-                transform: translate(-50%, -50%) scale(0.3) rotate(0deg);
-                opacity: 0;
-              }
-              10% { 
-                transform: translate(-50%, -50%) scale(0.8) rotate(${rotation * 0.1}deg);
-                opacity: 0.7;
-              }
-              25% { 
-                transform: translate(-50%, -50%) scale(1) rotate(${rotation * 0.25}deg);
-                opacity: 1;
-              }
-              50% { 
-                transform: translate(-50%, -50%) translateX(${endX * 0.4}px) translateY(${endY * 0.4}px) scale(1) rotate(${rotation * 0.5}deg);
-                opacity: 1;
-              }
-              75% { 
-                transform: translate(-50%, -50%) translateX(${endX * 0.75}px) translateY(${endY * 0.75}px) scale(0.9) rotate(${rotation * 0.75}deg);
-                opacity: 0.8;
-              }
-              90% { 
-                transform: translate(-50%, -50%) translateX(${endX * 0.95}px) translateY(${endY * 0.95}px) scale(0.7) rotate(${rotation * 0.9}deg);
-                opacity: 0.4;
-              }
-              100% { 
-                transform: translate(-50%, -50%) translateX(${endX}px) translateY(${endY}px) scale(0.5) rotate(${rotation}deg);
-                opacity: 0;
-              }
-            }
-            
-            @keyframes gentleGlow-${item.id} {
-              0%, 100% { 
-                filter: drop-shadow(0 0 8px ${glowColor}) brightness(1); 
-              }
-              33% { 
-                filter: drop-shadow(0 0 15px ${glowColor}) brightness(1.1); 
-              }
-              66% { 
-                filter: drop-shadow(0 0 12px ${glowColor}) brightness(1.05); 
-              }
-            }
-            
-            @keyframes gentlePulse-${item.id} {
-              0%, 100% { transform: scale(1); }
-              50% { transform: scale(1.05); }
-            }
-            
-            .confetti-${item.id} {
-              animation: 
-                gentleMotion-${item.id} ${duration} cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
-                gentleGlow-${item.id} 2.5s ease-in-out infinite,
-                gentlePulse-${item.id} 3s ease-in-out infinite;
-              animation-delay: ${animationDelay}, ${animationDelay}, ${parseFloat(animationDelay) + 0.5}s;
-            }
-          `;
         }).join('')}
       </style>
       
@@ -179,7 +188,8 @@ const ConfettiHearts = ({}: ConfettiHeartsProps) => {
               left: '50%',
               top: '50%',
               fontSize: `${item.size}px`,
-              zIndex: 50,
+              zIndex: 50 + (item.wave || 0),
+              opacity: item.opacity || 1,
             }}
           >
             {item.emoji}
