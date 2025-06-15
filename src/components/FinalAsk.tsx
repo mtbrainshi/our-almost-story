@@ -119,64 +119,65 @@ const FinalAsk = () => {
             <div className="absolute w-52 h-52 border border-purple-300/30 rounded-full animate-expand-ring" style={{animationDelay: '0.6s'}} />
           </div>
           
-          {/* Romantic floating hearts with variety */}
-          {celebrationPhase >= 1 && [...Array(16)].map((_, i) => (
+          {/* More romantic floating hearts with consistent timing */}
+          {celebrationPhase >= 1 && [...Array(24)].map((_, i) => (
             <div
               key={`hearts-${i}`}
               className="absolute animate-heart-float"
               style={{
-                left: `${40 + Math.random() * 20}%`,
-                top: `${40 + Math.random() * 20}%`,
-                animationDelay: `${Math.random() * 1.2}s`,
-                animationDuration: `${2.5 + Math.random() * 1.5}s`,
-                fontSize: `${16 + Math.random() * 12}px`,
+                left: `${20 + Math.random() * 60}%`,
+                top: `${30 + Math.random() * 40}%`,
+                animationDelay: `${(i % 6) * 0.3}s`,
+                animationDuration: `3s`,
+                fontSize: `${14 + (i % 3) * 4}px`,
               }}
             >
-              {['💕', '💖', '💗', '❤️', '💝', '💘'][Math.floor(Math.random() * 6)]}
+              {['💕', '💖', '💗', '❤️', '💝', '💘'][i % 6]}
             </div>
           ))}
           
-          {/* Gentle sparkles - reduced from 12 to 4 */}
+          {/* Consistent sparkles with proper timing */}
           {celebrationPhase >= 2 && [...Array(4)].map((_, i) => (
             <div
               key={`sparkles-${i}`}
               className="absolute animate-gentle-sparkle"
               style={{
-                left: `${25 + Math.random() * 50}%`,
-                top: `${35 + Math.random() * 30}%`,
-                animationDelay: `${Math.random() * 2}s`,
-                fontSize: `${12 + Math.random() * 6}px`,
+                left: `${30 + i * 15}%`,
+                top: `${40 + (i % 2) * 20}%`,
+                animationDelay: `${i * 0.5}s`,
+                animationDuration: `3s`,
+                fontSize: `14px`,
               }}
             >
               ✨
             </div>
           ))}
           
-          {/* Dreamy floating particles */}
+          {/* Dreamy floating particles with consistent movement */}
           {celebrationPhase >= 3 && [...Array(20)].map((_, i) => (
             <div
               key={`particles-${i}`}
               className="absolute w-1 h-1 bg-pink-300/60 rounded-full animate-float"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 2}s`,
-                animationDuration: `${3 + Math.random() * 2}s`,
+                left: `${(i % 10) * 10 + 5}%`,
+                top: `${(Math.floor(i / 10) * 30) + 25}%`,
+                animationDelay: `${(i % 4) * 0.5}s`,
+                animationDuration: `4s`,
               }}
             />
           ))}
           
-          {/* Additional romantic elements */}
-          {celebrationPhase >= 4 && [...Array(6)].map((_, i) => (
+          {/* Additional romantic elements with consistent placement */}
+          {celebrationPhase >= 4 && [...Array(8)].map((_, i) => (
             <div
               key={`roses-${i}`}
               className="absolute animate-heart-float"
               style={{
-                left: `${30 + Math.random() * 40}%`,
-                top: `${50 + Math.random() * 30}%`,
-                animationDelay: `${Math.random() * 0.8}s`,
-                animationDuration: `${3 + Math.random() * 1}s`,
-                fontSize: `${18 + Math.random() * 6}px`,
+                left: `${25 + (i % 4) * 15}%`,
+                top: `${45 + (i < 4 ? 0 : 25)}%`,
+                animationDelay: `${(i % 4) * 0.4}s`,
+                animationDuration: `3.5s`,
+                fontSize: `18px`,
               }}
             >
               🌹
