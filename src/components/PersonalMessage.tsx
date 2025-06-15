@@ -3,11 +3,12 @@ import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Heart, Send } from "lucide-react";
+import { Heart, Send, MessageCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const PersonalMessage = () => {
   const [message, setMessage] = useState("");
+  const [showForm, setShowForm] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
@@ -25,6 +26,7 @@ const PersonalMessage = () => {
       });
       setMessage("");
       setIsSubmitting(false);
+      setShowForm(false); // Hide form after sending
     }, 1500);
   };
 
@@ -46,54 +48,77 @@ const PersonalMessage = () => {
           <CardContent className="p-8 md:p-12 text-center">
             {/* Header */}
             <div className="mb-8">
-              <div className="text-6xl mb-4 animate-pulse">💕</div>
-              <h1 className="font-playfair text-3xl md:text-4xl italic text-purple-800 font-bold mb-4">
+              <div className="text-6xl mb-6 animate-pulse">💕</div>
+              <h1 className="font-playfair text-3xl md:text-4xl italic text-purple-800 font-bold mb-6">
                 Sakshi, I'm waiting...
               </h1>
-              <p className="font-poppins text-lg text-purple-600 mb-2">
+              <p className="font-poppins text-lg text-purple-600 mb-4">
                 This space is just for you. Whatever you want to say, whatever you feel...
               </p>
-              <p className="font-poppins text-base text-purple-500">
+              <p className="font-poppins text-base text-purple-500 mb-8">
                 I'm here to listen.
               </p>
+              
+              {/* Optional Message Button */}
+              {!showForm && (
+                <Button
+                  onClick={() => setShowForm(true)}
+                  className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-105 px-8 py-3"
+                >
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  Leave me a message (optional)
+                </Button>
+              )}
             </div>
 
-            {/* Message Form */}
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="relative">
-                <Textarea
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  placeholder="Share your thoughts, feelings, or anything you'd like to say..."
-                  className="min-h-[120px] text-base bg-white/80 border-purple-200 focus:border-purple-400 focus:ring-purple-400 rounded-xl resize-none"
-                  disabled={isSubmitting}
-                />
-                <div className="absolute bottom-3 right-3">
-                  <Heart className="w-4 h-4 text-purple-400" />
+            {/* Message Form - only shows when requested */}
+            {showForm && (
+              <form onSubmit={handleSubmit} className="space-y-6 mb-8">
+                <div className="relative">
+                  <Textarea
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    placeholder="Share your thoughts, feelings, or anything you'd like to say..."
+                    className="min-h-[120px] text-base bg-white/80 border-purple-200 focus:border-purple-400 focus:ring-purple-400 rounded-xl resize-none"
+                    disabled={isSubmitting}
+                  />
+                  <div className="absolute bottom-3 right-3">
+                    <Heart className="w-4 h-4 text-purple-400" />
+                  </div>
                 </div>
-              </div>
 
-              <Button
-                type="submit"
-                disabled={!message.trim() || isSubmitting}
-                className="w-full md:w-auto px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:transform-none"
-              >
-                {isSubmitting ? (
-                  <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    Sending...
-                  </div>
-                ) : (
-                  <div className="flex items-center gap-2">
-                    <Send className="w-4 h-4" />
-                    Leave me a message
-                  </div>
-                )}
-              </Button>
-            </form>
+                <div className="flex gap-3 justify-center">
+                  <Button
+                    type="button"
+                    onClick={() => setShowForm(false)}
+                    variant="outline"
+                    className="px-6 py-3 border-purple-300 text-purple-600 hover:bg-purple-50 rounded-xl"
+                  >
+                    Maybe later
+                  </Button>
+                  <Button
+                    type="submit"
+                    disabled={!message.trim() || isSubmitting}
+                    className="px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:transform-none"
+                  >
+                    {isSubmitting ? (
+                      <div className="flex items-center gap-2">
+                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        Sending...
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-2">
+                        <Send className="w-4 h-4" />
+                        Send message
+                      </div>
+                    )}
+                  </Button>
+                </div>
+              </form>
+            )}
 
             {/* Footer */}
-            <div className="mt-12 pt-8 border-t border-purple-100">
+            <div className="pt-8 border-t border-purple-100">
               <p className="font-playfair text-xl italic text-purple-700 mb-2">
                 Made with all my heart, just for you
               </p>

@@ -4,23 +4,23 @@ const GlowingRings = () => {
     <>
       <style>
         {`
-          @keyframes ringGlow {
+          @keyframes gentleRingGlow {
             0% { 
-              transform: translate(-50%, -50%) scale(0.8); 
+              transform: translate(-50%, -50%) scale(0.9); 
               opacity: 0; 
             }
-            15% {
-              transform: translate(-50%, -50%) scale(1.0);
-              opacity: 0.8;
+            20% {
+              transform: translate(-50%, -50%) scale(1.1);
+              opacity: 0.6;
             }
             100% { 
-              transform: translate(-50%, -50%) scale(4.0); 
+              transform: translate(-50%, -50%) scale(3.5); 
               opacity: 0; 
             }
           }
           
-          .glowing-ring {
-            animation: ringGlow var(--duration) cubic-bezier(0.19, 1, 0.22, 1) forwards;
+          .gentle-ring {
+            animation: gentleRingGlow var(--duration) cubic-bezier(0.19, 1, 0.22, 1) forwards;
             will-change: transform, opacity;
             backface-visibility: hidden;
           }
@@ -28,36 +28,36 @@ const GlowingRings = () => {
       </style>
       
       <div className="absolute inset-0 flex items-center justify-center">
-        {/* Ring 1 - appears immediately with modal */}
+        {/* First Ring - slow and gentle */}
         <div 
-          className="absolute glowing-ring rounded-full"
+          className="absolute gentle-ring rounded-full"
           style={{
             left: '50%',
             top: '50%',
             width: '200px',
             height: '200px',
-            background: 'radial-gradient(circle, rgba(236, 72, 153, 0.05) 0%, rgba(236, 72, 153, 0.2) 40%, transparent 80%)',
-            border: '1px solid rgba(236, 72, 153, 0.4)',
-            boxShadow: '0 0 30px rgba(236, 72, 153, 0.3)',
-            '--duration': '3.0s',
-            animationDelay: '0.1s',
+            background: 'radial-gradient(circle, rgba(236, 72, 153, 0.04) 0%, rgba(236, 72, 153, 0.15) 40%, transparent 80%)',
+            border: '1px solid rgba(236, 72, 153, 0.3)',
+            boxShadow: '0 0 20px rgba(236, 72, 153, 0.2)',
+            '--duration': '4.0s', // Much slower
+            animationDelay: '0.3s',
             zIndex: 52,
           } as React.CSSProperties}
         />
         
-        {/* Ring 2 - appears after short delay */}
+        {/* Second Ring - slower and more subtle */}
         <div 
-          className="absolute glowing-ring rounded-full"
+          className="absolute gentle-ring rounded-full"
           style={{
             left: '50%',
             top: '50%',
-            width: '280px',
-            height: '280px',
-            background: 'radial-gradient(circle, rgba(244, 114, 182, 0.03) 0%, rgba(244, 114, 182, 0.15) 35%, transparent 75%)',
-            border: '0.5px solid rgba(244, 114, 182, 0.3)',
-            boxShadow: '0 0 40px rgba(244, 114, 182, 0.25)',
-            '--duration': '3.5s',
-            animationDelay: '0.8s',
+            width: '260px',
+            height: '260px',
+            background: 'radial-gradient(circle, rgba(244, 114, 182, 0.02) 0%, rgba(244, 114, 182, 0.1) 35%, transparent 75%)',
+            border: '0.5px solid rgba(244, 114, 182, 0.2)',
+            boxShadow: '0 0 25px rgba(244, 114, 182, 0.15)',
+            '--duration': '4.5s', // Even slower
+            animationDelay: '2.5s',
             zIndex: 51,
           } as React.CSSProperties}
         />
