@@ -12,17 +12,23 @@ const FinalAsk = () => {
   const [showCoffeeQuestion, setShowCoffeeQuestion] = useState(false);
   const [showCelebration, setShowCelebration] = useState(false);
   const [celebrationPhase, setCelebrationPhase] = useState(0);
+  const [momentOfTruthShown, setMomentOfTruthShown] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !momentOfTruthShown) {
           setIsVisible(true);
-          // Start the moment of truth after a brief delay
+          // Start the moment of truth after a brief delay, but only once
           setTimeout(() => {
             setShowMomentOfTruth(true);
+            setMomentOfTruthShown(true);
           }, 1000);
+        } else if (entry.isIntersecting && momentOfTruthShown) {
+          // If user scrolls back and moment of truth was already shown, show coffee question directly
+          setIsVisible(true);
+          setShowCoffeeQuestion(true);
         }
       },
       { threshold: 0.3 }
@@ -33,7 +39,7 @@ const FinalAsk = () => {
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [momentOfTruthShown]);
 
   const handleMomentOfTruthComplete = () => {
     setShowMomentOfTruth(false);
@@ -85,7 +91,7 @@ const FinalAsk = () => {
         <div className="absolute bottom-1/2 right-1/3 w-80 h-80 bg-orange-200/20 rounded-full blur-2xl animate-breathe" style={{animationDelay: '3s'}} />
       </div>
 
-      {/* Moment of Truth Transition */}
+      {/* Moment of Truth Transition - only show once */}
       {showMomentOfTruth && (
         <MomentOfTruth onComplete={handleMomentOfTruthComplete} />
       )}
