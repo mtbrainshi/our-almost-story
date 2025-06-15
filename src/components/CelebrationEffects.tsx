@@ -2,8 +2,8 @@
 import { useEffect } from "react";
 import CelebrationStyles from "./celebration/CelebrationStyles";
 import CelebrationBackground from "./celebration/CelebrationBackground";
-import CelebrationRings from "./celebration/CelebrationRings";
-import ConfettiHearts from "./celebration/ConfettiHearts";
+import GlowingRings from "./celebration/GlowingRings";
+import HeartBloomConfetti from "./celebration/HeartBloomConfetti";
 import CelebrationModal from "./celebration/CelebrationModal";
 
 interface CelebrationEffectsProps {
@@ -17,11 +17,11 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
 
   useEffect(() => {
     if (showCelebration) {
-      console.log("Starting celebration timer for 8 seconds total");
+      console.log("Starting Heart Bloom celebration for 8 seconds");
       const timer = setTimeout(() => {
-        console.log("Celebration ended after 8 seconds");
+        console.log("Heart Bloom celebration ended after 8 seconds");
         onCelebrationEnd();
-      }, 8000); // Full 8 seconds for level-wise effect
+      }, 8000); // Full 8 seconds for Heart Bloom effect
       
       return () => clearTimeout(timer);
     }
@@ -32,7 +32,7 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
     return null;
   }
 
-  console.log("Rendering level-wise celebration: rings first, then 3 waves of hearts bursting outward");
+  console.log("Rendering Heart Bloom: rings + 3 waves of hearts in perfect sequence");
 
   return (
     <>
@@ -43,10 +43,10 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
         
         {/* Gentle screen shake for drama */}
         <div className="absolute inset-0 celebration-shake">
-          {/* Rings expand first from modal center */}
-          <CelebrationRings />
-          {/* Hearts burst in 3 distinct levels/waves after rings */}
-          <ConfettiHearts />
+          {/* Glowing rings expand gently from modal */}
+          <GlowingRings />
+          {/* Heart Bloom - 3 waves of beautiful heart bursts */}
+          <HeartBloomConfetti />
         </div>
         
         <CelebrationModal />
