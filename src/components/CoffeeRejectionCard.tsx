@@ -109,7 +109,7 @@ const CoffeeRejectionCard = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes rain {
           0% { transform: translateY(-100vh) rotate(15deg); opacity: 0; }
           10% { opacity: 1; }
