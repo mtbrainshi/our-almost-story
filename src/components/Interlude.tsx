@@ -88,11 +88,15 @@ const Interlude = () => {
           
           <div className="relative z-10">
             <blockquote className="font-playfair text-3xl md:text-5xl italic text-mauve-800 leading-relaxed mb-8 font-medium">
-              "Sakshi, sometimes I dreamt we talked for hours... laughed without deadlines... wandered together through those college corridors."
+              "Sakshi, I’ve carried these words with me for so long... I had a crush on you, and today, I finally found the courage to say it out loud."
             </blockquote>
             
-            <p className="font-poppins text-xl md:text-2xl text-mauve-600 mb-8 font-light leading-relaxed">
-              In those dreams, you always listened with that same gentle smile.
+            <p className="font-poppins text-xl md:text-2xl text-mauve-600 mb-6 font-light leading-relaxed">
+              Sometimes the simplest truths are the hardest to say. But in your presence, even silence felt like poetry.
+            </p>
+
+            <p className="font-poppins text-xl md:text-2xl text-mauve-600 mb-8 font-light leading-relaxed opacity-90">
+              I know this may be sudden, and we never really talked about it... but some feelings are worth the leap of faith.
             </p>
             
             <div className="flex justify-center space-x-6">

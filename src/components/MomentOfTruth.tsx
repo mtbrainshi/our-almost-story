@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Heart, Coffee, Sparkles } from "lucide-react";
 
@@ -27,25 +26,26 @@ const MomentOfTruth = ({ onComplete }: MomentOfTruthProps) => {
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center">
-      {/* Enhanced dark overlay with gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900/98 via-purple-900/95 to-rose-900/98 backdrop-blur-md">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/3 to-transparent animate-pulse"></div>
-        {/* Subtle texture overlay */}
-        <div className="absolute inset-0 opacity-20 bg-gradient-to-tr from-purple-500/10 via-transparent to-pink-500/10"></div>
-      </div>
-
-      {/* Enhanced spotlight effect */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div 
-          className={`w-[600px] h-[600px] bg-gradient-radial from-white/25 via-white/8 to-transparent rounded-full transition-all duration-1500 ${
-            phase >= 1 ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
-          }`}
-        />
-        <div 
-          className={`absolute w-[400px] h-[400px] bg-gradient-radial from-rose-200/20 via-purple-200/10 to-transparent rounded-full transition-all duration-1000 delay-500 ${
-            phase >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
-          }`}
-        />
+      {/* Dreamy, soft gradient background with floating shapes */}
+      <div className="absolute inset-0 bg-gradient-to-br from-mauve-100 via-blush-50 to-cream-100">
+        <div className="absolute inset-0 bg-gradient-to-tr from-mauve-200/30 via-transparent to-blush-200/30" />
+        <div className="absolute inset-0 bg-gradient-to-bl from-cream-200/20 via-transparent to-mauve-200/25" />
+        {/* Floating dream bubbles */}
+        {[...Array(18)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute border border-blush-200 rounded-full opacity-20 animate-pulse-gentle"
+            style={{
+              width: `${30 + Math.random() * 80}px`,
+              height: `${30 + Math.random() * 80}px`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${3 + Math.random() * 4}s`,
+              background: `radial-gradient(circle, ${['rgba(247, 174, 174, 0.08)', 'rgba(176, 152, 176, 0.08)', 'rgba(255, 237, 158, 0.08)'][Math.floor(Math.random() * 3)]} 0%, transparent 70%)`
+            }}
+          />
+        ))}
       </div>
 
       {/* Main content */}
@@ -79,22 +79,22 @@ const MomentOfTruth = ({ onComplete }: MomentOfTruthProps) => {
 
         {/* Enhanced text transition */}
         <div className="space-y-8">
-          <h2 className={`font-playfair text-5xl md:text-7xl italic text-white transition-all duration-1000 ${
+          <h2 className={`font-playfair text-5xl md:text-7xl italic text-rose-700 transition-all duration-1000 ${
             phase >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
           }`}>
             The Moment of Truth
           </h2>
           
-          <p className={`font-poppins text-2xl text-rose-200 transition-all duration-1000 delay-500 ${
+          <p className={`font-poppins text-2xl text-rose-500 transition-all duration-1000 delay-500 ${
             phase >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}>
-            After sharing all these memories...
+            From silent admiration to this moment...
           </p>
 
-          <p className={`font-poppins text-xl text-purple-200 transition-all duration-1000 delay-1000 ${
+          <p className={`font-poppins text-xl text-purple-500 transition-all duration-1000 delay-1000 ${
             phase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}>
-            There's one question left to ask
+            Every heartbeat has led to this question
           </p>
 
           <div className={`flex justify-center transition-all duration-1000 delay-1500 ${

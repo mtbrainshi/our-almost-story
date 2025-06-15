@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Coffee, X } from "lucide-react";
@@ -6,17 +5,20 @@ import CoffeeRejectionCard from "./CoffeeRejectionCard";
 
 interface CoffeeButtonsProps {
   onYesClick: () => void;
+  onFinalNoClick?: () => void;
 }
 
-const CoffeeButtons = ({ onYesClick }: CoffeeButtonsProps) => {
+const CoffeeButtons = ({ onYesClick, onFinalNoClick }: CoffeeButtonsProps) => {
   const [noButtonClicked, setNoButtonClicked] = useState(0);
   const [showRejectionCard, setShowRejectionCard] = useState(false);
 
   const handleNoClick = () => {
-    if (noButtonClicked < 4) {
-      setNoButtonClicked(prev => prev + 1);
-    } else {
-      setShowRejectionCard(true);
+    const newCount = noButtonClicked + 1;
+    setNoButtonClicked(newCount);
+    
+    if (newCount === 4) {
+      if (onFinalNoClick) onFinalNoClick();
+      setTimeout(() => setShowRejectionCard(true), 300);
     }
   };
 
@@ -38,41 +40,38 @@ const CoffeeButtons = ({ onYesClick }: CoffeeButtonsProps) => {
     return "";
   };
 
-  if (showRejectionCard) {
-    return <CoffeeRejectionCard />;
-  }
-
   return (
-    <div className="space-y-8">
-      <div className="flex gap-8 justify-center flex-wrap">
+    <>
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
         <Button
           onClick={onYesClick}
-          className="bg-gradient-to-r from-pink-400 to-rose-400 hover:from-pink-500 hover:to-rose-500 text-white px-12 py-6 rounded-2xl font-poppins font-medium text-xl shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center gap-3 hover:scale-105 relative overflow-hidden group"
+          size="lg"
+          className="w-full sm:w-auto bg-gradient-to-r from-rose-400 to-pink-500 hover:from-rose-500 hover:to-pink-600 text-white font-medium rounded-2xl transition-all duration-300 transform hover:scale-105 px-8 py-6 text-base sm:text-lg shadow-xl group relative overflow-hidden"
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-pink-300/20 to-rose-300/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          <Coffee size={28} />
-          <span className="relative z-10">Yes, I'd love to!</span>
-          <div className="absolute top-0 right-0 text-yellow-300 animate-sparkle text-sm">✨</div>
+          <span className="absolute inset-0 bg-gradient-to-r from-rose-200/20 to-pink-200/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
+          <Coffee className="w-5 h-5 sm:w-6 sm:h-6 mr-3 inline-block" />
+          Yes, I'd love to!
         </Button>
-        
+
         <Button
           onClick={handleNoClick}
+          variant="secondary"
+          size="lg"
           disabled={noButtonClicked >= 4}
-          className={`bg-gradient-to-r from-gray-300 to-gray-400 hover:from-gray-400 hover:to-gray-500 text-gray-700 px-12 py-6 rounded-2xl font-poppins font-medium text-xl shadow-xl transition-all duration-300 flex items-center gap-3 ${getNoButtonStyle()}`}
+          className={`w-full sm:w-auto bg-gray-100 hover:bg-gray-200 text-gray-600 font-medium rounded-2xl transition-all duration-300 px-8 py-6 text-base sm:text-lg shadow-md ${getNoButtonStyle()}`}
         >
-          <X size={24} />
+          <X className="w-5 h-5 sm:w-6 sm:h-6 mr-3 inline-block" />
           {getNoButtonText()}
         </Button>
       </div>
       
-      {noButtonClicked > 0 && noButtonClicked < 4 && (
-        <p className="text-lg text-rose-500 italic font-poppins animate-float-in">
-          {noButtonClicked === 1 && "Come on, just one coffee? ☕"}
-          {noButtonClicked === 2 && "I promise it'll be fun! 😊"}
-          {noButtonClicked === 3 && "Pretty please with sugar on top? 🍯"}
-        </p>
+      {/* Rejection card modal */}
+      {showRejectionCard && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 p-4">
+          <CoffeeRejectionCard onClose={() => setShowRejectionCard(false)} />
+        </div>
       )}
-    </div>
+    </>
   );
 };
 

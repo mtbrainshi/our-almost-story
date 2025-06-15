@@ -1,8 +1,10 @@
-
 interface ConfettiHeartsProps {}
 
 const ConfettiHearts = ({}: ConfettiHeartsProps) => {
   const heartEmojis = ['💕', '💖', '💗', '❤️', '💝', '💘', '💓', '💞', '💟', '♥️'];
+  const sparkleEmojis = ['✨', '⭐', '🌟', '💫', '🎇', '🌠'];
+  const flowerEmojis = ['🌸', '🌹', '♥️', '🌻', '💗', '🌷'];
+  const waveEmojis = ['🌊', '🌀', '🎉', '🥳', '🫧', '🎊', '💥', '💫'];
   
   const generateSequentialHeartLevels = () => {
     const levels = [];
@@ -10,8 +12,30 @@ const ConfettiHearts = ({}: ConfettiHeartsProps) => {
     // Level 1: First wave - 8 hearts, completes journey in 2s
     const level1Hearts = [];
     for (let i = 0; i < 8; i++) {
-      const angle = (i * 360) / 8;
-      const startRadius = 60;
+      const angle = (i * 360) / 8;      const startRadius = 60;
+      const endRadius = 400;
+      
+      const startX = Math.cos((angle * Math.PI) / 180) * startRadius;
+      const startY = Math.sin((angle * Math.PI) / 180) * startRadius;
+      const endX = Math.cos((angle * Math.PI) / 180) * endRadius;
+      const endY = Math.sin((angle * Math.PI) / 180) * endRadius;
+        level1Hearts.push({
+        id: `level1-heart-${i}`,
+        emoji: heartEmojis[Math.floor(Math.random() * heartEmojis.length)],
+        size: 32 + Math.random() * 8,
+        startX, startY, endX, endY,
+        wobble: (Math.random() - 0.5) * 20,
+        level: 1,
+        delay: '0s',
+        duration: '3.5s',
+        pulseScale: 1.2 + Math.random() * 0.3
+      });
+    }
+    
+    // Level 2: Sparkles and small hearts wave - 12 elements
+    const level2Hearts = [];
+    for (let i = 0; i < 12; i++) {
+      const angle = (i * 360) / 12 + 15;      const startRadius = 80;
       const endRadius = 500;
       
       const startX = Math.cos((angle * Math.PI) / 180) * startRadius;
@@ -19,23 +43,25 @@ const ConfettiHearts = ({}: ConfettiHeartsProps) => {
       const endX = Math.cos((angle * Math.PI) / 180) * endRadius;
       const endY = Math.sin((angle * Math.PI) / 180) * endRadius;
       
-      level1Hearts.push({
-        id: `level1-heart-${i}`,
-        emoji: heartEmojis[Math.floor(Math.random() * heartEmojis.length)],
-        size: 28 + Math.random() * 4,
+      const useSparkle = Math.random() > 0.6;
+      level2Hearts.push({
+        id: `level2-element-${i}`,
+        emoji: useSparkle 
+          ? sparkleEmojis[Math.floor(Math.random() * sparkleEmojis.length)]
+          : heartEmojis[Math.floor(Math.random() * heartEmojis.length)],
+        size: useSparkle ? (24 + Math.random() * 4) : (28 + Math.random() * 6),
         startX, startY, endX, endY,
-        wobble: (Math.random() - 0.5) * 15,
-        level: 1,
-        delay: '0.5s', // After rings start
-        duration: '2s'
+        wobble: (Math.random() - 0.5) * 25,
+        level: 2,        delay: '1.2s',
+        duration: '4s',
+        pulseScale: useSparkle ? (1.4 + Math.random() * 0.4) : (1.2 + Math.random() * 0.3)
       });
     }
     
-    // Level 2: Second wave - 10 hearts, starts after level 1 completes
-    const level2Hearts = [];
+    // Level 3: Flower and heart mix - 10 elements, wider spread
+    const level3Hearts = [];
     for (let i = 0; i < 10; i++) {
-      const angle = (i * 360) / 10 + 18;
-      const startRadius = 70;
+      const angle = (i * 360) / 10 + 30;      const startRadius = 100;
       const endRadius = 600;
       
       const startX = Math.cos((angle * Math.PI) / 180) * startRadius;
@@ -43,43 +69,78 @@ const ConfettiHearts = ({}: ConfettiHeartsProps) => {
       const endX = Math.cos((angle * Math.PI) / 180) * endRadius;
       const endY = Math.sin((angle * Math.PI) / 180) * endRadius;
       
-      level2Hearts.push({
-        id: `level2-heart-${i}`,
-        emoji: heartEmojis[Math.floor(Math.random() * heartEmojis.length)],
-        size: 26 + Math.random() * 4,
+      const useFlower = Math.random() > 0.7;
+      level3Hearts.push({
+        id: `level3-element-${i}`,
+        emoji: useFlower 
+          ? flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)]
+          : heartEmojis[Math.floor(Math.random() * heartEmojis.length)],
+        size: 30 + Math.random() * 8,
         startX, startY, endX, endY,
-        wobble: (Math.random() - 0.5) * 20,
-        level: 2,
-        delay: '2.7s', // After level 1 completes (0.5s + 2s + 0.2s gap)
-        duration: '2.2s'
+        wobble: (Math.random() - 0.5) * 30,
+        level: 3,        delay: '2.5s',
+        duration: '4.5s',
+        pulseScale: 1.3 + Math.random() * 0.3
       });
     }
     
-    // Level 3: Third wave - 12 hearts, starts after level 2 completes
-    const level3Hearts = [];
-    for (let i = 0; i < 12; i++) {
-      const angle = (i * 360) / 12 + 15;
-      const startRadius = 80;
+    // Level 4: Final sparkling wave - 14 elements, mixture of all
+    const level4Hearts = [];
+    for (let i = 0; i < 14; i++) {
+      const angle = (i * 360) / 14;
+      const startRadius = 120;
       const endRadius = 700;
-      
       const startX = Math.cos((angle * Math.PI) / 180) * startRadius;
       const startY = Math.sin((angle * Math.PI) / 180) * startRadius;
       const endX = Math.cos((angle * Math.PI) / 180) * endRadius;
       const endY = Math.sin((angle * Math.PI) / 180) * endRadius;
-      
-      level3Hearts.push({
-        id: `level3-heart-${i}`,
-        emoji: heartEmojis[Math.floor(Math.random() * heartEmojis.length)],
-        size: 24 + Math.random() * 4,
+      const emojiType = Math.random();
+      const emoji = emojiType > 0.6 
+        ? heartEmojis[Math.floor(Math.random() * heartEmojis.length)]
+        : emojiType > 0.3 
+          ? sparkleEmojis[Math.floor(Math.random() * sparkleEmojis.length)]
+          : flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
+      level4Hearts.push({
+        id: `level4-element-${i}`,
+        emoji,
+        size: 26 + Math.random() * 10,
         startX, startY, endX, endY,
-        wobble: (Math.random() - 0.5) * 25,
-        level: 3,
-        delay: '5.1s', // After level 2 completes (2.7s + 2.2s + 0.2s gap)
-        duration: '2.5s'
+        wobble: (Math.random() - 0.5) * 35,
+        level: 4,
+        delay: '4s',
+        duration: '5s',
+        pulseScale: 1.25 + Math.random() * 0.35
       });
     }
-    
-    return [...level1Hearts, ...level2Hearts, ...level3Hearts];
+    // Level 5: Advanced wave/party layer - 16 elements, strong outward effect
+    const level5Waves = [];
+    for (let i = 0; i < 16; i++) {
+      const angle = (i * 360) / 16 + 12;
+      const startRadius = 160;
+      const endRadius = 950;
+      const startX = Math.cos((angle * Math.PI) / 180) * startRadius;
+      const startY = Math.sin((angle * Math.PI) / 180) * startRadius;
+      const endX = Math.cos((angle * Math.PI) / 180) * endRadius;
+      const endY = Math.sin((angle * Math.PI) / 180) * endRadius;
+      level5Waves.push({
+        id: `level5-wave-${i}`,
+        emoji: waveEmojis[Math.floor(Math.random() * waveEmojis.length)],
+        size: 34 + Math.random() * 12,
+        startX, startY, endX, endY,
+        wobble: (Math.random() - 0.5) * 50,
+        level: 5,
+        delay: '6s',
+        duration: '4s',
+        pulseScale: 1.4 + Math.random() * 0.4
+      });
+    }
+    return [
+      ...level1Hearts,
+      ...level2Hearts,
+      ...level3Hearts,
+      ...level4Hearts,
+      ...level5Waves
+    ];
   };
 
   const allHearts = generateSequentialHeartLevels();

@@ -1,0 +1,88 @@
+.button-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.emoji-wave {
+  position: absolute;
+  font-size: 24px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes moveEmoji {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+  }
+}
+
+.wave1 {
+  animation: moveEmoji 2.5s ease-out forwards;
+}
+
+.wave2 {
+  animation: moveEmoji 2.5s ease-out forwards;
+  animation-delay: 2.5s;
+}
+
+.wave3 {
+  animation: moveEmoji 2.5s ease-out forwards;
+  animation-delay: 5s;
+}
+
+@keyframes buttonPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 182, 193, 0.7);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px 10px rgba(255, 182, 193, 0.4);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 182, 193, 0);
+  }
+}
+
+.yes-button {
+  padding: 12px 24px;
+  font-size: 18px;
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: buttonPulse 2s infinite;
+}
+
+.no-button {
+  padding: 12px 24px;
+  font-size: 18px;
+  background-color: #808080;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0.8;
+}
+
+.yes-button:hover {
+  transform: scale(1.1);
+  background-color: #ff1493;
+}
+
+.no-button:hover {
+  transform: scale(0.95);
+  opacity: 0.6;
+}

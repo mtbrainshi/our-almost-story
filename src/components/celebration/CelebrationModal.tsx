@@ -1,4 +1,3 @@
-
 const CelebrationModal = () => {
   return (
     <div className="absolute inset-0 flex items-center justify-center p-4 z-20">
@@ -26,17 +25,6 @@ const CelebrationModal = () => {
             <br />
             <span className="text-sm italic text-rose-500">I can't wait to hear from you...</span>
           </p>
-          
-          <div className="mt-8">
-            <p className="font-poppins text-sm text-rose-600 mb-4">
-              Taking you to leave a message...
-            </p>
-            <div className="flex justify-center space-x-2">
-              <div className="w-2 h-2 bg-rose-400 rounded-full celebration-bounce"></div>
-              <div className="w-2 h-2 bg-rose-400 rounded-full celebration-bounce" style={{animationDelay: '0.2s'}}></div>
-              <div className="w-2 h-2 bg-rose-400 rounded-full celebration-bounce" style={{animationDelay: '0.4s'}}></div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

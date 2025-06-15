@@ -1,3 +1,59 @@
+import { keyframes } from '@emotion/react';
+
+const floatAndFade = keyframes`
+  0% {
+    transform: translate(var(--start-x), var(--start-y)) scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    transform: translate(
+      calc(var(--start-x) + var(--wobble-x)),
+      calc(var(--start-y) + var(--wobble-y))
+    ) scale(var(--pulse-scale)) rotate(120deg);
+    opacity: 1;
+  }
+  45% {
+    transform: translate(
+      calc((var(--start-x) + var(--end-x)) * 0.5 + var(--wobble-x)),
+      calc((var(--start-y) + var(--end-y)) * 0.5 + var(--wobble-y))
+    ) scale(1) rotate(240deg);
+    opacity: 0.8;
+  }
+  85% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(var(--end-x), var(--end-y)) scale(0.2) rotate(360deg);
+    opacity: 0;
+  }
+`;
+
+const pulse = keyframes`
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(var(--pulse-scale, 1.2));
+  }
+`;
+
+const spin = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const sparkle = keyframes`
+  0%, 100% {
+    filter: brightness(100%);
+  }
+  50% {
+    filter: brightness(150%) saturate(120%);
+  }
+`;
 
 const CelebrationStyles = () => {
   return (
@@ -77,6 +133,40 @@ const CelebrationStyles = () => {
         will-change: transform, opacity, filter;
         transform: translateZ(0);
         backface-visibility: hidden;
+      }
+
+      .confetti-heart {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        animation: ${floatAndFade} var(--duration, 3s) ease-out forwards,
+                   ${pulse} 1.5s ease-in-out infinite,
+                   ${spin} var(--duration, 3s) linear infinite;
+        font-size: var(--size, 30px);
+        transform-origin: center center;
+        will-change: transform, opacity;
+        pointer-events: none;
+        z-index: var(--z-index, 1000);
+        --wobble-x: calc(var(--wobble) * 1px);
+        --wobble-y: calc(var(--wobble) * 1px);
+        filter: drop-shadow(0 0 2px rgba(255,255,255,0.3));
+      }
+
+      .sparkle {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        animation: ${floatAndFade} var(--duration, 3s) ease-out forwards,
+                   ${sparkle} 0.8s ease-in-out infinite,
+                   ${spin} var(--duration, 3s) linear infinite;
+        font-size: var(--size, 24px);
+        transform-origin: center center;
+        will-change: transform, opacity, filter;
+        pointer-events: none;
+        z-index: var(--z-index, 1000);
+        --wobble-x: calc(var(--wobble) * 1px);
+        --wobble-y: calc(var(--wobble) * 1px);
+        filter: drop-shadow(0 0 3px rgba(255,215,0,0.4));
       }
     `}</style>
   );

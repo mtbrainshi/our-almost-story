@@ -1,10 +1,14 @@
-
 import { useState, useEffect, useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import CelebrationEffects from "./CelebrationEffects";
 import CoffeeButtons from "./CoffeeButtons";
 import CoffeeInvitation from "./CoffeeInvitation";
 import MomentOfTruth from "./MomentOfTruth";
+import { supabase, getSessionId } from "@/integrations/supabase/client";
+
+// Edge function configuration
+const EDGE_FUNCTION_URL = 'https://cfvzcfmuxneqihrrqipn.functions.supabase.co/send-notification';
+const SERVICE_ROLE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNmdnpjZm11eG5lcWlocnJxaXBuIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0OTk3NTEwNywiZXhwIjoyMDY1NTUxMTA3fQ.5cMi40YhhNTvX_FzBn4bfebHsdq56ryr6xVee7oPE10';
 
 const FinalAsk = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -15,18 +19,44 @@ const FinalAsk = () => {
   const [momentOfTruthShown, setMomentOfTruthShown] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
+  // Helper function for sending notifications
+  const sendNotification = async (session_id: string, response: boolean | null) => {
+    try {
+      console.log('Sending notification with auth:', SERVICE_ROLE_KEY);
+      const notifRes = await fetch(EDGE_FUNCTION_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${SERVICE_ROLE_KEY}`
+        },
+        body: JSON.stringify({ session_id, response })
+      });
+
+      const notifText = await notifRes.text();
+      console.log('Notification status:', notifRes.status);
+      console.log('Notification response:', notifText);
+
+      if (!notifRes.ok) {
+        throw new Error(`Notification failed: ${notifRes.status} - ${notifText}`);
+      }
+      
+      return true;
+    } catch (err) {
+      console.error('Notification error:', err);
+      return false;
+    }
+  };
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !momentOfTruthShown) {
           setIsVisible(true);
-          // Start the moment of truth after a brief delay, but only once
           setTimeout(() => {
             setShowMomentOfTruth(true);
             setMomentOfTruthShown(true);
           }, 1000);
         } else if (entry.isIntersecting && momentOfTruthShown) {
-          // If user scrolls back and moment of truth was already shown, show coffee question directly
           setIsVisible(true);
           setShowCoffeeQuestion(true);
         }
@@ -46,9 +76,39 @@ const FinalAsk = () => {
     setShowCoffeeQuestion(true);
   };
 
-  const handleYesClick = () => {
+  const handleYesClick = async () => {
     setShowCelebration(true);
     setCelebrationPhase(1);
+    
+    const session_id = getSessionId();
+    const { error: dbError } = await supabase.from('user_responses').insert([{ 
+      session_id, 
+      response: true,
+      created_at: new Date().toISOString()
+    }]);
+    
+    if (dbError) {
+      console.error('Database error:', dbError);
+      return;
+    }
+    
+    await sendNotification(session_id, true);
+  };
+
+  const handleNoClick = async () => {
+    const session_id = getSessionId();
+    const { error: dbError } = await supabase.from('user_responses').insert([{ 
+      session_id, 
+      response: false,
+      created_at: new Date().toISOString()
+    }]);
+    
+    if (dbError) {
+      console.error('Database error:', dbError);
+      return;
+    }
+    
+    await sendNotification(session_id, false);
   };
 
   const handleCelebrationEnd = () => {
@@ -111,7 +171,7 @@ const FinalAsk = () => {
           <Card className="bg-white/95 backdrop-blur-sm border border-white/50 shadow-2xl rounded-3xl overflow-hidden">
             <CardContent className="p-12 relative">
               <CoffeeInvitation />
-              <CoffeeButtons onYesClick={handleYesClick} />
+              <CoffeeButtons onYesClick={handleYesClick} onFinalNoClick={handleNoClick} />
             </CardContent>
           </Card>
         </div>

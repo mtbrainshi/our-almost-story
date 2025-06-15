@@ -101,47 +101,52 @@ const Chapter = ({ id, title, background, image, frontContent, backContent, anim
           </div>
         );
       
-      case 2:
-        // Enhanced romantic atmosphere
+      case 2: // Red Dress Moment
         return (
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-rose-100/60 via-pink-50/50 to-red-50/45" />
-            <div className="absolute inset-0 bg-gradient-to-tr from-rose-200/30 via-transparent to-pink-200/35" />
+            {/* Ambient glow */}
+            <div className="absolute inset-0 bg-gradient-to-br from-rose-50/60 via-pink-50/50 to-red-50/60" />
             
-            {/* Golden hour light rays */}
-            <div className="absolute top-0 right-1/4 w-96 h-96 bg-gradient-conic from-yellow-200/30 via-transparent to-transparent rounded-full blur-2xl animate-spin-slow" />
-            
-            {/* Floating rose petal silhouettes */}
-            {[...Array(12)].map((_, i) => (
+            {/* Floating hearts */}
+            {[...Array(30)].map((_, i) => (
               <div
                 key={i}
-                className="absolute w-3 h-4 bg-rose-400/30 rounded-full animate-petal-fall blur-sm"
+                className="absolute text-rose-300/40 animate-float-hearts"
                 style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 8}s`,
-                  animationDuration: `${6 + Math.random() * 6}s`,
-                  transform: `rotate(${Math.random() * 360}deg)`
-                }}
-              />
-            ))}
-            
-            {/* Dreamy bokeh effects */}
-            {[...Array(15)].map((_, i) => (
-              <div
-                key={`bokeh-${i}`}
-                className="absolute rounded-full bg-pink-300/20 animate-pulse-gentle blur-lg"
-                style={{
-                  width: `${20 + Math.random() * 60}px`,
-                  height: `${20 + Math.random() * 60}px`,
+                  fontSize: `${12 + Math.random() * 20}px`,
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,
                   animationDelay: `${Math.random() * 5}s`,
+                  animationDuration: `${5 + Math.random() * 5}s`,
+                  filter: 'blur(1px)',
+                  opacity: 0.6
                 }}
-              />
+              >
+                ❤
+              </div>
             ))}
             
-            <div className="absolute bottom-1/4 left-1/6 w-72 h-72 bg-rose-300/25 rounded-full blur-3xl animate-breathe" style={{animationDelay: '4s'}} />
+            {/* Larger blurred hearts */}
+            {[...Array(15)].map((_, i) => (
+              <div
+                key={`large-${i}`}
+                className="absolute text-rose-400/30 animate-pulse-gentle"
+                style={{
+                  fontSize: `${30 + Math.random() * 40}px`,
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  filter: 'blur(2px)',
+                  animationDelay: `${Math.random() * 4}s`,
+                  opacity: 0.4
+                }}
+              >
+                ❤
+              </div>
+            ))}
+
+            {/* Ambient light spots */}
+            <div className="absolute top-1/4 left-1/3 w-72 h-72 bg-rose-200/25 rounded-full blur-3xl animate-breathe" />
+            <div className="absolute bottom-1/3 right-1/4 w-60 h-60 bg-pink-200/20 rounded-full blur-2xl animate-breathe" style={{animationDelay: '2s'}} />
           </div>
         );
       
@@ -247,14 +252,14 @@ const Chapter = ({ id, title, background, image, frontContent, backContent, anim
     <section
       ref={chapterRef}
       data-chapter={id}
-      className={`min-h-screen flex items-center justify-center ${getBackgroundClass()} relative overflow-hidden transition-all duration-1000`}
+      className={`min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 ${getBackgroundClass()} relative overflow-hidden transition-all duration-1000`}
     >
       {getChapterAtmosphere()}
 
       <div className={`transition-all duration-1000 ${getAnimationClass()}`}>
         <div className="perspective-1000">
           <div
-            className={`relative w-80 h-96 md:w-96 md:h-[450px] cursor-pointer transition-transform duration-700 preserve-3d ${
+            className={`relative w-[300px] sm:w-[350px] md:w-[400px] h-[450px] sm:h-[500px] md:h-[550px] cursor-pointer transition-transform duration-700 preserve-3d ${
               isFlipped ? "rotate-y-180" : ""
             }`}
             onMouseEnter={() => setIsHovered(true)}
@@ -263,14 +268,15 @@ const Chapter = ({ id, title, background, image, frontContent, backContent, anim
           >
             {/* Front of card */}
             <div className="absolute inset-0 backface-hidden">
-              <div className="bg-white/95 backdrop-blur-md p-6 rounded-3xl shadow-2xl transform transition-all duration-500 border border-white/60 relative overflow-hidden hover:shadow-3xl">
+              <div className="bg-white/95 backdrop-blur-md p-4 sm:p-6 rounded-3xl shadow-2xl transform transition-all duration-500 border border-white/60 relative overflow-hidden hover:shadow-3xl">
                 <div className="absolute inset-0 bg-gradient-to-br from-blush-100/20 via-transparent to-mauve-100/20 rounded-3xl" />
                 
                 <div className="relative overflow-hidden rounded-2xl mb-6 transition-all duration-500">
                   <img
                     src={image}
                     alt={frontContent}
-                    className="w-full h-64 md:h-72 object-cover transition-transform duration-700"
+                    className="w-full max-w-xs sm:max-w-sm md:max-w-md h-48 sm:h-56 md:h-64 lg:h-72 object-cover rounded-xl shadow-md mx-auto transition-transform duration-700 border border-white/40"
+                    style={{ aspectRatio: '4/3', objectFit: 'cover' }}
                   />
                   
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>

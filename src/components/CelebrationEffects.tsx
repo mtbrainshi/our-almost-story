@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import CelebrationStyles from "./celebration/CelebrationStyles";
 import CelebrationBackground from "./celebration/CelebrationBackground";
@@ -38,7 +37,7 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
     <>
       <CelebrationStyles />
 
-      <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
+      <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden transition-opacity duration-700 ease-in-out opacity-100 celebration-fade">
         <CelebrationBackground />
         
         {/* Gentle screen shake for drama */}
@@ -49,6 +48,24 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
         
         <CelebrationModal />
       </div>
+      <style>{`
+        .celebration-fade {
+          animation: celebrationFadeIn 0.7s cubic-bezier(0.4,0,0.2,1) both;
+        }
+        @keyframes celebrationFadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        .celebration-shake {
+          animation: shake 0.7s cubic-bezier(0.4,0,0.2,1) 1;
+        }
+        @keyframes shake {
+          0% { transform: translate(0, 0); }
+          10%, 30%, 50%, 70%, 90% { transform: translate(-2px, 2px); }
+          20%, 40%, 60%, 80% { transform: translate(2px, -2px); }
+          100% { transform: translate(0, 0); }
+        }
+      `}</style>
     </>
   );
 };
