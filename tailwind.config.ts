@@ -235,17 +235,27 @@ export default {
             opacity: "0",
           },
         },
-        "circular-burst": {
+        "expand-ring-slow": {
           "0%": {
-            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(0)",
+            transform: "scale(0)",
+            opacity: "0.8",
+          },
+          "100%": {
+            transform: "scale(6)",
             opacity: "0",
           },
-          "10%": {
-            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(1)",
+        },
+        "modal-circular-burst": {
+          "0%": {
+            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(0) rotate(0deg)",
+            opacity: "0",
+          },
+          "15%": {
+            transform: "translate(-50%, -50%) translate(var(--start-x), var(--start-y)) scale(1.2) rotate(0deg)",
             opacity: "1",
           },
           "100%": {
-            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 2.5), calc(var(--start-y) * 2.5)) scale(0.6) rotate(360deg)",
+            transform: "translate(-50%, -50%) translate(calc(var(--start-x) * 3), calc(var(--start-y) * 3)) scale(0.4) rotate(720deg)",
             opacity: "0",
           },
         },
@@ -273,7 +283,8 @@ export default {
         "fade-in-delayed": "fade-in-delayed 0.8s ease-out forwards",
         "celebration-flash": "celebration-flash 0.8s ease-out",
         "expand-ring": "expand-ring 2s ease-out",
-        "circular-burst": "circular-burst 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
+        "expand-ring-slow": "expand-ring-slow 4s ease-out",
+        "modal-circular-burst": "modal-circular-burst 7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
         "heart-pulse-gentle": "heart-pulse-gentle 1.8s ease-in-out infinite",
         "spin-slow": "spin 20s linear infinite",
       },

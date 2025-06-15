@@ -12,7 +12,7 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
   const generateCircularPositions = (count: number) => {
     return Array.from({ length: count }, (_, i) => {
       const angle = (i / count) * 2 * Math.PI;
-      const radius = 200; // Distance from modal center to form the circle
+      const radius = 90; // Reduced from 200px to 90px for tighter circle
       const x = Math.cos(angle) * radius;
       const y = Math.sin(angle) * radius;
       
@@ -20,20 +20,20 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
         startX: x,
         startY: y,
         angle,
-        delay: i * 0.05, // Small stagger for wave effect
-        emoji: ['💕', '💖', '💗', '❤️', '💝', '💘'][i % 6],
+        delay: i * 0.08, // Slightly increased stagger for smoother wave effect
+        emoji: ['💕', '💖', '💗', '❤️', '💝', '💘', '🌸', '✨'][i % 8],
       };
     });
   };
 
-  const circularPositions = generateCircularPositions(24);
+  const circularPositions = generateCircularPositions(28); // Increased count for fuller circle
 
   useEffect(() => {
     if (showCelebration) {
-      // Auto-hide after 4 seconds
+      // Extended duration to 8 seconds as requested
       const timer = setTimeout(() => {
         onCelebrationEnd();
-      }, 4000);
+      }, 8000);
       
       return () => clearTimeout(timer);
     }
@@ -50,17 +50,17 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
       
       {/* Expanding rings for depth */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-16 h-16 border-2 border-pink-400/70 rounded-full animate-expand-ring" />
-        <div className="absolute w-28 h-28 border-2 border-rose-400/50 rounded-full animate-expand-ring" style={{animationDelay: '0.2s'}} />
-        <div className="absolute w-40 h-40 border-2 border-orange-400/40 rounded-full animate-expand-ring" style={{animationDelay: '0.4s'}} />
+        <div className="w-20 h-20 border-2 border-pink-400/70 rounded-full animate-expand-ring-slow" />
+        <div className="absolute w-32 h-32 border-2 border-rose-400/50 rounded-full animate-expand-ring-slow" style={{animationDelay: '0.4s'}} />
+        <div className="absolute w-44 h-44 border-2 border-orange-400/40 rounded-full animate-expand-ring-slow" style={{animationDelay: '0.8s'}} />
       </div>
       
-      {/* Circular Burst Hearts */}
+      {/* Circular Burst Hearts - positioned relative to modal center */}
       <div className="absolute inset-0 flex items-center justify-center">
         {circularPositions.map((pos, i) => (
           <div
             key={`circular-${i}`}
-            className="absolute animate-circular-burst"
+            className="absolute animate-modal-circular-burst"
             style={{
               left: '50%',
               top: '50%',
@@ -68,7 +68,7 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
               '--start-y': `${pos.startY}px`,
               '--burst-angle': `${pos.angle}rad`,
               animationDelay: `${pos.delay}s`,
-              fontSize: `${18 + (i % 3) * 4}px`,
+              fontSize: `${16 + (i % 4) * 3}px`,
             } as React.CSSProperties}
           >
             {pos.emoji}
@@ -80,7 +80,7 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
       <div className="absolute inset-0 flex items-center justify-center p-4">
         <div className="relative max-w-md mx-auto">
           {/* Enhanced glass background */}
-          <div className="absolute inset-0 bg-white/85 backdrop-blur-xl rounded-3xl border border-white/70 shadow-2xl" />
+          <div className="absolute inset-0 bg-white/90 backdrop-blur-xl rounded-3xl border border-white/80 shadow-2xl" />
           <div className="absolute inset-0 bg-gradient-to-br from-pink-50/60 via-rose-50/40 to-orange-50/50 rounded-3xl" />
           
           {/* Subtle glow effect */}
