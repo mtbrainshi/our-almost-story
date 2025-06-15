@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import { ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface ChapterProps {
   id: number;
@@ -33,6 +35,21 @@ const Chapter = ({ id, title, background, image, frontContent, backContent, anim
 
     return () => observer.disconnect();
   }, []);
+
+  const scrollToNext = () => {
+    let targetElement;
+    if (id < 4) {
+      targetElement = document.getElementById(`chapter-${id + 1}`) || 
+                     document.querySelector(`[data-chapter="${id + 1}"]`);
+    } else {
+      targetElement = document.getElementById('interlude-section') || 
+                     document.querySelector('[data-section="interlude-section"]');
+    }
+    
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   const getAnimationClass = () => {
     if (!isVisible) return "opacity-0 translate-y-10";
@@ -296,6 +313,17 @@ const Chapter = ({ id, title, background, image, frontContent, backContent, anim
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Navigation button at bottom */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+        <Button
+          onClick={scrollToNext}
+          variant="ghost"
+          className="group flex flex-col items-center gap-2 text-purple-600/70 hover:text-purple-800 transition-all duration-300 hover:scale-105 p-6"
+        >
+          <ChevronDown className="w-6 h-6 animate-bounce group-hover:translate-y-1 transition-transform" />
+        </Button>
       </div>
 
       {/* Minimal floating elements */}

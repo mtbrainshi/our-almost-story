@@ -1,5 +1,6 @@
-
 import { useEffect, useRef, useState } from "react";
+import { ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Interlude = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -21,6 +22,14 @@ const Interlude = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  const scrollToFinalAsk = () => {
+    const element = document.getElementById('final-ask-section') || 
+                    document.querySelector('[data-section="final-ask-section"]');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   return (
     <section
@@ -93,6 +102,17 @@ const Interlude = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Navigation button at bottom */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+        <Button
+          onClick={scrollToFinalAsk}
+          variant="ghost"
+          className="group flex flex-col items-center gap-2 text-purple-600/70 hover:text-purple-800 transition-all duration-300 hover:scale-105 p-6"
+        >
+          <ChevronDown className="w-6 h-6 animate-bounce group-hover:translate-y-1 transition-transform" />
+        </Button>
       </div>
 
       {/* Enhanced floating elements */}

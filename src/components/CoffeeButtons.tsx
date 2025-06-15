@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Coffee, X } from "lucide-react";
+import CoffeeRejectionCard from "./CoffeeRejectionCard";
 
 interface CoffeeButtonsProps {
   onYesClick: () => void;
@@ -9,10 +10,13 @@ interface CoffeeButtonsProps {
 
 const CoffeeButtons = ({ onYesClick }: CoffeeButtonsProps) => {
   const [noButtonClicked, setNoButtonClicked] = useState(0);
+  const [showRejectionCard, setShowRejectionCard] = useState(false);
 
   const handleNoClick = () => {
     if (noButtonClicked < 4) {
       setNoButtonClicked(prev => prev + 1);
+    } else {
+      setShowRejectionCard(true);
     }
   };
 
@@ -33,6 +37,10 @@ const CoffeeButtons = ({ onYesClick }: CoffeeButtonsProps) => {
     }
     return "";
   };
+
+  if (showRejectionCard) {
+    return <CoffeeRejectionCard />;
+  }
 
   return (
     <div className="space-y-8">
@@ -57,12 +65,11 @@ const CoffeeButtons = ({ onYesClick }: CoffeeButtonsProps) => {
         </Button>
       </div>
       
-      {noButtonClicked > 0 && (
+      {noButtonClicked > 0 && noButtonClicked < 4 && (
         <p className="text-lg text-rose-500 italic font-poppins animate-float-in">
           {noButtonClicked === 1 && "Come on, just one coffee? ☕"}
           {noButtonClicked === 2 && "I promise it'll be fun! 😊"}
           {noButtonClicked === 3 && "Pretty please with sugar on top? 🍯"}
-          {noButtonClicked >= 4 && "Okay, I understand... but the offer stands! 💙"}
         </p>
       )}
     </div>
