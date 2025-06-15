@@ -2,7 +2,6 @@
 import { useEffect } from "react";
 import CelebrationStyles from "./celebration/CelebrationStyles";
 import CelebrationBackground from "./celebration/CelebrationBackground";
-import GlowingRings from "./celebration/GlowingRings";
 import HeartBloomConfetti from "./celebration/HeartBloomConfetti";
 import CelebrationModal from "./celebration/CelebrationModal";
 
@@ -33,7 +32,7 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
     return null;
   }
 
-  console.log("Rendering Heart Bloom: rings + 3 waves of hearts in perfect sequence");
+  console.log("Rendering Heart Bloom: hearts only - no interfering rings");
 
   return (
     <>
@@ -44,9 +43,7 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
         
         {/* Gentle screen shake for drama */}
         <div className="absolute inset-0 celebration-shake">
-          {/* Glowing rings expand gently from modal - only during celebration */}
-          <GlowingRings />
-          {/* Heart Bloom - 3 waves of beautiful heart bursts */}
+          {/* Heart Bloom - pure confetti hearts without interfering rings */}
           <HeartBloomConfetti />
         </div>
         
