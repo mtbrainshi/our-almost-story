@@ -31,11 +31,6 @@ const FinalAsk = () => {
   const handleYesClick = () => {
     setShowCelebration(true);
     setCelebrationPhase(1);
-    
-    // Enhanced phase progression for more romance
-    setTimeout(() => setCelebrationPhase(2), 600);
-    setTimeout(() => setCelebrationPhase(3), 1200);
-    setTimeout(() => setCelebrationPhase(4), 2000);
   };
 
   const handleCelebrationEnd = () => {
