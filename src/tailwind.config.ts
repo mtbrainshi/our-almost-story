@@ -236,6 +236,166 @@ export default {
 						transform: 'scale(1)',
 						opacity: '1'
 					}
+				},
+
+				// SIMPLIFIED & SYNCHRONIZED HEART CONFETTI ANIMATIONS
+				
+				// Immediate ring burst - all start together
+				'ring-burst-immediate': {
+					'0%': {
+						transform: 'scale(0)',
+						opacity: '1'
+					},
+					'70%': {
+						transform: 'scale(1)',
+						opacity: '0.6'
+					},
+					'100%': {
+						transform: 'scale(1.2)',
+						opacity: '0'
+					}
+				},
+
+				// Fast explosive heart burst
+				'heart-explosive-burst-fast': {
+					'0%': {
+						transform: 'translate(-50%, -50%) scale(0) rotate(0deg)',
+						opacity: '1'
+					},
+					'10%': {
+						transform: 'translate(-50%, -50%) scale(1.3) rotate(90deg)',
+						opacity: '1'
+					},
+					'100%': {
+						transform: 'translate(calc(-50% + var(--start-x) * 2), calc(-50% + var(--start-y) * 2)) scale(0.3) rotate(360deg)',
+						opacity: '0'
+					}
+				},
+
+				// Fast wave cascade
+				'heart-wave-cascade-fast': {
+					'0%': {
+						transform: 'translate(-50%, -50%) scale(0) rotate(0deg)',
+						opacity: '1'
+					},
+					'15%': {
+						transform: 'translate(-50%, -50%) scale(1.1) rotate(60deg)',
+						opacity: '1'
+					},
+					'100%': {
+						transform: 'translate(calc(-50% + var(--start-x) * 1.8), calc(-50% + var(--start-y) * 1.8)) scale(0.4) rotate(270deg)',
+						opacity: '0'
+					}
+				},
+
+				// Enhanced celebration effects
+				'celebration-pulse': {
+					'0%, 100%': {
+						opacity: '0.3'
+					},
+					'50%': {
+						opacity: '0.7'
+					}
+				},
+
+				'celebration-shake-intense': {
+					'0%, 100%': {
+						transform: 'translate(0)'
+					},
+					'10%': {
+						transform: 'translate(-2px, -2px)'
+					},
+					'20%': {
+						transform: 'translate(2px, -2px)'
+					},
+					'30%': {
+						transform: 'translate(-2px, 2px)'
+					},
+					'40%': {
+						transform: 'translate(2px, 2px)'
+					},
+					'50%': {
+						transform: 'translate(-1px, -1px)'
+					},
+					'60%': {
+						transform: 'translate(1px, -1px)'
+					},
+					'70%': {
+						transform: 'translate(-1px, 1px)'
+					},
+					'80%': {
+						transform: 'translate(1px, 1px)'
+					},
+					'90%': {
+						transform: 'translate(-1px, 0)'
+					}
+				},
+
+				'modal-breathe': {
+					'0%, 100%': {
+						transform: 'scale(1)'
+					},
+					'50%': {
+						transform: 'scale(1.02)'
+					}
+				},
+
+				'heart-mega-celebration': {
+					'0%': {
+						transform: 'scale(0) rotate(0deg)'
+					},
+					'50%': {
+						transform: 'scale(1.3) rotate(180deg)'
+					},
+					'100%': {
+						transform: 'scale(1) rotate(360deg)'
+					}
+				},
+
+				'text-shimmer': {
+					'0%': {
+						backgroundPosition: '-200% center'
+					},
+					'100%': {
+						backgroundPosition: '200% center'
+					}
+				},
+
+				'heart-glow-intense': {
+					'0%, 100%': {
+						opacity: '0.3',
+						transform: 'scale(0.9)'
+					},
+					'50%': {
+						opacity: '0.7',
+						transform: 'scale(1.1)'
+					}
+				},
+
+				'heart-glow-pulse': {
+					'0%, 100%': {
+						opacity: '0.2',
+						transform: 'scale(0.95)'
+					},
+					'50%': {
+						opacity: '0.5',
+						transform: 'scale(1.05)'
+					}
+				},
+
+				'bounce-enhanced': {
+					'0%, 20%, 53%, 80%, 100%': {
+						transform: 'translate3d(0,0,0)'
+					},
+					'40%, 43%': {
+						transform: 'translate3d(0,-15px,0)'
+					},
+					'70%': {
+						transform: 'translate3d(0,-7px,0)'
+					},
+					'90%': {
+						transform: 'translate3d(0,-2px,0)'
+					}
 				}
 			},
 			animation: {
@@ -252,7 +412,20 @@ export default {
 				'lightning': 'lightning 4s ease-in-out infinite',
 				'heart-explosion': 'heart-explosion 3s ease-out forwards',
 				'sparkle-confetti': 'sparkle-confetti 4s ease-out forwards',
-				'scale-in': 'scale-in 0.5s ease-out'
+				'scale-in': 'scale-in 0.5s ease-out',
+
+				// NEW FAST & SYNCHRONIZED ANIMATIONS
+				'ring-burst-immediate': 'ring-burst-immediate 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
+				'heart-explosive-burst-fast': 'heart-explosive-burst-fast 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
+				'heart-wave-cascade-fast': 'heart-wave-cascade-fast 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
+				'celebration-pulse': 'celebration-pulse 2s ease-in-out infinite',
+				'celebration-shake-intense': 'celebration-shake-intense 0.6s ease-in-out',
+				'modal-breathe': 'modal-breathe 3s ease-in-out infinite',
+				'heart-mega-celebration': 'heart-mega-celebration 1s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+				'text-shimmer': 'text-shimmer 2s linear infinite',
+				'heart-glow-intense': 'heart-glow-intense 2s ease-in-out infinite',
+				'heart-glow-pulse': 'heart-glow-pulse 1.5s ease-in-out infinite',
+				'bounce-enhanced': 'bounce-enhanced 1s infinite'
 			},
 			boxShadow: {
 				'3xl': '0 35px 60px -12px rgba(0, 0, 0, 0.25)',
