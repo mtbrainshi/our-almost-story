@@ -169,3 +169,37 @@
 .screen-shake {
   animation: celebration-shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
 }
+
+@media (max-width: 640px) {
+  .celebration-container {
+    padding: 0 0.5rem;
+  }
+  .confetti-heart {
+    width: 36px;
+    height: 36px;
+    font-size: 28px;
+  }
+  .heart-particle::after {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .celebration-container {
+    padding: 0 0.25rem;
+  }
+  .confetti-heart {
+    width: 28px;
+    height: 28px;
+    font-size: 20px;
+  }
+  .heart-particle::after {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .celebration-ring {
+    border-width: 2px;
+  }
+}

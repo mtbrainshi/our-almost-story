@@ -2,7 +2,7 @@ import { Coffee } from "lucide-react";
 
 const CoffeeInvitation = () => {
   return (
-    <div className="text-center px-4 sm:px-6 md:px-8 py-8 sm:py-12 max-w-4xl mx-auto">
+    <div className="text-center px-4 sm:px-6 md:px-8 py-8 sm:py-12 max-w-4xl mx-auto w-full">
       {/* Coffee icon with enhanced glow */}
       <div className="mb-8 sm:mb-10 flex justify-center">
         <div className="bg-gradient-to-br from-amber-100 to-orange-100 p-6 sm:p-8 rounded-full shadow-lg relative transform hover:scale-105 transition-transform duration-300">
@@ -12,7 +12,7 @@ const CoffeeInvitation = () => {
         </div>
       </div>
 
-      <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl italic text-rose-800 mb-4 sm:mb-6 font-bold">
+      <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl italic text-rose-800 mb-4 sm:mb-6 font-bold leading-tight">
         So... Coffee?
       </h2>
       
@@ -21,13 +21,13 @@ const CoffeeInvitation = () => {
           Would you like to go for coffee with me, sometime?
         </p>
         
-        <p className="font-poppins text-base sm:text-lg text-rose-600 max-w-2xl mx-auto leading-relaxed px-4">
+        <p className="font-poppins text-base sm:text-lg text-rose-600 max-w-2xl mx-auto leading-relaxed px-2 sm:px-4">
           Just coffee. Just a conversation. No expectations, no pressure.
           <br className="hidden sm:block" />
           <span className="italic font-medium text-rose-700 block mt-2">Just... me being honest.</span>
         </p>
         
-        <div className="bg-rose-50/80 p-6 sm:p-8 rounded-2xl border border-rose-200/40 max-w-xl mx-auto backdrop-blur-sm">
+        <div className="bg-rose-50/80 p-4 sm:p-6 md:p-8 rounded-2xl border border-rose-200/40 max-w-xl mx-auto backdrop-blur-sm">
           <p className="font-playfair text-base sm:text-lg italic text-rose-700 leading-relaxed">
             "Because the truth is — I liked you. I think a part of me still does."
           </p>

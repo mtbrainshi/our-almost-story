@@ -93,7 +93,7 @@ const PersonalMessage = () => {
     <section 
       id="personal-message" 
       data-section="personal-message"
-      className="min-h-screen flex items-center justify-center py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 bg-gradient-to-b from-purple-50 via-pink-50 to-rose-50 relative"
+      className="min-h-screen flex items-center justify-center py-12 sm:py-16 md:py-20 px-2 sm:px-6 md:px-8 bg-gradient-to-b from-purple-50 via-pink-50 to-rose-50 relative"
     >
       {/* Dreamy background effects */}
       <div className="absolute inset-0 overflow-hidden">
@@ -101,8 +101,8 @@ const PersonalMessage = () => {
         <div className="absolute inset-0 bg-grid-purple/[0.02] bg-[size:20px] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
       </div>
 
-      <Card className="relative w-[90%] sm:w-[85%] md:w-[450px] max-w-2xl bg-white/90 backdrop-blur-sm border-purple-100/50 rounded-3xl shadow-xl transform hover:scale-[1.02] transition-all duration-300">
-        <CardContent className="p-6 sm:p-8 md:p-10">
+      <Card className="relative w-full sm:w-[85%] md:w-[450px] max-w-2xl bg-white/90 backdrop-blur-sm border-purple-100/50 rounded-3xl shadow-xl transform hover:scale-[1.02] transition-all duration-300">
+        <CardContent className="p-4 sm:p-8 md:p-10">
           <div className="text-center space-y-6">
             <div className="flex justify-center gap-2 transform -translate-y-1">
               <div className="text-4xl animate-pulse transform hover:scale-110 transition-transform duration-300 hover:-rotate-12">💝</div>
@@ -139,19 +139,19 @@ const PersonalMessage = () => {
 
           {/* Message Form - only shows when requested */}
           {showForm && (
-            <div className="bg-gradient-to-br from-purple-50/50 to-pink-50/50 rounded-2xl p-6 mb-8 border border-purple-100">
+            <div className="bg-gradient-to-br from-purple-50/50 to-pink-50/50 rounded-2xl p-4 sm:p-6 mb-8 border border-purple-100">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="relative">
                   <Textarea
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Share your thoughts, feelings, or anything you'd like to say... ✨"
-                    className="min-h-[140px] text-base bg-white/90 border-purple-200 focus:border-purple-400 focus:ring-purple-400 rounded-xl resize-none shadow-sm"
+                    className="min-h-[120px] sm:min-h-[140px] text-base bg-white/90 border-purple-200 focus:border-purple-400 focus:ring-purple-400 rounded-xl resize-none shadow-sm"
                     disabled={isSubmitting}
                   />
                 </div>
 
-                <div className="flex gap-4 justify-center">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button
                     type="button"
                     onClick={() => setShowForm(false)}
