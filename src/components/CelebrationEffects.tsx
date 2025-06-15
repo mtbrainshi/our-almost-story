@@ -10,8 +10,15 @@ interface CelebrationEffectsProps {
   onCelebrationEnd: () => void;
 }
 
-const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEnd }: CelebrationEffectsProps) => {
-  console.log("CelebrationEffects rendered:", { showCelebration, celebrationPhase });
+const CelebrationEffects = ({
+  showCelebration,
+  celebrationPhase,
+  onCelebrationEnd,
+}: CelebrationEffectsProps) => {
+  console.log("CelebrationEffects rendered:", {
+    showCelebration,
+    celebrationPhase,
+  });
 
   useEffect(() => {
     if (showCelebration) {
@@ -19,13 +26,12 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
       const timer = setTimeout(() => {
         console.log("Heart Bloom celebration ended after 8 seconds");
         onCelebrationEnd();
-      }, 8000); // Full 8 seconds for Heart Bloom effect
-      
+      }, 8000);
+
       return () => clearTimeout(timer);
     }
   }, [showCelebration, onCelebrationEnd]);
 
-  // Only render when celebration is actually showing
   if (!showCelebration) {
     console.log("Celebration not showing - returning null");
     return null;
@@ -39,13 +45,13 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
 
       <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden transition-opacity duration-700 ease-in-out opacity-100 celebration-fade">
         <CelebrationBackground />
-        
+
         {/* Gentle screen shake for drama */}
         <div className="absolute inset-0 celebration-shake">
           {/* Heart Bloom - pure confetti hearts without interfering rings */}
           <HeartBloomConfetti />
         </div>
-        
+
         <CelebrationModal />
       </div>
       <style>{`

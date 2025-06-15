@@ -15,7 +15,7 @@ const Index = () => {
       userAgent: navigator.userAgent,
       screenSize: `${window.screen.width}x${window.screen.height}`
     };
-    
+
     const existingVisits = JSON.parse(localStorage.getItem('sakshi_visits') || '[]');
     existingVisits.push(visitData);
     localStorage.setItem('sakshi_visits', JSON.stringify(existingVisits));
@@ -48,7 +48,7 @@ const Index = () => {
       id: 2,
       title: "The Red Dress Moment",
       background: "bg-gradient-to-br from-mauve-50 via-blush-50 to-cream-100",
-      image: "/images/RED DRESS_FINALE.png",  // Keep your red dress image
+      image: "/images/RED DRESS_FINALE.png",
       frontContent: "That day at the Upper Depot bus stop that changed everything",
       backContent: "You wore red that day, Sakshi. My heart kept smiling for hours. That was the moment something sparked.",
       animation: "rotate-in"
@@ -66,7 +66,7 @@ const Index = () => {
       id: 4,
       title: "The Day You Raced the Rain",
       background: "bg-gradient-to-br from-blush-50 via-mauve-50 to-cream-100",
-      image: "/images/girl_drenched_in_rain.jpg", // Keep your rain image
+      image: "/images/girl_drenched_in_rain.jpg",
       frontContent: "Drenched but determined, beautiful in chaos",
       backContent: "You ran through that storm, Sakshi. Completely soaked but still came to college. I wished I'd run with you.",
       animation: "ripple"
@@ -74,28 +74,28 @@ const Index = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-b from-blush-50 to-cream-50 font-poppins">
-      <div id="hero-section">
+    <div className="bg-gradient-to-b from-blush-50 to-cream-50 font-poppins min-h-screen w-full overflow-x-hidden">
+      <div id="hero-section" className="w-full">
         <Hero />
       </div>
-      
+
       {chapters.map((chapter) => (
-        <div key={chapter.id} id={`chapter-${chapter.id}`} data-chapter={chapter.id}>
+        <div key={chapter.id} id={`chapter-${chapter.id}`} data-chapter={chapter.id} className="w-full">
           <Chapter
             {...chapter}
             isActive={currentChapter === chapter.id}
           />
         </div>
       ))}
-      
-      <div id="interlude-section">
+
+      <div id="interlude-section" className="w-full">
         <Interlude />
       </div>
-      
-      <div id="final-ask-section">
+
+      <div id="final-ask-section" className="w-full">
         <FinalAsk />
       </div>
-      
+
       <PersonalMessage />
     </div>
   );

@@ -34,7 +34,7 @@ const Interlude = () => {
   return (
     <section
       ref={interludeRef}
-      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-mauve-100 via-blush-50 to-cream-100 relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-mauve-100 via-blush-50 to-cream-100 relative overflow-hidden px-2 sm:px-4 md:px-8 py-8 sm:py-16"
     >
       {/* Enhanced dreamy background */}
       <div className="absolute inset-0">
@@ -80,22 +80,22 @@ const Interlude = () => {
         <div className="absolute bottom-1/3 right-1/4 w-56 h-56 bg-blush-200 rounded-full opacity-8 animate-pulse-gentle blur-3xl" style={{animationDelay: '2s'}} />
       </div>
 
-      <div className={`max-w-5xl mx-auto text-center px-8 transition-all duration-1500 ${
+      <div className={`max-w-5xl mx-auto text-center px-2 sm:px-8 transition-all duration-1500 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}>
-        <div className="bg-white/90 backdrop-blur-lg rounded-3xl p-16 shadow-2xl border border-white/50 relative overflow-hidden">
+        <div className="bg-white/90 backdrop-blur-lg rounded-3xl p-3 sm:p-8 md:p-16 shadow-2xl border border-white/50 relative overflow-hidden max-h-[90vh] overflow-y-auto">
           <div className="absolute inset-0 bg-gradient-to-br from-cream-100/40 via-transparent to-blush-100/40 rounded-3xl" />
           
           <div className="relative z-10">
-            <blockquote className="font-playfair text-3xl md:text-5xl italic text-mauve-800 leading-relaxed mb-8 font-medium">
+            <blockquote className="font-playfair text-base sm:text-2xl md:text-3xl lg:text-5xl italic text-mauve-800 leading-relaxed mb-4 sm:mb-8 font-medium break-words">
               "Sakshi, I’ve carried these words with me for so long... I had a crush on you, and today, I finally found the courage to say it out loud."
             </blockquote>
             
-            <p className="font-poppins text-xl md:text-2xl text-mauve-600 mb-6 font-light leading-relaxed">
+            <p className="font-poppins text-sm sm:text-lg md:text-xl text-mauve-600 mb-3 sm:mb-6 font-light leading-relaxed break-words">
               Sometimes the simplest truths are the hardest to say. But in your presence, even silence felt like poetry.
             </p>
 
-            <p className="font-poppins text-xl md:text-2xl text-mauve-600 mb-8 font-light leading-relaxed opacity-90">
+            <p className="font-poppins text-sm sm:text-lg md:text-xl text-mauve-600 mb-4 sm:mb-8 font-light leading-relaxed opacity-90 break-words">
               I know this may be sudden, and we never really talked about it... but some feelings are worth the leap of faith.
             </p>
             

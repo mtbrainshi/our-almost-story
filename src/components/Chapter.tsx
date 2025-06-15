@@ -256,47 +256,39 @@ const Chapter = ({ id, title, background, image, frontContent, backContent, anim
     >
       {getChapterAtmosphere()}
 
-      <div className={`transition-all duration-1000 ${getAnimationClass()}`}>
+      <div className={`transition-all duration-1000 ${getAnimationClass()} mt-0 mb-0`}> {/* Remove extra margin between cards */}
         <div className="perspective-1000">
-          <div
-            className={`relative w-[300px] sm:w-[350px] md:w-[400px] h-[450px] sm:h-[500px] md:h-[550px] cursor-pointer transition-transform duration-700 preserve-3d ${
-              isFlipped ? "rotate-y-180" : ""
-            }`}
+            <div
+              className={`relative w-[320px] sm:w-[370px] md:w-[420px] h-[470px] sm:h-[520px] md:h-[570px] cursor-pointer transition-transform duration-700 preserve-3d ${
+                isFlipped ? "rotate-y-180" : ""
+              }`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onClick={handleCardClick}
           >
             {/* Front of card */}
             <div className="absolute inset-0 backface-hidden">
-              <div className="bg-white/95 backdrop-blur-md p-4 sm:p-6 rounded-3xl shadow-2xl transform transition-all duration-500 border border-white/60 relative overflow-hidden hover:shadow-3xl">
+              <div className="bg-white/95 backdrop-blur-md p-3 sm:p-4 rounded-3xl shadow-2xl transform transition-all duration-500 border border-white/60 relative overflow-hidden hover:shadow-3xl flex flex-col h-full">
                 <div className="absolute inset-0 bg-gradient-to-br from-blush-100/20 via-transparent to-mauve-100/20 rounded-3xl" />
-                
-                <div className="relative overflow-hidden rounded-2xl mb-6 transition-all duration-500">
+                <div className="relative overflow-hidden rounded-2xl mb-3 transition-all duration-500">
                   <img
                     src={image}
                     alt={frontContent}
-                    className="w-full max-w-xs sm:max-w-sm md:max-w-md h-48 sm:h-56 md:h-64 lg:h-72 object-cover rounded-xl shadow-md mx-auto transition-transform duration-700 border border-white/40"
-                    style={{ aspectRatio: '4/3', objectFit: 'cover' }}
+                    className="w-full max-w-md sm:max-w-lg md:max-w-xl h-56 sm:h-72 md:h-80 lg:h-[20rem] object-cover rounded-xl shadow-md mx-auto transition-transform duration-700 border border-white/40"
+                    style={{ aspectRatio: '4/3', objectFit: 'cover', imageRendering: 'auto' }}
+                    srcSet={image + ' 1x, ' + image + ' 2x'}
                   />
-                  
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
-                  
-                  {/* Hover-activated click hint */}
-                  <div className={`absolute inset-0 bg-black/10 backdrop-blur-[1px] flex items-center justify-center transition-all duration-500 ${
-                    isHovered ? 'opacity-100' : 'opacity-0'
-                  }`}>
-                    <div className="bg-white/95 backdrop-blur-md rounded-full px-6 py-3 shadow-xl border border-white/50 animate-pulse-gentle transform transition-all duration-300">
-                      <p className="text-sm text-mauve-700 font-poppins font-medium flex items-center gap-2">
-                        💝 Click to read my heart
-                        <span className="text-pink-400 animate-sparkle">✨</span>
-                      </p>
-                    </div>
-                  </div>
                 </div>
-                
-                <div className="text-center relative z-10">
-                  <h3 className="font-playfair text-xl md:text-2xl italic text-mauve-700 mb-4 font-semibold leading-tight">{title}</h3>
+                <div className="text-center relative z-10 flex-1 flex flex-col justify-center">
+                  <h3 className="font-playfair text-xl md:text-2xl italic text-mauve-700 mb-2 font-semibold leading-tight">{title}</h3>
                   <p className="text-sm md:text-base text-mauve-600 font-poppins leading-relaxed">{frontContent}</p>
+                </div>
+                {/* Minimal click hint at the very bottom */}
+                <div className="w-full flex justify-center mt-auto mb-1">
+                  <p className="text-xs text-mauve-500 font-poppins font-normal opacity-80">
+                    Click to read
+                  </p>
                 </div>
               </div>
             </div>
