@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -201,9 +200,9 @@ export default {
 					'5%, 85%': { opacity: '0.8' }
 				},
 
-				// FIXED & SIMPLIFIED CONFETTI ANIMATIONS
+				// WORKING CONFETTI ANIMATIONS
 				
-				// Slower ring burst that syncs with hearts
+				// Ring expansion animation
 				'ring-burst': {
 					'0%': {
 						transform: 'scale(0)',
@@ -219,7 +218,7 @@ export default {
 					}
 				},
 
-				// Simple heart burst - hearts move outward from center
+				// Primary heart burst - hearts move outward from center
 				'heart-burst-primary': {
 					'0%': {
 						transform: 'translate(-50%, -50%) scale(0.5)',
@@ -230,12 +229,12 @@ export default {
 						opacity: '1'
 					},
 					'100%': {
-						transform: 'translate(calc(-50% + var(--move-x)), calc(-50% + var(--move-y))) scale(0.6)',
+						transform: 'translate(calc(-50% + var(--move-x)), calc(-50% + var(--move-y))) scale(0.8)',
 						opacity: '0'
 					}
 				},
 
-				// Secondary wave with slight delay
+				// Secondary heart burst with slight delay
 				'heart-burst-secondary': {
 					'0%': {
 						transform: 'translate(-50%, -50%) scale(0.3)',
@@ -246,12 +245,12 @@ export default {
 						opacity: '1'
 					},
 					'100%': {
-						transform: 'translate(calc(-50% + var(--move-x)), calc(-50% + var(--move-y))) scale(0.4)',
+						transform: 'translate(calc(-50% + var(--move-x)), calc(-50% + var(--move-y))) scale(0.6)',
 						opacity: '0'
 					}
 				},
 
-				// Enhanced celebration effects
+				// Background and modal effects
 				'celebration-pulse': {
 					'0%, 100%': {
 						opacity: '0.3'
@@ -374,10 +373,10 @@ export default {
 				'float': 'float 3s ease-in-out infinite',
 				'lightning': 'lightning 4s ease-in-out infinite',
 
-				// FIXED CONFETTI ANIMATIONS
+				// WORKING CONFETTI ANIMATIONS
 				'ring-burst': 'ring-burst 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
-				'heart-burst-primary': 'heart-burst-primary 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
-				'heart-burst-secondary': 'heart-burst-secondary 1.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
+				'heart-burst-primary': 'heart-burst-primary 2.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
+				'heart-burst-secondary': 'heart-burst-secondary 2.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
 				'celebration-pulse': 'celebration-pulse 2s ease-in-out infinite',
 				'celebration-shake': 'celebration-shake 0.6s ease-in-out',
 				'modal-breathe': 'modal-breathe 3s ease-in-out infinite',

@@ -11,51 +11,51 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
   // Only pink/red hearts
   const heartEmojis = ['💕', '💖', '💗', '❤️', '💝', '💘', '💓', '💞', '💟', '♥️'];
 
-  // Primary burst - immediate hearts bursting outward
+  // Simple primary burst - hearts burst outward immediately
   const generatePrimaryBurst = (count: number) => {
     return Array.from({ length: count }, (_, i) => {
       const angle = (i / count) * 2 * Math.PI;
-      const distance = 200 + Math.random() * 100; // How far they travel
+      const distance = 250; // Fixed distance for consistent burst
       const moveX = Math.cos(angle) * distance;
       const moveY = Math.sin(angle) * distance;
       
       return {
         moveX,
         moveY,
-        delay: 0, // Start immediately
+        delay: 0, // Start immediately with rings
         emoji: heartEmojis[i % heartEmojis.length],
-        size: 22 + (i % 4) * 4,
+        size: 24 + (i % 3) * 4,
       };
     });
   };
 
-  // Secondary wave - quick follow-up burst
+  // Secondary wave - slightly different angles and distance
   const generateSecondaryWave = (count: number) => {
     return Array.from({ length: count }, (_, i) => {
-      const angle = (i / count) * 2 * Math.PI + Math.PI / count; // Offset angle
-      const distance = 150 + Math.random() * 80;
+      const angle = (i / count) * 2 * Math.PI + Math.PI / count; // Offset angle slightly
+      const distance = 200; // Slightly smaller distance
       const moveX = Math.cos(angle) * distance;
       const moveY = Math.sin(angle) * distance;
       
       return {
         moveX,
         moveY,
-        delay: 0.3, // Small delay for wave effect
+        delay: 0.3, // 300ms delay for wave effect
         emoji: heartEmojis[Math.floor(Math.random() * heartEmojis.length)],
-        size: 18 + Math.random() * 8,
+        size: 20 + Math.random() * 8,
       };
     });
   };
 
-  // Reduced heart count for testing
-  const primaryBurst = generatePrimaryBurst(20);
-  const secondaryWave = generateSecondaryWave(16);
+  // Generate hearts
+  const primaryBurst = generatePrimaryBurst(16); // Reduced count for testing
+  const secondaryWave = generateSecondaryWave(12);
 
   useEffect(() => {
     if (showCelebration) {
       const timer = setTimeout(() => {
         onCelebrationEnd();
-      }, 4000);
+      }, 4000); // 4 seconds total
       
       return () => clearTimeout(timer);
     }
@@ -74,16 +74,16 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
       {/* Enhanced screen shake */}
       <div className="absolute inset-0 animate-celebration-shake">
         
-        {/* SYNCHRONIZED expanding rings */}
+        {/* Expanding rings - synchronized with hearts */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-12 h-12 border-4 border-pink-500/90 rounded-full animate-ring-burst" />
-          <div className="absolute w-24 h-24 border-3 border-rose-500/70 rounded-full animate-ring-burst" />
-          <div className="absolute w-40 h-40 border-2 border-red-500/60 rounded-full animate-ring-burst" />
-          <div className="absolute w-64 h-64 border-2 border-pink-400/50 rounded-full animate-ring-burst" />
-          <div className="absolute w-80 h-80 border-1 border-rose-300/40 rounded-full animate-ring-burst" />
+          <div className="absolute w-24 h-24 border-3 border-rose-500/70 rounded-full animate-ring-burst" style={{animationDelay: '0.1s'}} />
+          <div className="absolute w-40 h-40 border-2 border-red-500/60 rounded-full animate-ring-burst" style={{animationDelay: '0.2s'}} />
+          <div className="absolute w-64 h-64 border-2 border-pink-400/50 rounded-full animate-ring-burst" style={{animationDelay: '0.3s'}} />
+          <div className="absolute w-80 h-80 border-1 border-rose-300/40 rounded-full animate-ring-burst" style={{animationDelay: '0.4s'}} />
         </div>
 
-        {/* Primary Heart Burst - IMMEDIATE */}
+        {/* Primary Heart Burst - starts immediately */}
         <div className="absolute inset-0 flex items-center justify-center">
           {primaryBurst.map((heart, i) => (
             <div
@@ -104,7 +104,7 @@ const CelebrationEffects = ({ showCelebration, celebrationPhase, onCelebrationEn
           ))}
         </div>
 
-        {/* Secondary Heart Wave - slight delay */}
+        {/* Secondary Heart Wave - 300ms delay */}
         <div className="absolute inset-0 flex items-center justify-center">
           {secondaryWave.map((heart, i) => (
             <div
